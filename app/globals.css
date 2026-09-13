@@ -53,11 +53,32 @@ h1 {
 
 .intro {
   max-width: 15rem;
-  margin: 1.25rem 0 2.25rem;
+  margin: 1.25rem 0 1.75rem;
   color: #6e6e73;
   font-size: .9rem;
   line-height: 1.5;
 }
+
+.featured-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: .85rem;
+  background: #1d1d1f;
+  color: #fff;
+  text-decoration: none;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.featured-link:hover { background: #333336; transform: translateY(-1px); }
+.featured-kicker { display: flex; align-items: center; gap: .4rem; color: #b3b3b8; font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.featured-kicker svg { width: .8rem; height: .8rem; }
+.featured-link strong { font-size: .95rem; font-weight: 600; letter-spacing: -.015em; }
+.featured-detail { color: #b3b3b8; font-size: .75rem; line-height: 1.45; }
+.featured-arrow { position: absolute; top: 1rem; right: 1rem; color: #d1d1d6; font-size: 1.1rem; }
 
 nav { display: grid; gap: .625rem; }
 nav a {

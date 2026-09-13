@@ -1,4 +1,4 @@
-import { FaGithub, FaInstagram, FaLinkedinIn, FaSoundcloud, FaYoutube } from "react-icons/fa6";
+import { FaCalendarDays, FaGithub, FaInstagram, FaLinkedinIn, FaSoundcloud, FaYoutube } from "react-icons/fa6";
 
 const links = [
   { label: "Instagram", href: "https://instagram.com/valenfys", icon: FaInstagram },
@@ -16,6 +16,13 @@ export default function Home() {
         <p className="eyebrow">VAL ENFYS</p>
         <h1>Val Enfys</h1>
         <p className="intro">DJ and Creative Technologist</p>
+
+        <a className="featured-link" href="https://ra.co/events/2500782" target="_blank" rel="noreferrer">
+          <span className="featured-kicker"><FaCalendarDays aria-hidden="true" /> Next up</span>
+          <strong>Fragment: Open Decks</strong>
+          <span className="featured-detail">15 October 2026, 19:00–02:00<br />The Glove That Fits</span>
+          <span className="featured-arrow" aria-hidden="true">↗</span>
+        </a>
 
         <nav aria-label="Links">
           {links.map(({ label, href, icon: Icon }) => (

@@ -4,7 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
-  title: "Val Enfys — Artist and Creative Technologist",
+  title: "Val Enfys – Artist and Creative Technologist",
   description: "Artist and Creative Technologist.",
 };
 

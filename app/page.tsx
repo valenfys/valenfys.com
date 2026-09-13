@@ -13,7 +13,6 @@ export default function Home() {
     <main>
       <section>
         <div className="rainbow" aria-hidden="true" />
-        <p className="eyebrow">VAL ENFYS</p>
         <h1>Val Enfys</h1>
         <p className="intro">DJ and Creative Technologist</p>
 

@@ -29,17 +29,9 @@ section {
 .rainbow {
   width: 3.5rem;
   height: .25rem;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
   border-radius: 999px;
   background: linear-gradient(90deg, #71b238 0 20%, #f7ca2d 20% 40%, #ee8637 40% 60%, #df5952 60% 80%, #5893be 80%);
-}
-
-.eyebrow {
-  margin: 0 0 .5rem;
-  color: #86868b;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .1em;
 }
 
 h1 {

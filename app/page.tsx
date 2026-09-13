@@ -9,19 +9,21 @@ export default function Home() {
   return (
     <main>
       <section>
+        <div className="rainbow" aria-hidden="true" />
+        <p className="eyebrow">VAL ENFYS / 2026</p>
         <h1>Val Enfys</h1>
-        <p>Digital designer and maker.</p>
+        <p className="intro">A few things I make, collect, and share.</p>
 
         <nav aria-label="Links">
           {links.map(({ label, href }) => (
             <a href={href} key={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
               {label}
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">›</span>
             </a>
           ))}
         </nav>
 
-        <a id="portfolio" href="mailto:hello@valenfys.com">hello@valenfys.com</a>
+        <a className="email" id="portfolio" href="mailto:hello@valenfys.com">Write to me ↗</a>
       </section>
     </main>
   );

@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Val Enfys — Links",
-  description: "Links from Val Enfys.",
+  description: "DJ and Creative Technologist.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

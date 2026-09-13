@@ -2,7 +2,8 @@ import {
   FaCalendarDays,
   FaGithub,
   FaInstagram,
-  FaLinkedinIn, FaLocationPin,
+  FaLinkedinIn,
+  FaLocationDot,
   FaSoundcloud,
   FaYoutube
 } from "react-icons/fa6";
@@ -28,7 +29,7 @@ export default function Home() {
           <strong>Fragment: Open Decks</strong>
           <span className="featured-detail">
             <span><FaCalendarDays aria-hidden="true" /> 15 Oct 2026, 19:00 – 02:00</span>
-            <span><FaLocationPin aria-hidden="true" /> The Glove That Fits, London</span>
+            <span><FaLocationDot aria-hidden="true" /> The Glove That Fits, London</span>
           </span>
           <span className="featured-arrow" aria-hidden="true">↗</span>
         </a>

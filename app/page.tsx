@@ -19,32 +19,30 @@ const links = [
 export default function Home() {
   return (
     <main>
-      <section>
-        <div className="rainbow" aria-hidden="true" />
-        <h1>Val Enfys<span style={{color:'#ee8637'}}>.</span></h1>
-        <p className="intro">Artist and Creative Technologist</p>
+      <div className="rainbow" aria-hidden="true" />
+      <h1>Val Enfys<span style={{color:'#ee8637'}}>.</span></h1>
+      <p className="intro">Artist and Creative Technologist</p>
 
-        <a className="featured-link" href="https://ra.co/events/2500782" target="_blank" rel="noreferrer">
-          {/*<span className="featured-kicker"><FaCalendarDays aria-hidden="true" /> Next up</span>*/}
-          <strong>Fragment: Open Decks</strong>
-          <span className="featured-detail">
-            <span><FaCalendarDays aria-hidden="true" /> 15 Oct 2026, 19:00 – 02:00</span>
-            <span><FaLocationDot aria-hidden="true" /> The Glove That Fits, London</span>
-          </span>
-          <span className="featured-arrow" aria-hidden="true">↗</span>
-        </a>
+      <a className="featured-link" href="https://ra.co/events/2500782" target="_blank" rel="noreferrer">
+        {/*<span className="featured-kicker"><FaCalendarDays aria-hidden="true" /> Next up</span>*/}
+        <strong>Fragment: Open Decks</strong>
+        <span className="featured-detail">
+          <span><FaCalendarDays aria-hidden="true" /> 15 Oct 2026, 19:00 – 02:00</span>
+          <span><FaLocationDot aria-hidden="true" /> The Glove That Fits, London</span>
+        </span>
+        <span className="featured-arrow" aria-hidden="true">↗</span>
+      </a>
 
-        <nav aria-label="Links">
-          {links.map(({ label, href, icon: Icon }) => (
-            <a href={href} key={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-              <span className="link-label"><Icon aria-hidden="true" />{label}</span>
-              <span aria-hidden="true">›</span>
-            </a>
-          ))}
-        </nav>
+      <nav aria-label="Links">
+        {links.map(({ label, href, icon: Icon }) => (
+          <a href={href} key={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+            <span className="link-label"><Icon aria-hidden="true" />{label}</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        ))}
+      </nav>
 
-        <a className="email" href="mailto:val@valenfys.com">val@valenfys.com</a>
-      </section>
+      <a className="email" href="mailto:val@valenfys.com">val@valenfys.com</a>
     </main>
   );
 }

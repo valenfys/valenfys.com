@@ -6,10 +6,11 @@ body {
   margin: 0;
   color: #1d1d1f;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  display: grid;
   min-height: 100vh;
   padding: 1.5rem;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main {

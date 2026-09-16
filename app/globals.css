@@ -36,11 +36,15 @@ h1 {
 }
 
 .intro {
-  max-width: 15rem;
-  margin: 1.25rem 0 1.75rem;
+  margin-top: 1.25rem;
   color: #6e6e73;
   font-size: .9rem;
   line-height: 1.5;
+}
+
+.intro strong {
+  color: black;
+  font-weight: 600;
 }
 
 .featured-link {
@@ -89,7 +93,8 @@ nav a:hover { border-color: #cacacf; background: #fafafa; transform: translateY(
 
 .email {
   display: inline-block;
-  margin-top: 1.75rem;
+  /*margin-top: 1.75rem;*/
+  margin-bottom: 1.75rem;
   color: #6e6e73;
   font-size: .78rem;
   font-weight: 500;
@@ -97,3 +102,10 @@ nav a:hover { border-color: #cacacf; background: #fafafa; transform: translateY(
 }
 .email:hover { color: #1d1d1f; }
 
+.copyright {
+  margin-top: 1.75rem;
+  color: #6e6e73;
+  font-size: .78rem;
+  font-weight: 500;
+  text-decoration: none;
+}

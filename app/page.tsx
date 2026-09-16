@@ -23,7 +23,9 @@ export default function Home() {
     <main>
       <div className="rainbow" aria-hidden="true" />
       <h1>Val Enfys<span style={{color:'#ee8637'}}>.</span></h1>
-      <p className="intro">Artist and Creative Technologist</p>
+      <p className="intro"><strong>Artist & Creative Technologist</strong> based in <strong>London, UK</strong></p>
+
+      <a className="email" href="mailto:val@valenfys.com">val@valenfys.com</a>
 
       <a className="featured-link" href="https://ra.co/events/2500782" target="_blank" rel="noreferrer">
         {/*<span className="featured-kicker"><FaCalendarDays aria-hidden="true" /> Next up</span>*/}
@@ -44,7 +46,7 @@ export default function Home() {
         ))}
       </nav>
 
-      <a className="email" href="mailto:val@valenfys.com">val@valenfys.com</a>
+      <div className="copyright">&copy; 2026 Val Enfys. All rights reserved.</div>
     </main>
   );
 }

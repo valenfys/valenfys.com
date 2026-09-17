@@ -23,7 +23,7 @@ export default function Home() {
     <main>
       <div className="rainbow" aria-hidden="true" />
       <h1>Val Enfys<span style={{color:'#ee8637'}}>.</span></h1>
-      <p className="intro">Artist & Creative Technologist</p>
+      <p className="intro">Artist, DJ & Creative Technologist</p>
 
       <a className="email" href="mailto:val@valenfys.com">val@valenfys.com</a>
 

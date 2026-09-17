@@ -4,8 +4,8 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
-  title: "Val Enfys – Artist and Creative Technologist",
-  description: "Artist and Creative Technologist.",
+  title: "Val Enfys – Artist, DJ & Creative Technologist",
+  description: "Artist, DJ & Creative Technologist.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

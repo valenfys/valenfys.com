@@ -31,7 +31,7 @@ export default function Home() {
         {/*<span className="featured-kicker"><FaCalendarDays aria-hidden="true" /> Next up</span>*/}
         <strong>Fragment: Open Decks</strong>
         <span className="featured-detail">
-          <span><FaCalendarDays aria-hidden="true" /> 15 Oct 2026, 19:00 – 02:00</span>
+          <span><FaCalendarDays aria-hidden="true" /> 8 Oct 2026, 19:00 – 02:00</span>
           <span><FaLocationDot aria-hidden="true" /> The Glove That Fits, London</span>
         </span>
         <span className="featured-arrow" aria-hidden="true">↗</span>

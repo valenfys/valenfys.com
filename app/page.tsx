@@ -46,7 +46,7 @@ export default function Home() {
         ))}
       </nav>
 
-      <div className="copyright">&copy; 2026 Val Enfys. All rights reserved.</div>
+      <div className="copyright">&copy; {new Date().getFullYear()} Val Enfys. All rights reserved.</div>
     </main>
   );
 }

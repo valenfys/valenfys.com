@@ -10,6 +10,7 @@ import {
   FaYoutube
 } from "react-icons/fa6";
 import bioSource from "../content/bio.md";
+import Bio from "./Bio";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 type UpcomingEvent = { date: string; time: string; title: string; venue: string; href: string };
@@ -97,13 +98,32 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-            <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
-            <p className="flex items-center gap-[7px] text-sm text-text2">
-              <span aria-hidden="true" className="size-[7px] rounded-full bg-accent ring-3 ring-accent/16" />
-              London, UK
-            </p>
+          <div className="flex flex-col gap-3.5">
+            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
+              <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
+              <p className="flex items-center gap-[7px] text-sm text-text2">
+                <span aria-hidden="true" className="size-[7px] rounded-full bg-accent ring-3 ring-accent/16" />
+                London, UK
+              </p>
+            </div>
+            <Bio html={bio} />
           </div>
+
+          <a
+            href="mailto:val@valenfys.com"
+            className="flex items-center justify-between gap-4 rounded-[14px] border border-key-border bg-key py-[18px] pr-[18px] pl-[22px] transition-colors hover:bg-key-hover"
+          >
+            <span className="flex min-w-0 flex-col gap-[5px]">
+              <span className="text-[13px] font-medium tracking-[-0.005em] text-muted">Bookings &amp; enquiries</span>
+              <span className="text-2xl font-medium tracking-[-0.025em] wrap-anywhere">val@valenfys.com</span>
+            </span>
+            <span
+              aria-hidden="true"
+              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.12)]"
+            >
+              <ArrowIcon className="size-[18px]" />
+            </span>
+          </a>
 
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
@@ -122,30 +142,6 @@ export default function Home() {
               ))}
             </div>
           </nav>
-
-          <section aria-labelledby="h-bio" className="flex flex-col gap-3">
-            <SectionHeader id="h-bio">Bio</SectionHeader>
-            <div
-              className="space-y-3 text-[15px] leading-[1.6] text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2"
-              dangerouslySetInnerHTML={{ __html: bio }}
-            />
-          </section>
-
-          <a
-            href="mailto:val@valenfys.com"
-            className="flex items-center justify-between gap-4 rounded-[14px] border border-key-border bg-key py-[18px] pr-[18px] pl-[22px] transition-colors hover:bg-key-hover"
-          >
-            <span className="flex min-w-0 flex-col gap-[5px]">
-              <span className="text-[13px] font-medium tracking-[-0.005em] text-muted">Bookings &amp; enquiries</span>
-              <span className="text-2xl font-medium tracking-[-0.025em] wrap-anywhere">val@valenfys.com</span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.12)]"
-            >
-              <ArrowIcon className="size-[18px]" />
-            </span>
-          </a>
         </header>
 
         {upcoming.length > 0 && (

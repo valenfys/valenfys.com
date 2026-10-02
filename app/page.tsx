@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { marked } from "marked";
 import type { IconType } from "react-icons";
 import {
   FaBandcamp,
@@ -43,6 +46,9 @@ const previous: PastEvent[] = [
   { year: 2025, title: "Canal Film Club", venue: "Hackney Wick, London", href: "https://soundcloud.com/valenfys/studio-mix-canal-film-club", kind: "recording" },
   { year: 2025, title: "London Open Decks", venue: "Carbobar, Hackney Wick", href: "https://soundcloud.com/valenfys/live-london-open-decks", kind: "recording" },
 ];
+
+// Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
+const bio = marked.parse(readFileSync(path.join(process.cwd(), "content/bio.md"), "utf8"), { async: false });
 
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
@@ -100,11 +106,10 @@ export default function Home() {
                 London, UK
               </p>
             </div>
-            <p className="text-[15px] leading-[1.6] text-text2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.
-              Sed posuere consectetur est at lobortis, donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-              ligula porta felis euismod semper.
-            </p>
+            <div
+              className="space-y-3 text-[15px] leading-[1.6] text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2"
+              dangerouslySetInnerHTML={{ __html: bio }}
+            />
           </div>
 
           <a

@@ -13,7 +13,8 @@ import bioSource from "../content/bio.md";
 import Bio from "./Bio";
 
 type SocialLink = { label: string; href: string; icon: IconType };
-type UpcomingEvent = { date: string; time: string; title: string; venue: string; href: string };
+// start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
+type UpcomingEvent = { start: string; end: string; title: string; venue: string; href: string };
 type PastEvent = { year: number; title: string; venue: string; href: string; kind: "recording" | "event" };
 
 const socials: SocialLink[] = [
@@ -27,8 +28,8 @@ const socials: SocialLink[] = [
 
 const upcoming: UpcomingEvent[] = [
   {
-    date: "2026-10-08",
-    time: "19:00 – 02:00",
+    start: "2026-10-08T19:00+01:00",
+    end: "2026-10-09T02:00+01:00",
     title: "Fragment: Open Decks",
     venue: "The Glove That Fits, London",
     href: "https://ra.co/events/2500782",
@@ -53,8 +54,43 @@ const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
 
+const siteUrl = "https://valenfys.com";
+const personId = `${siteUrl}/#person`;
+
+// Structured data so search engines can connect the site, social profiles and gigs to one person.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Val Enfys",
+      url: siteUrl,
+      email: "mailto:val@valenfys.com",
+      jobTitle: ["DJ", "Artist", "Software Engineer"],
+      address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+      sameAs: socials.map(({ href }) => href),
+    },
+    ...upcoming.map((event) => ({
+      "@type": "MusicEvent",
+      name: event.title,
+      startDate: event.start,
+      endDate: event.end,
+      url: event.href,
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: { "@type": "Place", name: event.venue, address: event.venue },
+      performer: { "@id": personId },
+    })),
+  ],
+};
+
 function formatDate(iso: string, options: Intl.DateTimeFormatOptions) {
-  return new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", ...options }).format(new Date(iso));
+  return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...options }).format(new Date(iso));
+}
+
+function formatTime(iso: string) {
+  return formatDate(iso, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 }
 
 function external(href: string) {
@@ -82,6 +118,11 @@ export default function Home() {
   return (
     <div className="flex min-h-screen justify-center px-6 pt-18 pb-14">
       <main className="flex w-full max-w-[34rem] flex-col gap-13">
+        <script
+          type="application/ld+json"
+          // Escape "<" so the JSON can't close the script tag early.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
         <header className="flex flex-col gap-7">
           <div
             aria-hidden="true"
@@ -146,7 +187,7 @@ export default function Home() {
 
         {upcoming.length > 0 && (
           <section aria-labelledby="h-upcoming" className="flex flex-col gap-3.5">
-            <SectionHeader id="h-upcoming">Upcoming</SectionHeader>
+            <SectionHeader id="h-upcoming">Upcoming gigs</SectionHeader>
             {upcoming.map((event) => (
               <a
                 key={event.href}
@@ -156,17 +197,17 @@ export default function Home() {
               >
                 <span className="flex min-w-[52px] flex-col items-center justify-center border-r border-card-rule pr-5">
                   <span className="text-[30px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
-                    {formatDate(event.date, { day: "2-digit" })}
+                    {formatDate(event.start, { day: "2-digit" })}
                   </span>
                   <span className="mt-1.5 text-[13px] font-medium text-card-muted">
-                    {formatDate(event.date, { month: "short" })}
+                    {formatDate(event.start, { month: "short" })}
                   </span>
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col gap-1.5">
                   <strong className="text-[17px] font-semibold tracking-[-0.015em]">{event.title}</strong>
                   <span className="text-[13px] leading-normal text-card-muted">
-                    {formatDate(event.date, { weekday: "short" })}{" "}
-                    {formatDate(event.date, { day: "numeric", month: "short", year: "numeric" })} · {event.time}
+                    {formatDate(event.start, { weekday: "short" })}{" "}
+                    {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })} · {formatTime(event.start)} – {formatTime(event.end)}
                     <br />
                     {event.venue}
                   </span>
@@ -179,7 +220,7 @@ export default function Home() {
 
         <section aria-labelledby="h-previous" className="flex flex-col">
           <div className="mb-2.5">
-            <SectionHeader id="h-previous">Previous</SectionHeader>
+            <SectionHeader id="h-previous">Previous gigs &amp; mixes</SectionHeader>
           </div>
           {previous.map((event) => (
             <a

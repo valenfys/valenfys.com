@@ -77,14 +77,18 @@ Keep events and links as typed arrays at the top of `page.tsx` (or in a small `d
 type PastEvent = { year: number; title: string; venue: string; href: string; kind: "recording" | "event" };
 ```
 
-Current content (the `href`s are TODO; Val will supply them):
+Current content:
 
-| Year | Title | Venue | Kind |
-|---|---|---|---|
-| 2026 | SSL Series #002 | Square Studio Lab | event (switch to recording if one exists) |
-| 2026 | Omidox Hypnotic Podcast | Hamburg | recording |
-| 2026 | Sibling Radio | London | recording |
-| 2025 | Lost Unicorns | Basing House, London | event |
+| Year | Title | Venue | Kind | Link |
+|---|---|---|---|---|
+| 2026 | SSL Series #002 | Square Studio Lab | recording | https://soundcloud.com/valenfys/enfy-ssl-open-deck |
+| 2026 | Groovy Techno in the Woods | East London | recording | https://soundcloud.com/valenfys/groovy-techno-in-the-woods-london-july-2026 |
+| 2025 | Sibling Radio | London | recording | https://soundcloud.com/sibling-radio/07112025-alien-tech-w-val-enfys-10 |
+| 2025 | Over.The.Techno #23 | Rostov-on-Don | recording | https://soundcloud.com/overthetechno/overthetechno-23-val-enfys |
+| 2025 | Omidox Hypnotic Podcast | Hamburg | recording | https://soundcloud.com/omidox-1/val-enfys-omidox-hypnotic |
+| 2025 | Lost Unicorns | Basing House, London | event | https://ra.co/events/2228141 |
+| 2025 | Canal Film Club | Hackney Wick, London | recording | https://soundcloud.com/valenfys/studio-mix-canal-film-club |
+| 2025 | London Open Decks | Carbobar, Hackney Wick | recording | https://soundcloud.com/valenfys/live-london-open-decks |
 
 Upcoming: Fragment: Open Decks, 8 Oct 2026, 19:00–02:00, The Glove That Fits, London, https://ra.co/events/2500782. If there are no upcoming events, hide the Upcoming section entirely.
 

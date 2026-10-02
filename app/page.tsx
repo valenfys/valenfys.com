@@ -4,6 +4,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaPeace,
   FaSoundcloud,
   FaYoutube
 } from "react-icons/fa6";
@@ -201,10 +202,7 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center py-2">
-          <svg role="img" aria-label="Peace" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 2v20M12 12l-7.07 7.07M12 12l7.07 7.07" />
-          </svg>
+          <FaPeace role="img" aria-label="Peace" className="size-[22px]" />
         </div>
 
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">

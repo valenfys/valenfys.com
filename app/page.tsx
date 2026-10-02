@@ -1,5 +1,3 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { marked } from "marked";
 import type { IconType } from "react-icons";
 import {
@@ -11,6 +9,7 @@ import {
   FaSoundcloud,
   FaYoutube
 } from "react-icons/fa6";
+import bioSource from "../content/bio.md";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 type UpcomingEvent = { date: string; time: string; title: string; venue: string; href: string };
@@ -48,7 +47,7 @@ const previous: PastEvent[] = [
 ];
 
 // Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
-const bio = marked.parse(readFileSync(path.join(process.cwd(), "content/bio.md"), "utf8"), { async: false });
+const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
 
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];

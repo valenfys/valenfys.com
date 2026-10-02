@@ -97,15 +97,17 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-col gap-3.5">
-            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-              <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
-              <p className="flex items-center gap-[7px] text-sm text-text2">
-                <span aria-hidden="true" className="size-[7px] rounded-full bg-accent ring-3 ring-accent/16" />
-                London, UK
-              </p>
-            </div>
-            <nav aria-label="Socials" className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
+            <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
+            <p className="flex items-center gap-[7px] text-sm text-text2">
+              <span aria-hidden="true" className="size-[7px] rounded-full bg-accent ring-3 ring-accent/16" />
+              London, UK
+            </p>
+          </div>
+
+          <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
+            <SectionHeader id="h-socials">Socials</SectionHeader>
+            <div className="grid grid-cols-6 gap-2">
               {socials.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -113,17 +115,21 @@ export default function Home() {
                   aria-label={label}
                   title={label}
                   {...external(href)}
-                  className="flex size-11 items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
+                  className="flex h-[52px] items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
                 >
-                  <Icon aria-hidden="true" className="size-[18px]" />
+                  <Icon aria-hidden="true" className="size-5" />
                 </a>
               ))}
-            </nav>
+            </div>
+          </nav>
+
+          <section aria-labelledby="h-bio" className="flex flex-col gap-3">
+            <SectionHeader id="h-bio">Bio</SectionHeader>
             <div
               className="space-y-3 text-[15px] leading-[1.6] text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2"
               dangerouslySetInnerHTML={{ __html: bio }}
             />
-          </div>
+          </section>
 
           <a
             href="mailto:val@valenfys.com"

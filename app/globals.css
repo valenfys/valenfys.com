@@ -1,111 +1,66 @@
 @import "tailwindcss";
 
-* { box-sizing: border-box; }
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
 
-body {
-  margin: 0;
-  color: #1d1d1f;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  min-height: 100vh;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  --color-accent: #e03a3e;
+
+  --color-bg: #fbfbfa;
+  --color-text: #1d1d1f;
+  --color-text2: #515156;
+  --color-muted: #6e6e73;
+  --color-rule: #e2e2e0;
+  --color-rule2: #ececea;
+  --color-key: #f2f1ee;
+  --color-key-hover: #ecebe7;
+  --color-key-border: #e4e3df;
+  --color-tile: #ffffff;
+  --color-tile-hover: #f6f6f4;
+  --color-tile-border: #e5e5e7;
+  --color-tile-border-hover: #cacacf;
+  --color-card: #1d1d1f;
+  --color-card-hover: #2a2a2d;
+  --color-card-text: #ffffff;
+  --color-card-muted: #b3b3b8;
+  --color-card-rule: #3a3a3d;
+  --color-row-hover: #f2f1ee;
+  --color-step-off: #dcdcd9;
+  --color-grille: #c9c9c6;
 }
 
-main {
-  width: 100%;
-  max-width: 30rem;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111112;
+    --color-text: #f2f2f0;
+    --color-text2: #b8b8bc;
+    --color-muted: #9a9aa0;
+    --color-rule: #2a2a2c;
+    --color-rule2: #222224;
+    --color-key: #1b1b1d;
+    --color-key-hover: #232326;
+    --color-key-border: #2e2e31;
+    --color-tile: #18181a;
+    --color-tile-hover: #232326;
+    --color-tile-border: #2e2e31;
+    --color-tile-border-hover: #48484c;
+    --color-card: #f2f1ee;
+    --color-card-hover: #e8e7e3;
+    --color-card-text: #1d1d1f;
+    --color-card-muted: #5f5f64;
+    --color-card-rule: #d9d8d4;
+    --color-row-hover: #1b1b1d;
+    --color-step-off: #2e2e31;
+    --color-grille: #3f3f42;
+  }
 }
 
-.rainbow {
-  width: 3.5rem;
-  height: .25rem;
-  margin-bottom: 1.5rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #71b238 0 20%, #f7ca2d 20% 40%, #ee8637 40% 60%, #df5952 60% 80%, #5893be 80%);
-}
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
 
-h1 {
-  margin: 0;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 4.8rem;
-  font-weight: 400;
-  letter-spacing: -.065em;
-  line-height: .9;
-}
-
-.intro {
-  margin-top: 1.25rem;
-  color: #6e6e73;
-  font-size: .9rem;
-  line-height: 1.5;
-}
-
-.intro strong {
-  color: black;
-  font-weight: 600;
-}
-
-.featured-link {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-  margin-bottom: 1.25rem;
-  padding: 1rem;
-  border-radius: .5rem;
-  background: #1d1d1f;
-  color: #fff;
-  text-decoration: none;
-  transition: transform .18s ease, background .18s ease;
-}
-
-.featured-link:hover { background: #333336; transform: translateY(-1px); }
-.featured-kicker { display: flex; align-items: center; gap: .4rem; color: #b3b3b8; font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-.featured-kicker svg { width: .8rem; height: .8rem; }
-.featured-link strong { font-size: .95rem; font-weight: 600; letter-spacing: -.015em; }
-.featured-detail { color: #b3b3b8; font-size: .75rem; line-height: 1.45; }
-.featured-detail span { display: flex; gap: 0.4rem; }
-.featured-detail svg { width: .6rem; height: .6rem; margin-top: 0.2rem; }
-.featured-arrow { position: absolute; top: 1rem; right: 1rem; color: #d1d1d6; font-size: 1.1rem; }
-
-nav { display: grid; gap: .625rem; }
-nav a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: .7rem .9rem;
-  border: 1px solid #e5e5e7;
-  border-radius: .5rem;
-  background: #fff;
-  color: inherit;
-  font-size: .87rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-  text-decoration: none;
-  transition: background .18s ease, border-color .18s ease, transform .18s ease;
-}
-.link-label { display: flex; align-items: center; gap: .75rem; }
-.link-label svg { width: 1.1rem; height: 1.1rem; color: #515156; }
-nav a > span:last-child { color: #86868b; font-family: Georgia, serif; font-size: 1.35rem; font-weight: 400; }
-nav a:hover { border-color: #cacacf; background: #fafafa; transform: translateY(-1px); }
-
-.email {
-  display: inline-block;
-  /*margin-top: 1.75rem;*/
-  margin-bottom: 1.75rem;
-  color: #6e6e73;
-  font-size: .78rem;
-  font-weight: 500;
-  text-decoration: none;
-}
-.email:hover { color: #1d1d1f; }
-
-.copyright {
-  margin-top: 1.75rem;
-  color: #6e6e73;
-  font-size: .78rem;
-  font-weight: 500;
-  text-decoration: none;
+  body {
+    @apply bg-bg text-text;
+  }
 }

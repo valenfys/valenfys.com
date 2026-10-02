@@ -16,7 +16,6 @@
     "react-icons": "^5.7.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.0",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^26.5.1",
     "@types/react": "^19.0.0",

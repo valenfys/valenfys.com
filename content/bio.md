@@ -1,5 +1,5 @@
-Val Enfys is a multidisciplinary creative working across music and technology. As a DJ, she plays hypnotic, groove-driven techno and has built an independent audience and brand across London's music and LGBTQ+ scenes. She is also in the early stages of producing her own tracks in the same vein, using Ableton Live.
+Val Enfys is a multidisciplinary creative professional working across music and technology. As a DJ, she has crafted an independent identity and brand within London's techno scene, and is developing production skills with Ableton Live.
 
-She is currently studying for a BSc (Hons) in Music Production & Software Engineering at pointblank Music School, and has shipped consumer products as an engineer at the Financial Times, Cleo and Gatsby.
+Since October 2026, she is studying Music Production & Software Engineering at [pointblank Music School](https://www.pointblankmusicschool.com/) in London, and has shipped consumer products as a software engineer at the [Financial Times](https://www.ft.com/), Cleo and Gatsby.
 
-She was selected for ADE Lab On Track 2026, a three-day programme for early-career producers and DJs at Amsterdam Dance Event.
+She was selected for [ADE Lab On Track](https://www.amsterdam-dance-event.nl/en/ade-lab-on-track/), a three-day programme for DJs and producers early in their career, at [Amsterdam Dance Event](https://www.amsterdam-dance-event.nl/en/) 2026.

@@ -10,6 +10,7 @@ import {
   FaYoutube
 } from "react-icons/fa6";
 import bioSource from "../content/bio.md";
+import Bio from "./Bio";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 type UpcomingEvent = { date: string; time: string; title: string; venue: string; href: string };
@@ -105,10 +106,7 @@ export default function Home() {
                 London, UK
               </p>
             </div>
-            <div
-              className="space-y-3 text-[15px] leading-[1.6] text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2"
-              dangerouslySetInnerHTML={{ __html: bio }}
-            />
+            <Bio html={bio} />
           </div>
 
           <a

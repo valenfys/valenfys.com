@@ -105,6 +105,20 @@ export default function Home() {
                 London, UK
               </p>
             </div>
+            <nav aria-label="Socials" className="flex flex-wrap gap-2">
+              {socials.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  {...external(href)}
+                  className="flex size-11 items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
+                >
+                  <Icon aria-hidden="true" className="size-[18px]" />
+                </a>
+              ))}
+            </nav>
             <div
               className="space-y-3 text-[15px] leading-[1.6] text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2"
               dangerouslySetInnerHTML={{ __html: bio }}
@@ -126,24 +140,6 @@ export default function Home() {
               <ArrowIcon className="size-[18px]" />
             </span>
           </a>
-
-          <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
-            <SectionHeader id="h-socials">Socials</SectionHeader>
-            <div className="grid grid-cols-6 gap-2">
-              {socials.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  title={label}
-                  {...external(href)}
-                  className="flex h-[52px] items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
-                >
-                  <Icon aria-hidden="true" className="size-5" />
-                </a>
-              ))}
-            </div>
-          </nav>
         </header>
 
         {upcoming.length > 0 && (

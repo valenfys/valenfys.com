@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 export const metadata: Metadata = {
   title: "Val Enfys – DJ, Artist & Software Engineer",
   description:
-    "Val Enfys is a London-based techno DJ, artist and software engineer, studying music production at pointblank and selected for ADE Lab On Track 2026.",
+    "Val Enfys is a London-based DJ, artist and software engineer, currently studying Music Production and Software Engineering at pointblank Music School.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -126,7 +126,7 @@ export default function Home() {
         <header className="flex flex-col gap-7">
           <div
             aria-hidden="true"
-            className="h-1 w-14 rounded-full bg-[linear-gradient(90deg,#61bb46_0_16.66%,#fdb827_16.66%_33.33%,#f5821f_33.33%_50%,#e03a3e_50%_66.66%,#963d97_66.66%_83.33%,#009ddc_83.33%)]"
+            className="h-1 w-14 rounded-full pride-bar"
           />
 
           <div className="flex items-end justify-between gap-6">
@@ -135,7 +135,7 @@ export default function Home() {
             </h1>
             <div
               aria-hidden="true"
-              className="mb-2 h-10 w-18 shrink-0 rounded-md bg-[radial-gradient(circle,var(--color-grille)_1.1px,transparent_1.4px)] bg-size-[7px_7px] max-[480px]:hidden"
+              className="mb-2 h-10 w-18 shrink-0 rounded-md grille max-xs:hidden"
             />
           </div>
 

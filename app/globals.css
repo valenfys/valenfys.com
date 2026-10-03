@@ -27,6 +27,8 @@
   --color-row-hover: #f2f1ee;
   --color-step-off: #dcdcd9;
   --color-grille: #c9c9c6;
+
+  --breakpoint-xs: 30rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,4 +65,22 @@
   body {
     @apply bg-bg text-text;
   }
+}
+
+@utility pride-bar {
+  background-image: linear-gradient(
+    90deg,
+    #61bb46 0 16.66%,
+    #fdb827 16.66% 33.33%,
+    #f5821f 33.33% 50%,
+    #e03a3e 50% 66.66%,
+    #963d97 66.66% 83.33%,
+    #009ddc 83.33%
+  );
+}
+
+/* Speaker grille dot pattern. */
+@utility grille {
+  background-image: radial-gradient(circle, var(--color-grille) 1.1px, transparent 1.4px);
+  background-size: 7px 7px;
 }

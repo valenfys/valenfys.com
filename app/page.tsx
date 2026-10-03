@@ -302,12 +302,10 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
-          <span className="flex items-center gap-2">
-            &copy; {new Date().getFullYear()} Val Enfys
-            <FaPeace role="img" aria-label="Peace" className="size-3.5" title="The function of art is to do more than tell it like it is—it's to imagine what is possible." />
-          </span>
-          <span aria-hidden="true" className="flex gap-1">
+        <footer className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-rule pt-5 text-xs text-muted">
+          <span>&copy; {new Date().getFullYear()} Val Enfys Studio</span>
+          <FaPeace role="img" aria-label="Peace" className="size-3.5" title="The function of art is to do more than tell it like it is—it's to imagine what is possible." />
+          <span aria-hidden="true" className="flex gap-1 justify-self-end">
             {steps.map((on, i) => (
               <span key={i} className={`size-1.5 rounded-xs ${on ? "bg-accent" : "bg-step-off"}`} />
             ))}

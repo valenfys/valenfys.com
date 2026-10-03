@@ -68,6 +68,7 @@ const jsonLd = {
       "@id": personId,
       name: "Val Enfys",
       url: siteUrl,
+      image: `${siteUrl}/val-portrait.jpg`,
       email: "mailto:val@valenfys.com",
       jobTitle: ["DJ", "Artist", "Software Engineer"],
       address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },

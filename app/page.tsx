@@ -303,7 +303,7 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center py-2">
-          <FaPeace role="img" aria-label="Peace" className="size-6" />
+          <FaPeace role="img" aria-label="Peace" className="size-6" title="“Another world is not only possible, she is on her way.” — Arundhati Roy" />
         </div>
 
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">

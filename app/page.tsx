@@ -97,9 +97,9 @@ function external(href: string) {
   return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
 }
 
-function SectionHeader({ id, children }: { id: string; children: React.ReactNode }) {
+function SectionHeader({ id, className = "", children }: { id: string; className?: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="flex items-center gap-3 text-[13px] font-medium tracking-[-0.005em] text-muted">
+    <h2 id={id} className={`flex items-center gap-3 text-[13px] font-medium tracking-[-0.005em] text-muted ${className}`}>
       {children}
       <span aria-hidden="true" className="h-px flex-1 bg-rule" />
     </h2>
@@ -142,9 +142,7 @@ export default function Home() {
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
               <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
-              <p className="flex items-center gap-1.75 text-sm text-text2">
-                London, UK
-              </p>
+              <p className="text-sm text-text2">London, UK</p>
             </div>
             <Bio html={bio} />
           </div>
@@ -218,9 +216,9 @@ export default function Home() {
         )}
 
         <section aria-labelledby="h-previous" className="flex flex-col">
-          <div className="mb-2.5">
-            <SectionHeader id="h-previous">Previous gigs &amp; mixes</SectionHeader>
-          </div>
+          <SectionHeader id="h-previous" className="mb-2.5">
+            Previous gigs &amp; mixes
+          </SectionHeader>
           {previous.map((event) => (
             <a
               key={event.title}

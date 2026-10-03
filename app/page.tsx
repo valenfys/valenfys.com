@@ -121,6 +121,10 @@ function formatDate(iso: string, options: Intl.DateTimeFormatOptions) {
   return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...options }).format(new Date(iso));
 }
 
+function youtubeUrl(id: string) {
+  return `https://www.youtube.com/watch?v=${id}`;
+}
+
 function formatTime(iso: string) {
   return formatDate(iso, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 }
@@ -265,13 +269,15 @@ export default function Home() {
               project.kind === "video" ? (
                 <article key={project.title} className="flex flex-col gap-3.5">
                   <ProjectVideo title={project.title} youtubeId={project.youtubeId} image={project.image} />
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="text-[17px] font-semibold tracking-tight">{project.title}</h3>
+                  <a href={youtubeUrl(project.youtubeId)} {...external(youtubeUrl(project.youtubeId))} className="group flex flex-col gap-1">
+                    <span className="flex items-baseline justify-between gap-4">
+                      <strong className="text-[17px] font-semibold tracking-tight underline-offset-3 group-hover:underline">
+                        {project.title}
+                      </strong>
                       <ProjectDate>{project.date}</ProjectDate>
-                    </div>
-                    <p className="text-[15px] leading-[1.6] text-text2">{project.description}</p>
-                  </div>
+                    </span>
+                    <span className="text-[15px] leading-[1.6] text-text2">{project.description}</span>
+                  </a>
                 </article>
               ) : (
                 <a key={project.title} href={project.href} {...external(project.href)} className="group flex flex-col gap-3.5">

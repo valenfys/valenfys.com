@@ -14,10 +14,18 @@ import bioSource from "../content/bio.md";
 import Bio from "./Bio";
 import { external } from "./external";
 import PreviousGigs, { type PastEvent } from "./PreviousGigs";
+import ProjectVideo from "./ProjectVideo";
+import { tileCircleClass, tileClass, tileImageSizes } from "./projectTile";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
 type UpcomingEvent = { start: string; end: string; title: string; venue: string; href: string };
+type Project = {
+  title: string;
+  date: string; // display string, e.g. "Jul 2026"
+  description: string;
+  image: string; // path under /public
+} & ({ kind: "video"; youtubeId: string } | { kind: "link"; href: string });
 
 const socials: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/valenfys", icon: FaInstagram },
@@ -48,6 +56,27 @@ const previous: PastEvent[] = [
   { year: 2025, title: "Lost Unicorns", venue: "Basing House, London", href: "https://ra.co/events/2228141", kind: "event" },
   { year: 2025, title: "Canal Film Club", venue: "Hackney Wick, London", href: "https://soundcloud.com/valenfys/studio-mix-canal-film-club", kind: "recording" },
   { year: 2025, title: "London Open Decks", venue: "Carbobar, Hackney Wick", href: "https://soundcloud.com/valenfys/live-london-open-decks", kind: "recording" },
+];
+
+const projects: Project[] = [
+  {
+    title: "Techno Forest Party in East London",
+    date: "Jul 2026",
+    description:
+      "An independent outdoor party co-hosted with a fellow promoter: a night of techno, hardgroove and trance, from lineup, lighting and logistics through to the recap film.",
+    image: "/projects/groovy-techno.jpg",
+    kind: "video",
+    youtubeId: "0NYqs2o88Jk",
+  },
+  {
+    title: "Portfolio Website for Barbara Touati-Evans",
+    date: "Mar 2022",
+    description:
+      "Design and build of a portfolio site for an independent artist in Next.js, Sanity and Tailwind CSS, with a CMS that lets the artist update it without a developer.",
+    image: "/projects/barbara-touati-evans.jpg",
+    kind: "link",
+    href: "https://www.barbara-touati-evans.com/",
+  },
 ];
 
 // Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
@@ -103,6 +132,10 @@ function SectionHeader({ id, className = "", children }: { id: string; className
       <span aria-hidden="true" className="h-px flex-1 bg-rule" />
     </h2>
   );
+}
+
+function ProjectDate({ children }: { children: React.ReactNode }) {
+  return <span className="shrink-0 text-[13px] text-muted tabular-nums">{children}</span>;
 }
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -223,6 +256,44 @@ export default function Home() {
             Previous gigs &amp; mixes
           </SectionHeader>
           <PreviousGigs events={previous} />
+        </section>
+
+        <section aria-labelledby="h-projects" className="flex flex-col gap-3.5">
+          <SectionHeader id="h-projects">Projects</SectionHeader>
+          <div className="flex flex-col gap-8">
+            {projects.map((project) =>
+              project.kind === "video" ? (
+                <article key={project.title} className="flex flex-col gap-3.5">
+                  <ProjectVideo title={project.title} youtubeId={project.youtubeId} image={project.image} />
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="text-[17px] font-semibold tracking-tight">{project.title}</h3>
+                      <ProjectDate>{project.date}</ProjectDate>
+                    </div>
+                    <p className="text-[15px] leading-[1.6] text-text2">{project.description}</p>
+                  </div>
+                </article>
+              ) : (
+                <a key={project.title} href={project.href} {...external(project.href)} className="group flex flex-col gap-3.5">
+                  <span className={`${tileClass} group-hover:border-tile-border-hover`}>
+                    <Image src={project.image} alt="" fill sizes={tileImageSizes} className="object-cover" />
+                    <span aria-hidden="true" className={`${tileCircleClass} bg-card text-card-text`}>
+                      <ArrowIcon className="size-5.5" />
+                    </span>
+                  </span>
+                  <span className="flex flex-col gap-1">
+                    <span className="flex items-baseline justify-between gap-4">
+                      <strong className="text-[17px] font-semibold tracking-tight underline-offset-3 group-hover:underline">
+                        {project.title}
+                      </strong>
+                      <ProjectDate>{project.date}</ProjectDate>
+                    </span>
+                    <span className="text-[15px] leading-[1.6] text-text2">{project.description}</span>
+                  </span>
+                </a>
+              ),
+            )}
+          </div>
         </section>
 
         <div className="flex justify-center py-2">

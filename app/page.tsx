@@ -117,7 +117,7 @@ function ArrowIcon({ className }: { className?: string }) {
 export default function Home() {
   return (
     <div className="flex min-h-screen justify-center px-6 pt-18 pb-14">
-      <main className="flex w-full max-w-[34rem] flex-col gap-13">
+      <main className="flex w-full max-w-136 flex-col gap-13">
         <script
           type="application/ld+json"
           // Escape "<" so the JSON can't close the script tag early.
@@ -135,14 +135,14 @@ export default function Home() {
             </h1>
             <div
               aria-hidden="true"
-              className="mb-2 h-[42px] w-[70px] shrink-0 rounded-md bg-[radial-gradient(circle,var(--color-grille)_1.1px,transparent_1.4px)] bg-size-[7px_7px] max-[480px]:hidden"
+              className="mb-2 h-10.5 w-17.5 shrink-0 rounded-md bg-[radial-gradient(circle,var(--color-grille)_1.1px,transparent_1.4px)] bg-size-[7px_7px] max-[480px]:hidden"
             />
           </div>
 
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
               <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
-              <p className="flex items-center gap-[7px] text-sm text-text2">
+              <p className="flex items-center gap-1.75 text-sm text-text2">
                 London, UK
               </p>
             </div>
@@ -151,17 +151,17 @@ export default function Home() {
 
           <a
             href="mailto:val@valenfys.com"
-            className="flex items-center justify-between gap-4 rounded-[14px] border border-key-border bg-key py-[18px] pr-[18px] pl-[22px] transition-colors hover:bg-key-hover"
+            className="flex items-center justify-between gap-4 rounded-[14px] border border-key-border bg-key py-4.5 pr-4.5 pl-5.5 transition-colors hover:bg-key-hover"
           >
-            <span className="flex min-w-0 flex-col gap-[5px]">
+            <span className="flex min-w-0 flex-col gap-1.25">
               <span className="text-[13px] font-medium tracking-[-0.005em] text-muted">Bookings &amp; enquiries</span>
-              <span className="text-2xl font-medium tracking-[-0.025em] wrap-anywhere">val@valenfys.com</span>
+              <span className="text-2xl font-medium tracking-tight wrap-anywhere">val@valenfys.com</span>
             </span>
             <span
               aria-hidden="true"
               className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.12)]"
             >
-              <ArrowIcon className="size-[18px]" />
+              <ArrowIcon className="size-4.5" />
             </span>
           </a>
 
@@ -175,7 +175,7 @@ export default function Home() {
                   aria-label={label}
                   title={label}
                   {...external(href)}
-                  className="flex h-[52px] items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
+                  className="flex h-13 items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
                 >
                   <Icon aria-hidden="true" className="size-5" />
                 </a>
@@ -194,7 +194,7 @@ export default function Home() {
                 {...external(event.href)}
                 className="flex items-stretch gap-5 rounded-[14px] bg-card p-5 text-card-text transition-colors hover:bg-card-hover"
               >
-                <span className="flex min-w-[52px] flex-col items-center justify-center border-r border-card-rule pr-5">
+                <span className="flex min-w-13 flex-col items-center justify-center border-r border-card-rule pr-5">
                   <span className="text-[30px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
                     {formatDate(event.start, { day: "2-digit" })}
                   </span>
@@ -234,7 +234,7 @@ export default function Home() {
                 <span className="text-[13px] text-muted">{event.venue}</span>
               </span>
               {event.kind === "recording" ? (
-                <span className="flex items-center gap-[7px] text-[13px] font-medium">
+                <span className="flex items-center gap-1.75 text-[13px] font-medium">
                   <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
                     <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
                   </svg>
@@ -248,7 +248,7 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center py-2">
-          <FaPeace role="img" aria-label="Peace" className="size-[22px]" />
+          <FaPeace role="img" aria-label="Peace" className="size-5.5" />
         </div>
 
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">

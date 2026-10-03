@@ -302,12 +302,11 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="flex justify-center py-2">
-          <FaPeace role="img" aria-label="Peace" className="size-6" title="The function of art is to do more than tell it like it is—it's to imagine what is possible." />
-        </div>
-
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
-          <span>&copy; {new Date().getFullYear()} Val Enfys</span>
+          <span className="flex items-center gap-2">
+            &copy; {new Date().getFullYear()} Val Enfys
+            <FaPeace role="img" aria-label="Peace" className="size-3.5" title="The function of art is to do more than tell it like it is—it's to imagine what is possible." />
+          </span>
           <span aria-hidden="true" className="flex gap-1">
             {steps.map((on, i) => (
               <span key={i} className={`size-1.5 rounded-xs ${on ? "bg-accent" : "bg-step-off"}`} />

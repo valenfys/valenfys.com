@@ -26,7 +26,6 @@
   --color-card-rule: #3a3a3d;
   --color-row-hover: #f2f1ee;
   --color-step-off: #dcdcd9;
-  --color-grille: #c9c9c6;
 
   --breakpoint-xs: 30rem;
 }
@@ -53,7 +52,6 @@
     --color-card-rule: #d9d8d4;
     --color-row-hover: #1b1b1d;
     --color-step-off: #2e2e31;
-    --color-grille: #3f3f42;
   }
 }
 
@@ -77,10 +75,4 @@
     #963d97 66.66% 83.33%,
     #009ddc 83.33%
   );
-}
-
-/* Speaker grille dot pattern. */
-@utility grille {
-  background-image: radial-gradient(circle, var(--color-grille) 1.1px, transparent 1.4px);
-  background-size: 7px 7px;
 }

@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import Image from "next/image";
 import type { IconType } from "react-icons";
 import {
   FaBandcamp,
@@ -11,11 +12,12 @@ import {
 } from "react-icons/fa6";
 import bioSource from "../content/bio.md";
 import Bio from "./Bio";
+import { external } from "./external";
+import PreviousGigs, { type PastEvent } from "./PreviousGigs";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
 type UpcomingEvent = { start: string; end: string; title: string; venue: string; href: string };
-type PastEvent = { year: number; title: string; venue: string; href: string; kind: "recording" | "event" };
 
 const socials: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/valenfys", icon: FaInstagram },
@@ -93,10 +95,6 @@ function formatTime(iso: string) {
   return formatDate(iso, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 }
 
-function external(href: string) {
-  return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
-}
-
 function SectionHeader({ id, className = "", children }: { id: string; className?: string; children: React.ReactNode }) {
   return (
     <h2 id={id} className={`flex items-center gap-3 text-[13px] font-medium text-muted ${className}`}>
@@ -129,13 +127,17 @@ export default function Home() {
             className="h-1 w-14 rounded-full pride-bar"
           />
 
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex items-center justify-between gap-6">
             <h1 className="font-serif text-[clamp(3.75rem,17vw,5.25rem)] leading-[.88] font-normal tracking-[-0.065em]">
               Val Enfys<span className="text-accent">.</span>
             </h1>
-            <div
-              aria-hidden="true"
-              className="mb-2 h-10 w-18 shrink-0 rounded-md grille max-xs:hidden"
+            <Image
+              src="/val-portrait.jpg"
+              alt="Portrait of Val Enfys"
+              width={168}
+              height={168}
+              priority
+              className="size-21 shrink-0 rounded-full object-cover object-[50%_35%] shadow-[0_0_0_1px_var(--color-rule),0_0_0_4px_var(--color-bg),0_0_0_5px_var(--color-rule)] max-xs:size-16"
             />
           </div>
 
@@ -219,30 +221,7 @@ export default function Home() {
           <SectionHeader id="h-previous" className="mb-2.5">
             Previous gigs &amp; mixes
           </SectionHeader>
-          {previous.map((event) => (
-            <a
-              key={event.title}
-              href={event.href}
-              {...external(event.href)}
-              className="-mx-2.5 grid grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-rule2 px-2.5 py-3.5 transition-colors last:border-b-0 hover:bg-row-hover"
-            >
-              <span className="text-[13px] text-muted tabular-nums">{event.year}</span>
-              <span className="flex flex-col gap-0.5">
-                <span className="text-[15px] font-medium">{event.title}</span>
-                <span className="text-[13px] text-muted">{event.venue}</span>
-              </span>
-              {event.kind === "recording" ? (
-                <span className="flex items-center gap-2 text-[13px] font-medium">
-                  <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
-                    <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
-                  </svg>
-                  Listen
-                </span>
-              ) : (
-                <span aria-hidden="true" className="text-base text-muted">↗</span>
-              )}
-            </a>
-          ))}
+          <PreviousGigs events={previous} />
         </section>
 
         <div className="flex justify-center py-2">

@@ -14,7 +14,7 @@ export default function Bio({ html }: { html: string }) {
         onClick={(e) => {
           if (!expanded && !(e.target as HTMLElement).closest("a")) setExpanded(true);
         }}
-        className={`flex flex-col gap-3 text-base leading-relaxed text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2 ${
+        className={`flex flex-col gap-3 text-[15px] leading-relaxed text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2 ${
           expanded ? "" : "cursor-pointer *:first:line-clamp-3 *:not-first:hidden"
         }`}
         dangerouslySetInnerHTML={{ __html: html }}
@@ -24,7 +24,7 @@ export default function Bio({ html }: { html: string }) {
         aria-expanded={expanded}
         aria-controls={id}
         onClick={() => setExpanded(!expanded)}
-        className="cursor-pointer text-sm font-medium text-muted transition-colors hover:text-text"
+        className="cursor-pointer text-[13px] font-medium text-muted transition-colors hover:text-text"
       >
         {expanded ? "Show less" : "Read more"}
       </button>

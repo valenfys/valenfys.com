@@ -99,7 +99,7 @@ function external(href: string) {
 
 function SectionHeader({ id, className = "", children }: { id: string; className?: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className={`flex items-center gap-3 text-sm font-medium text-muted ${className}`}>
+    <h2 id={id} className={`flex items-center gap-3 text-[13px] font-medium text-muted ${className}`}>
       {children}
       <span aria-hidden="true" className="h-px flex-1 bg-rule" />
     </h2>
@@ -141,7 +141,7 @@ export default function Home() {
 
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-              <p className="text-base font-semibold">DJ, Artist &amp; Software Engineer</p>
+              <p className="text-[15px] font-semibold">DJ, Artist &amp; Software Engineer</p>
               <p className="text-sm text-text2">London, UK</p>
             </div>
             <Bio html={bio} />
@@ -152,7 +152,7 @@ export default function Home() {
             className="flex items-center justify-between gap-4 rounded-xl border border-key-border bg-key py-4 pr-4 pl-6 transition-colors hover:bg-key-hover"
           >
             <span className="flex min-w-0 flex-col gap-1">
-              <span className="text-sm font-medium text-muted">Bookings &amp; enquiries</span>
+              <span className="text-[13px] font-medium text-muted">Bookings &amp; enquiries</span>
               <span className="text-2xl font-medium tracking-tight wrap-anywhere">val@valenfys.com</span>
             </span>
             <span
@@ -196,13 +196,13 @@ export default function Home() {
                   <span className="text-3xl leading-none font-semibold tracking-tight tabular-nums">
                     {formatDate(event.start, { day: "2-digit" })}
                   </span>
-                  <span className="mt-1.5 text-sm font-medium text-card-muted">
+                  <span className="mt-1.5 text-[13px] font-medium text-card-muted">
                     {formatDate(event.start, { month: "short" })}
                   </span>
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col gap-1.5">
-                  <strong className="text-lg font-semibold tracking-tight">{event.title}</strong>
-                  <span className="text-sm leading-normal text-card-muted">
+                  <strong className="text-[17px] font-semibold tracking-tight">{event.title}</strong>
+                  <span className="text-[13px] leading-normal text-card-muted">
                     {formatDate(event.start, { weekday: "short" })}{" "}
                     {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })} · {formatTime(event.start)} – {formatTime(event.end)}
                     <br />
@@ -226,13 +226,13 @@ export default function Home() {
               {...external(event.href)}
               className="-mx-2.5 grid grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-rule2 px-2.5 py-3.5 transition-colors last:border-b-0 hover:bg-row-hover"
             >
-              <span className="text-sm text-muted tabular-nums">{event.year}</span>
+              <span className="text-[13px] text-muted tabular-nums">{event.year}</span>
               <span className="flex flex-col gap-0.5">
-                <span className="text-base font-medium">{event.title}</span>
-                <span className="text-sm text-muted">{event.venue}</span>
+                <span className="text-[15px] font-medium">{event.title}</span>
+                <span className="text-[13px] text-muted">{event.venue}</span>
               </span>
               {event.kind === "recording" ? (
-                <span className="flex items-center gap-2 text-sm font-medium">
+                <span className="flex items-center gap-2 text-[13px] font-medium">
                   <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
                     <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
                   </svg>

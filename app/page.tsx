@@ -135,7 +135,7 @@ export default function Home() {
             </h1>
             <div
               aria-hidden="true"
-              className="mb-2 h-10.5 w-17.5 shrink-0 rounded-md bg-[radial-gradient(circle,var(--color-grille)_1.1px,transparent_1.4px)] bg-size-[7px_7px] max-[480px]:hidden"
+              className="mb-2 h-10 w-18 shrink-0 rounded-md bg-[radial-gradient(circle,var(--color-grille)_1.1px,transparent_1.4px)] bg-size-[7px_7px] max-[480px]:hidden"
             />
           </div>
 
@@ -149,9 +149,9 @@ export default function Home() {
 
           <a
             href="mailto:val@valenfys.com"
-            className="flex items-center justify-between gap-4 rounded-[14px] border border-key-border bg-key py-4.5 pr-4.5 pl-5.5 transition-colors hover:bg-key-hover"
+            className="flex items-center justify-between gap-4 rounded-xl border border-key-border bg-key py-4 pr-4 pl-6 transition-colors hover:bg-key-hover"
           >
-            <span className="flex min-w-0 flex-col gap-1.25">
+            <span className="flex min-w-0 flex-col gap-1">
               <span className="text-sm font-medium text-muted">Bookings &amp; enquiries</span>
               <span className="text-2xl font-medium tracking-tight wrap-anywhere">val@valenfys.com</span>
             </span>
@@ -159,7 +159,7 @@ export default function Home() {
               aria-hidden="true"
               className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.12)]"
             >
-              <ArrowIcon className="size-4.5" />
+              <ArrowIcon className="size-5" />
             </span>
           </a>
 
@@ -190,7 +190,7 @@ export default function Home() {
                 key={event.href}
                 href={event.href}
                 {...external(event.href)}
-                className="flex items-stretch gap-5 rounded-[14px] bg-card p-5 text-card-text transition-colors hover:bg-card-hover"
+                className="flex items-stretch gap-5 rounded-xl bg-card p-5 text-card-text transition-colors hover:bg-card-hover"
               >
                 <span className="flex min-w-13 flex-col items-center justify-center border-r border-card-rule pr-5">
                   <span className="text-3xl leading-none font-semibold tracking-tight tabular-nums">
@@ -232,7 +232,7 @@ export default function Home() {
                 <span className="text-sm text-muted">{event.venue}</span>
               </span>
               {event.kind === "recording" ? (
-                <span className="flex items-center gap-1.75 text-sm font-medium">
+                <span className="flex items-center gap-2 text-sm font-medium">
                   <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
                     <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
                   </svg>
@@ -246,14 +246,14 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center py-2">
-          <FaPeace role="img" aria-label="Peace" className="size-5.5" />
+          <FaPeace role="img" aria-label="Peace" className="size-6" />
         </div>
 
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
           <span>&copy; {new Date().getFullYear()} Val Enfys</span>
           <span aria-hidden="true" className="flex gap-1">
             {steps.map((on, i) => (
-              <span key={i} className={`size-1.5 rounded-[1.5px] ${on ? "bg-accent" : "bg-step-off"}`} />
+              <span key={i} className={`size-1.5 rounded-xs ${on ? "bg-accent" : "bg-step-off"}`} />
             ))}
           </span>
         </footer>

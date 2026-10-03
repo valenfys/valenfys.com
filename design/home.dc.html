@@ -22,6 +22,9 @@ a{color:inherit}a:hover{color:inherit}
 .ve-dark .ve-event:hover{background:#e8e7e3 !important}
 .ve-dark .ve-prev:hover{background:#1b1b1d !important}
 .ve-dark .ve-more:hover{color:#f2f2f0 !important}
+.ve-media{transition:border-color .15s ease}.ve-media:hover,.ve-project:hover .ve-media{border-color:#cacacf !important}
+.ve-dark .ve-media:hover,.ve-dark .ve-project:hover .ve-media{border-color:#48484c !important}
+.ve-project:hover .ve-project-title{text-decoration:underline;text-underline-offset:3px}
 .ve-clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:480px){.ve-avatar{width:64px !important;height:64px !important}}
 </style>
@@ -34,7 +37,7 @@ a{color:inherit}a:hover{color:inherit}
 
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <h1 style="margin: 0; font-family: &quot;Times New Roman&quot;, Times, serif; font-size: clamp(3.75rem, 17vw, 5.25rem); font-weight: 400; letter-spacing: -.065em; line-height: .88">Val Enfys<span style="color: {{accent}}">.</span></h1>
-<img class="ve-avatar" src="./val-portrait.jpg" alt="Portrait of Val Enfys" style="width: 84px; height: 84px; flex-shrink: 0; border-radius: 50%; object-fit: cover; object-position: 50% 35%; box-shadow: 0 0 0 1px {{t.rule}}, 0 0 0 4px {{t.bg}}, 0 0 0 5px {{t.rule}}">
+<img class="ve-avatar" src="/val-portrait.jpg" alt="Portrait of Val Enfys" style="width: 84px; height: 84px; flex-shrink: 0; border-radius: 50%; object-fit: cover; object-position: 50% 35%; box-shadow: 0 0 0 1px {{t.rule}}, 0 0 0 4px {{t.bg}}, 0 0 0 5px {{t.rule}}">
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 14px">
@@ -89,7 +92,42 @@ a{color:inherit}a:hover{color:inherit}
 </a>
 </section>
 
-<section aria-labelledby="h-previous" style="display: flex; flex-direction: column">
+<section aria-labelledby="h-projects" style="order: {{projectsOrder}}; display: flex; flex-direction: column; gap: 14px">
+<h2 id="h-projects" style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; color: {{t.muted}}">Projects<span aria-hidden="true" style="flex: 1; height: 1px; background: {{t.rule}}"></span></h2>
+<div style="display: flex; flex-direction: column; gap: 32px">
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<button class="ve-media" type="button" aria-label="Play video: Techno Forest Party in East London" style="position: relative; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 1px solid {{t.keyBorder}}; border-radius: 12px; overflow: hidden; background: {{t.keyBg}}; cursor: pointer; font: inherit; color: {{t.muted}}; display: flex; align-items: flex-end; justify-content: flex-start">
+<img src="./project-groovy-techno.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+<span aria-hidden="true" class="ve-play" style="position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: {{accent}}; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 -2px 0 rgba(0,0,0,.12), 0 6px 20px rgba(0,0,0,.18)"><svg width="20" height="22" viewBox="0 0 9 10" style="margin-left: 4px"><path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" fill="#ffffff"></path></svg></span>
+</button>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
+<h3 style="margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.015em">Techno Forest Party in East London</h3>
+<span style="flex-shrink: 0; font-size: 13px; color: {{t.muted}}; font-variant-numeric: tabular-nums">Jul 2026</span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: {{t.text2}}">An independent outdoor party co-hosted with a fellow promoter: a night of techno, hardgroove and trance, from lineup, lighting and logistics through to the recap film.</p>
+</div>
+</article>
+
+<a class="ve-project" href="https://www.barbara-touati-evans.com/" style="display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: {{t.text}}">
+<span class="ve-media" style="position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid {{t.keyBorder}}; border-radius: 12px; overflow: hidden; background: {{t.keyBg}}; box-sizing: border-box; color: {{t.muted}}; display: flex; align-items: flex-end; justify-content: flex-start">
+<img src="./project-barbara-touati-evans.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+<span aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: {{t.card}}; color: {{t.cardText}}; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 -2px 0 rgba(0,0,0,.12), 0 6px 20px rgba(0,0,0,.18)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 4px">
+<span style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
+<strong class="ve-project-title" style="font-size: 17px; font-weight: 600; letter-spacing: -.015em">Portfolio Website for Barbara Touati-Evans</strong>
+<span style="flex-shrink: 0; font-size: 13px; color: {{t.muted}}; font-variant-numeric: tabular-nums">Mar 2022</span>
+</span>
+<span style="font-size: 15px; line-height: 1.6; color: {{t.text2}}">Design and build of a portfolio site for an independent artist in Next.js, Sanity and Tailwind CSS, with a CMS that lets the artist update it without a developer.</span>
+</span>
+</a>
+
+</div>
+</section>
+
+<section aria-labelledby="h-previous" style="order: 2; display: flex; flex-direction: column">
 <h2 id="h-previous" style="margin: 0 0 10px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; color: {{t.muted}}">Previous gigs &amp; mixes<span aria-hidden="true" style="flex: 1; height: 1px; background: {{t.rule}}"></span></h2>
 <div id="ve-previous" style="display: flex; flex-direction: column">
 <sc-for list="{{shown}}" as="ev" hint-placeholder-count="3">
@@ -108,11 +146,11 @@ a{color:inherit}a:hover{color:inherit}
 <button class="ve-more" type="button" aria-expanded="{{showAll}}" aria-controls="ve-previous" onClick="{{toggleAll}}" style="min-height: 44px; margin-top: 4px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 13px; font-weight: 500; color: {{t.muted}}; display: flex; align-items: center; gap: 6px; align-self: flex-start">{{allLabel}}<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform: {{chevron}}"><path d="M6 9l6 6 6-6"></path></svg></button>
 </section>
 
-<div style="display: flex; justify-content: center; padding: 8px 0">
+<div style="order: 4; display: flex; justify-content: center; padding: 8px 0">
 <svg role="img" aria-label="Peace" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{t.text}}" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M12 12l-7.07 7.07M12 12l7.07 7.07"></path></svg>
 </div>
 
-<footer style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid {{t.rule}}; font-size: 12px; color: {{t.muted}}">
+<footer style="order: 4; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; border-top: 1px solid {{t.rule}}; font-size: 12px; color: {{t.muted}}">
 <span>© 2026 Val Enfys</span>
 <span aria-hidden="true" style="display: flex; gap: 4px">
 <sc-for list="{{steps}}" as="s" hint-placeholder-count="16">
@@ -124,7 +162,7 @@ a{color:inherit}a:hover{color:inherit}
 </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e03a3e","options":["#ee8637","#e03a3e","#009ddc","#1d1d1f"]},"dark":{"editor":"boolean","default":false,"section":"Theme"},"collapsedCount":{"editor":"int","default":3,"min":1,"max":8,"section":"Previous gigs"},"$preview":{"width":1280,"height":1500}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e03a3e","options":["#ee8637","#e03a3e","#009ddc","#1d1d1f"]},"dark":{"editor":"boolean","default":false,"section":"Theme"},"projectsPosition":{"editor":"enum","default":"below","options":["above","below"],"section":"Projects"},"collapsedCount":{"editor":"int","default":3,"min":1,"max":8,"section":"Previous gigs"},"$preview":{"width":1280,"height":2280}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -167,6 +205,7 @@ class Component extends DCLogic {
       accent: accent,
       t: t,
       themeClass: dark ? 've-dark' : 've-light',
+      projectsOrder: (this.props.projectsPosition ?? 'below') === 'above' ? 1 : 3,
       shown: shown,
       showAll: showAll,
       allLabel: showAll ? 'Show fewer' : 'Show all ' + previous.length,

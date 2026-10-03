@@ -63,7 +63,7 @@ const projects: Project[] = [
     title: "Techno Forest Party in East London",
     date: "Jul 2026",
     description:
-      "An independent outdoor party co-hosted with a fellow promoter: a night of techno, hardgroove and trance, from lineup, lighting and logistics through to the recap film.",
+      "An independent forest party co-hosted with Jonah Garrett-Bannister, featuring techno and trance DJ sets, and custom lighting and video recording setups.",
     image: "/projects/groovy-techno.jpg",
     kind: "video",
     youtubeId: "0NYqs2o88Jk",
@@ -72,7 +72,7 @@ const projects: Project[] = [
     title: "Portfolio Website for Barbara Touati-Evans",
     date: "Mar 2022",
     description:
-      "Design and build of a portfolio site for an independent artist in Next.js, Sanity and Tailwind CSS, with a CMS that lets the artist update it without a developer.",
+      "Design and development of a portfolio site for an independent artist in Next.js and Tailwind CSS, with a CMS enabling the artist to update it independently.",
     image: "/projects/barbara-touati-evans.jpg",
     kind: "link",
     href: "https://www.barbara-touati-evans.com/",

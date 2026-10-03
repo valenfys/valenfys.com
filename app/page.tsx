@@ -143,7 +143,6 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
               <p className="text-[15px] font-semibold tracking-[-0.01em]">DJ, Artist &amp; Software Engineer</p>
               <p className="flex items-center gap-[7px] text-sm text-text2">
-                <span aria-hidden="true" className="size-[7px] rounded-full bg-accent ring-3 ring-accent/16" />
                 London, UK
               </p>
             </div>

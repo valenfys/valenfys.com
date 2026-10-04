@@ -1,84 +1,17 @@
 import { marked } from "marked";
 import Image from "next/image";
-import type { IconType } from "react-icons";
-import {
-  // FaBandcamp,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaSoundcloud,
-  FaYoutube
-} from "react-icons/fa6";
-import bioSource from "../content/bio.md";
-import ArrowIcon from "../components/ArrowIcon";
-import Bio from "../components/Bio";
-import PreviousGigs, { type PastEvent } from "../components/PreviousGigs";
-import ProjectVideo from "../components/ProjectVideo";
-import { tileCircleClass, tileClass, tileImageSizes } from "../components/projectTile";
-import SectionHeader from "../components/SectionHeader";
-import { external } from "../lib/external";
-
-type SocialLink = { label: string; href: string; icon: IconType };
-// start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
-type UpcomingEvent = { start: string; end: string; title: string; venue: string; href: string };
-type Project = {
-  title: string;
-  date: string; // display string, e.g. "Jul 2026"
-  description: string;
-  image: string; // path under /public
-} & ({ kind: "video"; youtubeId: string } | { kind: "link"; href: string });
-
-const socials: SocialLink[] = [
-  { label: "Instagram", href: "https://www.instagram.com/valenfys", icon: FaInstagram },
-  { label: "YouTube", href: "https://www.youtube.com/@valenfys", icon: FaYoutube },
-  { label: "SoundCloud", href: "https://soundcloud.com/valenfys", icon: FaSoundcloud },
-  // { label: "Bandcamp", href: "https://bandcamp.com/valenfys", icon: FaBandcamp },
-  { label: "GitHub", href: "https://github.com/valenfys", icon: FaGithub },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/valenfys", icon: FaLinkedinIn },
-];
-
-const upcoming: UpcomingEvent[] = [
-  {
-    start: "2026-10-08T19:00+01:00",
-    end: "2026-10-09T02:00+01:00",
-    title: "Fragment: Open Decks",
-    venue: "The Glove That Fits, London",
-    href: "https://ra.co/events/2500782",
-  },
-];
-
-// Link the recording if one exists, otherwise the RA event page.
-const previous: PastEvent[] = [
-  { year: 2026, title: "SSL Series #002", venue: "Square Studio Lab", href: "https://soundcloud.com/valenfys/enfy-ssl-open-deck", kind: "recording" },
-  { year: 2026, title: "Groovy Techno in the Woods", venue: "East London", href: "https://soundcloud.com/valenfys/groovy-techno-in-the-woods-london-july-2026", kind: "recording" },
-  { year: 2025, title: "Sibling Radio", venue: "London", href: "https://soundcloud.com/sibling-radio/07112025-alien-tech-w-val-enfys-10", kind: "recording" },
-  { year: 2025, title: "Over.The.Techno #23", venue: "Rostov-on-Don", href: "https://soundcloud.com/overthetechno/overthetechno-23-val-enfys", kind: "recording" },
-  { year: 2025, title: "Omidox Hypnotic Podcast", venue: "Hamburg", href: "https://soundcloud.com/omidox-1/val-enfys-omidox-hypnotic", kind: "recording" },
-  { year: 2025, title: "Lost Unicorns", venue: "Basing House, London", href: "https://ra.co/events/2228141", kind: "event" },
-  { year: 2025, title: "Canal Film Club", venue: "Hackney Wick, London", href: "https://soundcloud.com/valenfys/studio-mix-canal-film-club", kind: "recording" },
-  { year: 2025, title: "London Open Decks", venue: "Carbobar, Hackney Wick", href: "https://soundcloud.com/valenfys/live-london-open-decks", kind: "recording" },
-];
-
-const projects: Project[] = [
-  {
-    title: "Techno Forest Party in East London",
-    date: "Jul 2026",
-    description:
-      "An independent forest party co-hosted with Jonah Garrett-Bannister, featuring techno and trance DJ sets, and custom lighting and video recording setups.",
-    image: "/projects/groovy-techno.jpg",
-    kind: "video",
-    youtubeId: "0NYqs2o88Jk",
-  },
-  {
-    title: "Portfolio Website for Barbara Touati-Evans",
-    date: "Mar 2022",
-    description:
-      "Design and development of a portfolio site for an independent artist in Next.js and Tailwind CSS, with a CMS enabling the artist to update it independently.",
-    image: "/projects/barbara-touati-evans.jpg",
-    kind: "link",
-    href: "https://www.barbara-touati-evans.com/",
-  },
-];
+import ArrowIcon from "@/components/ArrowIcon";
+import Bio from "@/components/Bio";
+import PreviousGigs from "@/components/PreviousGigs";
+import ProjectCard from "@/components/ProjectCard";
+import SectionHeader from "@/components/SectionHeader";
+import UpcomingGig from "@/components/UpcomingGig";
+import bioSource from "@/content/bio.md";
+import { previous, upcoming } from "@/content/gigs";
+import { projects } from "@/content/projects";
+import { socials } from "@/content/socials";
+import { external } from "@/lib/external";
+import { email, siteUrl } from "@/lib/site";
 
 // Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
 const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
@@ -86,7 +19,6 @@ const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
 
-const siteUrl = "https://valenfys.com";
 const personId = `${siteUrl}/#person`;
 
 // Structured data so search engines can connect the site, social profiles and gigs to one person.
@@ -99,7 +31,7 @@ const jsonLd = {
       name: "Val Enfys",
       url: siteUrl,
       image: `${siteUrl}/val-portrait.jpg`,
-      email: "mailto:val@valenfys.com",
+      email: `mailto:${email}`,
       jobTitle: ["DJ", "Artist", "Software Engineer"],
       address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
       sameAs: socials.map(({ href }) => href),
@@ -117,22 +49,6 @@ const jsonLd = {
     })),
   ],
 };
-
-function formatDate(iso: string, options: Intl.DateTimeFormatOptions) {
-  return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...options }).format(new Date(iso));
-}
-
-function youtubeUrl(id: string) {
-  return `https://www.youtube.com/watch?v=${id}`;
-}
-
-function formatTime(iso: string) {
-  return formatDate(iso, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
-}
-
-function ProjectDate({ children }: { children: React.ReactNode }) {
-  return <span className="shrink-0 text-[13px] text-muted tabular-nums">{children}</span>;
-}
 
 export default function Home() {
   return (
@@ -172,12 +88,12 @@ export default function Home() {
           </div>
 
           <a
-            href="mailto:val@valenfys.com"
+            href={`mailto:${email}`}
             className="flex items-center justify-between gap-4 rounded-xl border border-key-border bg-key py-4 pr-4 pl-6 transition-colors hover:bg-key-hover"
           >
             <span className="flex min-w-0 flex-col gap-1">
               <span className="text-[13px] font-medium text-muted">Bookings &amp; enquiries</span>
-              <span className="text-2xl font-medium tracking-tight wrap-anywhere">val@valenfys.com</span>
+              <span className="text-2xl font-medium tracking-tight wrap-anywhere">{email}</span>
             </span>
             <span
               aria-hidden="true"
@@ -210,31 +126,7 @@ export default function Home() {
           <section aria-labelledby="h-upcoming" className="flex flex-col gap-3.5">
             <SectionHeader id="h-upcoming">Upcoming gigs</SectionHeader>
             {upcoming.map((event) => (
-              <a
-                key={event.href}
-                href={event.href}
-                {...external(event.href)}
-                className="flex items-stretch gap-5 rounded-xl bg-card p-5 text-card-text transition-colors hover:bg-card-hover"
-              >
-                <span className="flex min-w-13 flex-col items-center justify-center border-r border-card-rule pr-5">
-                  <span className="text-3xl leading-none font-semibold tracking-tight tabular-nums">
-                    {formatDate(event.start, { day: "2-digit" })}
-                  </span>
-                  <span className="mt-1.5 text-[13px] font-medium text-card-muted">
-                    {formatDate(event.start, { month: "short" })}
-                  </span>
-                </span>
-                <span className="flex min-w-0 flex-1 flex-col gap-1.5">
-                  <strong className="text-[17px] font-semibold tracking-tight">{event.title}</strong>
-                  <span className="text-[13px] leading-normal text-card-muted">
-                    {formatDate(event.start, { weekday: "short" })}{" "}
-                    {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })} · {formatTime(event.start)} – {formatTime(event.end)}
-                    <br />
-                    {event.venue}
-                  </span>
-                </span>
-                <span aria-hidden="true" className="self-start text-lg text-card-muted">↗</span>
-              </a>
+              <UpcomingGig key={event.href} event={event} />
             ))}
           </section>
         )}
@@ -249,40 +141,9 @@ export default function Home() {
         <section aria-labelledby="h-projects" className="flex flex-col gap-3.5">
           <SectionHeader id="h-projects">Projects</SectionHeader>
           <div className="flex flex-col gap-8">
-            {projects.map((project) =>
-              project.kind === "video" ? (
-                <article key={project.title} className="flex flex-col gap-3.5">
-                  <ProjectVideo title={project.title} youtubeId={project.youtubeId} image={project.image} />
-                  <a href={youtubeUrl(project.youtubeId)} {...external(youtubeUrl(project.youtubeId))} className="group flex flex-col gap-1">
-                    <span className="flex items-baseline justify-between gap-4">
-                      <strong className="text-[17px] font-semibold tracking-tight underline-offset-3 group-hover:underline">
-                        {project.title}
-                      </strong>
-                      <ProjectDate>{project.date}</ProjectDate>
-                    </span>
-                    <span className="text-[15px] leading-[1.6] text-text2">{project.description}</span>
-                  </a>
-                </article>
-              ) : (
-                <a key={project.title} href={project.href} {...external(project.href)} className="group flex flex-col gap-3.5">
-                  <span className={`${tileClass} group-hover:border-tile-border-hover`}>
-                    <Image src={project.image} alt="" fill sizes={tileImageSizes} className="object-cover" />
-                    <span aria-hidden="true" className={`${tileCircleClass} bg-card text-card-text`}>
-                      <ArrowIcon className="size-5.5" />
-                    </span>
-                  </span>
-                  <span className="flex flex-col gap-1">
-                    <span className="flex items-baseline justify-between gap-4">
-                      <strong className="text-[17px] font-semibold tracking-tight underline-offset-3 group-hover:underline">
-                        {project.title}
-                      </strong>
-                      <ProjectDate>{project.date}</ProjectDate>
-                    </span>
-                    <span className="text-[15px] leading-[1.6] text-text2">{project.description}</span>
-                  </span>
-                </a>
-              ),
-            )}
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
           </div>
         </section>
 

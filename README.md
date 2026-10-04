@@ -18,9 +18,11 @@ The page is statically rendered at build time. There's no database, CMS or API; 
 
 | Path | What it is |
 |---|---|
-| `app/page.tsx` | The home page. Social links, upcoming events and previous gigs are typed arrays at the top of the file. This file also builds the JSON-LD structured data (`Person` and `MusicEvent`). |
+| `app/page.tsx` | The home page layout. It also builds the JSON-LD structured data (`Person` and `MusicEvent`). |
+| `content/socials.ts`, `content/gigs.ts`, `content/projects.ts` | Social links, upcoming and previous gigs, and projects, as typed arrays. Edit these to update the page. |
 | `content/bio.md` | The bio. It's imported as bytes and converted to HTML with `marked` at build time, so no Markdown parser ships to the browser. |
-| `components/` | Reusable components. `Bio`, `PreviousGigs` and `ProjectVideo` are client components (the bio's "Read more" toggle, the "Show all" gigs toggle, and the click-to-load YouTube embed). `SectionHeader` and `ArrowIcon` are server components, and `projectTile.ts` holds the tile classes shared by `ProjectVideo` and the link cards in `page.tsx`. |
+| `components/` | Reusable components. `Bio`, `PreviousGigs` and `ProjectVideo` are client components (the bio's "Read more" toggle, the "Show all" gigs toggle, and the click-to-load YouTube embed). `UpcomingGig`, `ProjectCard`, `SectionHeader` and `ArrowIcon` are server components, and `projectTile.ts` holds the tile classes shared by `ProjectVideo` and `ProjectCard`. |
+| `lib/site.ts` | The site URL and contact email, used by the page, metadata, `robots.ts` and `sitemap.ts`. |
 | `lib/external.ts` | Adds `target="_blank"` and `rel="noreferrer"` to off-site links. |
 | `app/layout.tsx` | Root layout, page metadata and the `<Analytics />` component. |
 | `app/globals.css` | Tailwind import, theme tokens (colours, fonts, the `xs` breakpoint) with dark-mode overrides, and two custom utilities: `pride-bar` and `grille`. |
@@ -30,7 +32,9 @@ The page is statically rendered at build time. There's no database, CMS or API; 
 
 Dates are formatted in the `Europe/London` time zone. Event `start` and `end` timestamps should include the UK offset (`+01:00` in summer time, `+00:00` in winter). The page hides the Upcoming section when the `upcoming` array is empty.
 
-Because the page is static, events don't move from Upcoming to Previous automatically. When a gig has happened, update the arrays in `page.tsx`.
+Because the page is static, events don't move from Upcoming to Previous automatically. When a gig has happened, update the arrays in `content/gigs.ts`.
+
+Imports use the `@/` alias for the project root (set in `tsconfig.json`), e.g. `@/components/Bio`.
 
 ## Development
 

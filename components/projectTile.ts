@@ -1,4 +1,4 @@
-// Shared by the server-rendered link card and the client ProjectVideo, so it lives outside both.
+// Shared by the server-rendered ProjectCard and the client ProjectVideo, so it lives outside both.
 export const tileClass =
   "relative block aspect-video w-full overflow-hidden rounded-xl border border-key-border bg-key transition-colors";
 

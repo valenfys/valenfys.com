@@ -28,16 +28,17 @@ export default function Bio({ html }: { html: string }) {
     );
   }
 
-  // The flex parent gives the clamped box a definite height, so the zero-width ::before float can fill all but the
-  // last line and push the floated button down beside it. The text wraps around the button, ellipsis included.
+  // The zero-width ::before float fills the first two lines and pushes the floated button down onto the third. The
+  // text wraps around the button, ellipsis included. The floats sit in an inner block because Safari lays out the
+  // direct children of line-clamp's -webkit-box as old-style flex items, which can't float.
   return (
-    <div className="flex">
-      <div
-        onClick={(e) => {
-          if (!(e.target as HTMLElement).closest("a")) setExpanded(true);
-        }}
-        className={`line-clamp-3 cursor-pointer before:float-right before:h-[calc(100%-1lh)] before:content-[''] ${textClass}`}
-      >
+    <div
+      onClick={(e) => {
+        if (!(e.target as HTMLElement).closest("a")) setExpanded(true);
+      }}
+      className={`line-clamp-3 cursor-pointer ${textClass}`}
+    >
+      <div className="before:float-right before:h-[2lh] before:content-['']">
         <button
           type="button"
           aria-expanded={false}

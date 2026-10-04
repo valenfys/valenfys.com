@@ -31,7 +31,7 @@ const socials: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/valenfys", icon: FaInstagram },
   { label: "YouTube", href: "https://www.youtube.com/@valenfys", icon: FaYoutube },
   { label: "SoundCloud", href: "https://soundcloud.com/valenfys", icon: FaSoundcloud },
-  { label: "Bandcamp", href: "https://bandcamp.com/valenfys", icon: FaBandcamp },
+  // { label: "Bandcamp", href: "https://bandcamp.com/valenfys", icon: FaBandcamp },
   { label: "GitHub", href: "https://github.com/valenfys", icon: FaGithub },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/valenfys", icon: FaLinkedinIn },
 ];
@@ -205,7 +205,7 @@ export default function Home() {
 
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
-            <div className="grid grid-cols-6 gap-2">
+            <div className="grid grid-cols-5 gap-2">
               {socials.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}

@@ -10,11 +10,13 @@ import {
   FaYoutube
 } from "react-icons/fa6";
 import bioSource from "../content/bio.md";
-import Bio from "./Bio";
-import { external } from "./external";
-import PreviousGigs, { type PastEvent } from "./PreviousGigs";
-import ProjectVideo from "./ProjectVideo";
-import { tileCircleClass, tileClass, tileImageSizes } from "./projectTile";
+import ArrowIcon from "../components/ArrowIcon";
+import Bio from "../components/Bio";
+import PreviousGigs, { type PastEvent } from "../components/PreviousGigs";
+import ProjectVideo from "../components/ProjectVideo";
+import { tileCircleClass, tileClass, tileImageSizes } from "../components/projectTile";
+import SectionHeader from "../components/SectionHeader";
+import { external } from "../lib/external";
 
 type SocialLink = { label: string; href: string; icon: IconType };
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
@@ -128,25 +130,8 @@ function formatTime(iso: string) {
   return formatDate(iso, { hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 }
 
-function SectionHeader({ id, className = "", children }: { id: string; className?: string; children: React.ReactNode }) {
-  return (
-    <h2 id={id} className={`flex items-center gap-3 text-[13px] font-medium text-muted ${className}`}>
-      {children}
-      <span aria-hidden="true" className="h-px flex-1 bg-rule" />
-    </h2>
-  );
-}
-
 function ProjectDate({ children }: { children: React.ReactNode }) {
   return <span className="shrink-0 text-[13px] text-muted tabular-nums">{children}</span>;
-}
-
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 17L17 7M8 7h9v9" />
-    </svg>
-  );
 }
 
 export default function Home() {

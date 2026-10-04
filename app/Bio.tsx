@@ -2,32 +2,52 @@
 
 import { useId, useState } from "react";
 
-// Collapsed, only the first paragraph shows, clamped to a few lines. Tapping the text (or the button) expands it.
+const textClass =
+  "text-[15px] leading-relaxed text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2";
+
+// Collapsed, only the first paragraph shows, clamped to three lines with "Read more" at the end of the last one.
+// Tapping the text (or the button) expands it.
 export default function Bio({ html }: { html: string }) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
 
+  if (expanded) {
+    return (
+      <div className="flex flex-col items-start gap-2">
+        <div id={id} className={`flex flex-col gap-3 ${textClass}`} dangerouslySetInnerHTML={{ __html: html }} />
+        <button
+          type="button"
+          aria-expanded
+          aria-controls={id}
+          onClick={() => setExpanded(false)}
+          className="cursor-pointer text-[13px] font-medium text-muted transition-colors hover:text-text"
+        >
+          Show less
+        </button>
+      </div>
+    );
+  }
+
+  // The flex parent gives the clamped box a definite height, so the zero-width ::before float can fill all but the
+  // last line and push the floated button down beside it. The text wraps around the button, ellipsis included.
   return (
-    <div className="flex flex-col items-start gap-2">
+    <div className="flex">
       <div
-        id={id}
         onClick={(e) => {
-          if (!expanded && !(e.target as HTMLElement).closest("a")) setExpanded(true);
+          if (!(e.target as HTMLElement).closest("a")) setExpanded(true);
         }}
-        className={`flex flex-col gap-3 text-[15px] leading-relaxed text-text2 [&_a]:text-text [&_a]:underline [&_a]:underline-offset-2 ${
-          expanded ? "" : "cursor-pointer *:first:line-clamp-3 *:not-first:hidden"
-        }`}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-      <button
-        type="button"
-        aria-expanded={expanded}
-        aria-controls={id}
-        onClick={() => setExpanded(!expanded)}
-        className="cursor-pointer text-[13px] font-medium text-muted transition-colors hover:text-text"
+        className={`line-clamp-3 cursor-pointer before:float-right before:h-[calc(100%-1lh)] before:content-[''] ${textClass}`}
       >
-        {expanded ? "Show less" : "Read more"}
-      </button>
+        <button
+          type="button"
+          aria-expanded={false}
+          aria-controls={id}
+          className="float-right clear-right ml-1.5 cursor-pointer font-medium text-muted transition-colors hover:text-text"
+        >
+          Read more
+        </button>
+        <span id={id} className="*:first:inline *:not-first:hidden" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
     </div>
   );
 }

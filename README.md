@@ -21,7 +21,7 @@ The page is statically rendered at build time. There's no database, CMS or API; 
 | `app/page.tsx` | The home page layout. It also builds the JSON-LD structured data (`Person` and `MusicEvent`). |
 | `content/socials.ts`, `content/gigs.ts`, `content/projects.ts` | Social links, upcoming and previous gigs, and projects, as typed arrays. Edit these to update the page. |
 | `content/bio.md` | The bio. It's imported as bytes and converted to HTML with `marked` at build time, so no Markdown parser ships to the browser. |
-| `components/` | Reusable components. `Bio`, `PreviousGigs` and `ProjectVideo` are client components (the bio's "Read more" toggle, the "Show all" gigs toggle, and the click-to-load YouTube embed). `UpcomingGig`, `ProjectCard`, `SectionHeader` and `ArrowIcon` are server components, and `projectTile.ts` holds the tile classes shared by `ProjectVideo` and the link cards in `page.tsx`. |
+| `components/` | Reusable components. `Bio`, `PreviousGigs` and `ProjectVideo` are client components (the bio's "Read more" toggle, the "Show all" gigs toggle, and the click-to-load YouTube embed). `UpcomingGig`, `ProjectCard`, `SectionHeader` and `ArrowIcon` are server components, and `projectTile.ts` holds the tile classes shared by `ProjectVideo` and `ProjectCard`. |
 | `lib/site.ts` | The site URL and contact email, used by the page, metadata, `robots.ts` and `sitemap.ts`. |
 | `lib/external.ts` | Adds `target="_blank"` and `rel="noreferrer"` to off-site links. |
 | `app/layout.tsx` | Root layout, page metadata and the `<Analytics />` component. |

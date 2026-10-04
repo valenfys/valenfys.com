@@ -1,9 +1,9 @@
 "use client";
 
 import { useId, useState } from "react";
-import { external } from "../lib/external";
+import type { PastEvent } from "@/content/gigs";
+import { external } from "@/lib/external";
 
-export type PastEvent = { year: number; title: string; venue: string; href: string; kind: "recording" | "event" };
 
 const collapsedCount = 3;
 

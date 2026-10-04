@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/next"
@@ -12,7 +13,7 @@ const description =
 const image = { url: "/val-portrait-thumb.jpg", width: 256, height: 256, alt: "Portrait of Val Enfys" };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://valenfys.com"),
+  metadataBase: new URL(siteUrl),
   title,
   description,
   alternates: { canonical: "/" },

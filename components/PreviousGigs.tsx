@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { external } from "./external";
+import { external } from "../lib/external";
 
 export type PastEvent = { year: number; title: string; venue: string; href: string; kind: "recording" | "event" };
 

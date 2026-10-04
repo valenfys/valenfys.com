@@ -20,7 +20,8 @@ The page is statically rendered at build time. There's no database, CMS or API; 
 |---|---|
 | `app/page.tsx` | The home page. Social links, upcoming events and previous gigs are typed arrays at the top of the file. This file also builds the JSON-LD structured data (`Person` and `MusicEvent`). |
 | `content/bio.md` | The bio. It's imported as bytes and converted to HTML with `marked` at build time, so no Markdown parser ships to the browser. |
-| `app/Bio.tsx` | The only client component. It handles the bio's "Read more" / "Show less" toggle. |
+| `components/` | Reusable components. `Bio`, `PreviousGigs` and `ProjectVideo` are client components (the bio's "Read more" toggle, the "Show all" gigs toggle, and the click-to-load YouTube embed). `SectionHeader` and `ArrowIcon` are server components, and `projectTile.ts` holds the tile classes shared by `ProjectVideo` and the link cards in `page.tsx`. |
+| `lib/external.ts` | Adds `target="_blank"` and `rel="noreferrer"` to off-site links. |
 | `app/layout.tsx` | Root layout, page metadata and the `<Analytics />` component. |
 | `app/globals.css` | Tailwind import, theme tokens (colours, fonts, the `xs` breakpoint) with dark-mode overrides, and two custom utilities: `pride-bar` and `grille`. |
 | `app/robots.ts`, `app/sitemap.ts` | Generate `robots.txt` and `sitemap.xml`. |

@@ -2,11 +2,10 @@ import { marked } from "marked";
 import Image from "next/image";
 import type { IconType } from "react-icons";
 import {
-  FaBandcamp,
+  // FaBandcamp,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  FaPeace,
   FaSoundcloud,
   FaYoutube
 } from "react-icons/fa6";
@@ -302,10 +301,9 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-rule pt-5 text-xs text-muted">
+        <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
           <span>&copy; {new Date().getFullYear()} Val Enfys Studio</span>
-          <FaPeace role="img" aria-label="Peace" className="size-3.5" title="The function of art is to do more than tell it like it is—it's to imagine what is possible." />
-          <span aria-hidden="true" className="flex gap-1 justify-self-end">
+          <span aria-hidden="true" className="flex gap-1">
             {steps.map((on, i) => (
               <span key={i} className={`size-1.5 rounded-xs ${on ? "bg-accent" : "bg-step-off"}`} />
             ))}

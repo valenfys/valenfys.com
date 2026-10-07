@@ -11,9 +11,9 @@ const collapsedCount = 3;
 
 // Recordings live on YouTube (video) or SoundCloud (audio); events without one link to RA.
 const links = {
-  video: { icon: FaYoutube, label: "Watch" },
-  audio: { icon: FaSoundcloud, label: "Listen" },
-  event: { icon: RaIcon, label: "Event" },
+  video: { verb: "Watch", platform: "YouTube", icon: FaYoutube },
+  audio: { verb: "Listen", platform: "SoundCloud", icon: FaSoundcloud },
+  event: { verb: "Info", platform: "Resident Advisor", icon: RaIcon },
 };
 
 function formatMonth(month: string) {
@@ -76,11 +76,12 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 }
 
 function LinkLabel({ kind }: { kind: PastEvent["kind"] }) {
-  const { icon: Icon, label } = links[kind];
+  const { verb, platform, icon: Icon } = links[kind];
   return (
-    <span className="flex items-center gap-2 text-[13px] font-medium">
+    <span className="flex items-center gap-1.5 text-[13px] font-medium">
+      {verb} on
       <Icon aria-hidden="true" className="size-4 text-accent" />
-      {label}
+      <span className="sr-only">{platform}</span>
     </span>
   );
 }

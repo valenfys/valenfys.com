@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
-  <clipPath id="circle"><circle cx="18" cy="18" r="18" /></clipPath>
-  <g clip-path="url(#circle)">
+  <!-- A vinyl record: the disc, with a gap around the label and a spindle hole cut out so the tab shows through. -->
+  <mask id="vinyl">
+    <circle cx="18" cy="18" r="18" fill="#fff" />
+    <circle cx="18" cy="18" r="8" fill="none" stroke="#000" stroke-width="1.5" />
+    <circle cx="18" cy="18" r="2.5" fill="#000" />
+  </mask>
+  <g mask="url(#vinyl)">
     <rect y="0" width="36" height="6" fill="#61bb46" />
     <rect y="6" width="36" height="6" fill="#fdb827" />
     <rect y="12" width="36" height="6" fill="#f5821f" />

@@ -17,7 +17,7 @@ export const upcoming: UpcomingEvent[] = [
 export const previous: PastEvent[] = [
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k", kind: "video" },
   { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s", kind: "video" },
-  { month: "2026-07", title: "Groovy Techno in the Woods", venue: "East London", href: "https://soundcloud.com/valenfys/groovy-techno-in-the-woods-london-july-2026", kind: "audio" },
+  { month: "2026-07", title: "Techno Forest Party", venue: "East London", href: "https://www.youtube.com/watch?v=0NYqs2o88Jk", kind: "video" },
   { month: "2025-11", title: "Sibling Radio", venue: "London", href: "https://soundcloud.com/sibling-radio/07112025-alien-tech-w-val-enfys-10", kind: "audio" },
   { month: "2025-09", title: "Omidox Hypnotic Podcast", venue: "Hamburg", href: "https://soundcloud.com/omidox-1/val-enfys-omidox-hypnotic", kind: "audio" },
   { month: "2025-09", title: "Lost Unicorns", venue: "Basing House, London", href: "https://ra.co/events/2228141", kind: "event" },

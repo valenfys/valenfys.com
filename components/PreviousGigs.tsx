@@ -11,10 +11,11 @@ import RaIcon from "@/components/RaIcon";
 const collapsedCount = 3;
 
 // Recordings live on YouTube (video) or SoundCloud (audio) and get a play button; events without one link out to RA.
+// Icons use each platform's brand colour; RA's logo is monochrome, so it follows the text.
 const links = {
-  video: { verb: "Watch", platform: "YouTube", icon: FaYoutube },
-  audio: { verb: "Listen", platform: "SoundCloud", icon: FaSoundcloud },
-  event: { verb: "View", platform: "Resident Advisor", icon: RaIcon },
+  video: { verb: "Watch", platform: "YouTube", icon: FaYoutube, colour: "text-[#ff0000]" },
+  audio: { verb: "Listen", platform: "SoundCloud", icon: FaSoundcloud, colour: "text-[#ff5500]" },
+  event: { verb: "View", platform: "Resident Advisor", icon: RaIcon, colour: "text-text" },
 };
 
 function formatMonth(month: string) {
@@ -77,10 +78,10 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 }
 
 function PlatformTitle({ kind, title }: { kind: PastEvent["kind"]; title: string }) {
-  const { platform, icon: Icon } = links[kind];
+  const { platform, icon: Icon, colour } = links[kind];
   return (
     <span className="flex items-start gap-1.5 text-[15px] font-medium">
-      <Icon title={platform} role="img" className="mt-1 size-3.5 shrink-0 text-accent" />
+      <Icon title={platform} role="img" className={`mt-1 size-3.5 shrink-0 ${colour}`} />
       {title}
     </span>
   );
@@ -92,7 +93,7 @@ function Action({ kind }: { kind: PastEvent["kind"] }) {
       {kind === "event" ? (
         <ArrowIcon className="size-3.5 stroke-3 text-muted" />
       ) : (
-        <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
+        <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-muted">
           <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
         </svg>
       )}

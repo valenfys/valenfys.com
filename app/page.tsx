@@ -106,16 +106,27 @@ export default function Home() {
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
             <div className="grid grid-cols-2 gap-2">
-              {socials.map(({ label, href, icon: Icon }) => (
+              {socials.map(({ label, shortLabel, href, icon: Icon }) => (
                 <a
                   key={label}
                   href={href}
+                  // Keep the full name for screen readers when the short one is showing.
+                  aria-label={shortLabel && label}
                   {...external(href)}
                   // pl-4 matches the (h-13 - size-5) / 2 space above and below the icon.
                   className="flex h-13 items-center gap-3 rounded-xl border border-tile-border bg-tile pr-3 pl-4 transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
                 >
                   <Icon aria-hidden="true" className="size-5 shrink-0" />
-                  <span className="min-w-0 text-[15px] leading-tight font-medium wrap-break-word">{label}</span>
+                  <span className="min-w-0 text-[15px] leading-tight font-medium wrap-break-word">
+                    {shortLabel ? (
+                      <>
+                        <span className="max-xs:hidden">{label}</span>
+                        <span className="xs:hidden">{shortLabel}</span>
+                      </>
+                    ) : (
+                      label
+                    )}
+                  </span>
                 </a>
               ))}
             </div>

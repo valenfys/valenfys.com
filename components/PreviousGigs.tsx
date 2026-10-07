@@ -35,12 +35,12 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               <span className="text-[15px] font-medium">{event.title}</span>
               <span className="text-[13px] text-muted">{event.venue}</span>
             </span>
-            {event.kind === "recording" ? (
+            {event.kind !== "event" ? (
               <span className="flex items-center gap-2 text-[13px] font-medium">
                 <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
                   <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
                 </svg>
-                Listen
+                {event.kind === "video" ? "Watch" : "Listen"}
               </span>
             ) : (
               <span aria-hidden="true" className="text-base text-muted">↗</span>

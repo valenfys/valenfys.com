@@ -78,10 +78,9 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 function LinkLabel({ kind }: { kind: PastEvent["kind"] }) {
   const { verb, platform, icon: Icon } = links[kind];
   return (
-    <span className="flex items-center gap-1.5 text-[13px] font-medium">
-      {verb} on
-      <Icon aria-hidden="true" className="size-4 text-accent" />
-      <span className="sr-only">{platform}</span>
+    <span className="flex items-center gap-2 text-[13px] font-medium">
+      {verb}
+      <Icon title={platform} role="img" className="size-4 text-accent" />
     </span>
   );
 }

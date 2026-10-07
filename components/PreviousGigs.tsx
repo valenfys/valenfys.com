@@ -3,9 +3,20 @@
 import { useId, useState } from "react";
 import type { PastEvent } from "@/content/gigs";
 import { external } from "@/lib/external";
+import { FaSoundcloud, FaYoutube } from "react-icons/fa";
+import ArrowIcon from "@/components/ArrowIcon";
+import RaIcon from "@/components/RaIcon";
 
 
 const collapsedCount = 3;
+
+// Recordings live on YouTube (video) or SoundCloud (audio); events without one link to RA.
+// Icons use each platform's brand colour; RA's logo is monochrome, so it follows the text.
+const platforms = {
+  video: { name: "YouTube", icon: FaYoutube, colour: "text-[#ff0000]" },
+  audio: { name: "SoundCloud", icon: FaSoundcloud, colour: "text-[#ff5500]" },
+  event: { name: "Resident Advisor", icon: RaIcon, colour: "text-text" },
+};
 
 function formatMonth(month: string) {
   return new Intl.DateTimeFormat("en-GB", { month: "short", timeZone: "UTC" }).format(new Date(`${month}-01T00:00Z`));
@@ -32,19 +43,10 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               <span className="mt-1 text-[12px] text-muted tabular-nums">{event.month.slice(0, 4)}</span>
             </span>
             <span className="flex flex-col gap-0.5">
-              <span className="text-[15px] font-medium">{event.title}</span>
+              <PlatformTitle kind={event.kind} title={event.title} />
               <span className="text-[13px] text-muted">{event.venue}</span>
             </span>
-            {event.kind !== "event" ? (
-              <span className="flex items-center gap-2 text-[13px] font-medium">
-                <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
-                  <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
-                </svg>
-                {event.kind === "video" ? "Watch" : "Listen"}
-              </span>
-            ) : (
-              <span aria-hidden="true" className="text-base text-muted">↗</span>
-            )}
+            <ArrowIcon className="size-4 text-muted" />
           </a>
         ))}
       </div>
@@ -72,5 +74,15 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
         </button>
       )}
     </>
+  );
+}
+
+function PlatformTitle({ kind, title }: { kind: PastEvent["kind"]; title: string }) {
+  const { name, icon: Icon, colour } = platforms[kind];
+  return (
+    <span className="flex items-start gap-1.5 text-[15px] font-medium">
+      <Icon title={name} role="img" className={`mt-1 size-3.5 shrink-0 ${colour}`} />
+      {title}
+    </span>
   );
 }

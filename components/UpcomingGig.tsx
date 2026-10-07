@@ -1,5 +1,7 @@
 import type { UpcomingEvent } from "@/content/gigs";
 import { external } from "@/lib/external";
+import ArrowIcon from "@/components/ArrowIcon";
+import RaIcon from "@/components/RaIcon";
 
 function formatDate(iso: string, options: Intl.DateTimeFormatOptions) {
   return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...options }).format(new Date(iso));
@@ -25,7 +27,10 @@ export default function UpcomingGig({ event }: { event: UpcomingEvent }) {
         </span>
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-1.5">
-        <strong className="text-[17px] font-semibold tracking-tight">{event.title}</strong>
+        <strong className="flex items-start gap-2 text-[17px] font-semibold tracking-tight">
+          <RaIcon title="Resident Advisor" role="img" className="mt-1.25 size-4 shrink-0" />
+          {event.title}
+        </strong>
         <span className="text-[13px] leading-normal text-card-muted">
           {formatDate(event.start, { weekday: "short" })}{" "}
           {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })} · {formatTime(event.start)} – {formatTime(event.end)}
@@ -33,7 +38,7 @@ export default function UpcomingGig({ event }: { event: UpcomingEvent }) {
           {event.venue}
         </span>
       </span>
-      <span aria-hidden="true" className="self-start text-lg text-card-muted">↗</span>
+      <ArrowIcon className="mt-1 size-4.5 shrink-0 text-card-muted" />
     </a>
   );
 }

@@ -27,13 +27,16 @@ export default function UpcomingGig({ event }: { event: UpcomingEvent }) {
         </span>
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-1.5">
-        <strong className="flex items-start gap-2 text-[17px] font-semibold tracking-tight">
-          <RaIcon title="Resident Advisor" role="img" className="mt-1.25 size-4 shrink-0" />
+        {/* The icon flows inline so a wrapped title returns to the left edge rather than hanging beside it. */}
+        <strong className="text-[17px] font-semibold tracking-tight">
+          <RaIcon title="Resident Advisor" role="img" className="mr-2 inline-block size-4 align-[-1px]" />
           {event.title}
         </strong>
+        {/* The date column already shows the day and month, so only the time is needed here. */}
         <span className="text-[13px] leading-normal text-card-muted">
-          {formatDate(event.start, { weekday: "short" })}{" "}
-          {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })} · {formatTime(event.start)} – {formatTime(event.end)}
+          <span className="whitespace-nowrap">
+            {formatTime(event.start)} – {formatTime(event.end)}
+          </span>
           <br />
           {event.venue}
         </span>

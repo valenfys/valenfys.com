@@ -13,7 +13,7 @@ const collapsedCount = 3;
 const links = {
   video: { verb: "Watch", platform: "YouTube", icon: FaYoutube },
   audio: { verb: "Listen", platform: "SoundCloud", icon: FaSoundcloud },
-  event: { verb: "Info", platform: "Resident Advisor", icon: RaIcon },
+  event: { verb: "View", platform: "Resident Advisor", icon: RaIcon },
 };
 
 function formatMonth(month: string) {

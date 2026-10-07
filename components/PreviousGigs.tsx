@@ -80,8 +80,8 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 function PlatformTitle({ kind, title }: { kind: PastEvent["kind"]; title: string }) {
   const { name, icon: Icon, colour } = platforms[kind];
   return (
-    <span className="flex items-start gap-1.5 text-[15px] font-medium">
-      <Icon title={name} role="img" className={`mt-1 size-3.5 shrink-0 ${colour}`} />
+    <span className="text-[15px] font-medium">
+      <Icon title={name} role="img" className={`mr-1.5 inline-block size-3.5 align-[-1px] ${colour}`} />
       {title}
     </span>
   );

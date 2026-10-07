@@ -1,20 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
-  <!-- A vinyl record: dark rim, rainbow disc and a plain label, with the spindle hole cut out so the tab shows through. -->
-  <mask id="hole">
+  <!-- A red vinyl record with a mid-grey label. The gap inside the rim and the spindle hole are cut out so the tab
+       shows through, which keeps it legible on light and dark tab bars. -->
+  <mask id="cutouts">
     <circle cx="18" cy="18" r="18" fill="#fff" />
+    <circle cx="18" cy="18" r="15" fill="none" stroke="#000" stroke-width="2" />
     <circle cx="18" cy="18" r="1.5" fill="#000" />
   </mask>
-  <clipPath id="disc"><circle cx="18" cy="18" r="15.5" /></clipPath>
-  <g mask="url(#hole)">
-    <circle cx="18" cy="18" r="18" fill="#1d1d1f" />
-    <g clip-path="url(#disc)">
-      <rect y="0" width="36" height="6" fill="#61bb46" />
-      <rect y="6" width="36" height="6" fill="#fdb827" />
-      <rect y="12" width="36" height="6" fill="#f5821f" />
-      <rect y="18" width="36" height="6" fill="#e03a3e" />
-      <rect y="24" width="36" height="6" fill="#963d97" />
-      <rect y="30" width="36" height="6" fill="#009ddc" />
-    </g>
-    <circle cx="18" cy="18" r="6.5" fill="#fbfbfa" />
+  <g mask="url(#cutouts)">
+    <circle cx="18" cy="18" r="18" fill="#e03a3e" />
+    <circle cx="18" cy="18" r="6.5" fill="#8e8e93" />
   </g>
 </svg>

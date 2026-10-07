@@ -105,7 +105,7 @@ export default function Home() {
 
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-6 gap-2">
               {socials.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}

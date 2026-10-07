@@ -80,7 +80,7 @@ function PlatformTitle({ kind, title }: { kind: PastEvent["kind"]; title: string
   const { platform, icon: Icon } = links[kind];
   return (
     <span className="flex items-start gap-1.5 text-[15px] font-medium">
-      <Icon title={platform} role="img" className="mt-1 size-3.5 shrink-0 text-muted" />
+      <Icon title={platform} role="img" className="mt-1 size-3.5 shrink-0 text-accent" />
       {title}
     </span>
   );
@@ -90,7 +90,7 @@ function Action({ kind }: { kind: PastEvent["kind"] }) {
   return (
     <span className="flex items-center gap-2 text-[13px] font-medium">
       {kind === "event" ? (
-        <ArrowIcon className="size-3.5 stroke-3 text-accent" />
+        <ArrowIcon className="size-3.5 stroke-3 text-muted" />
       ) : (
         <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
           <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />

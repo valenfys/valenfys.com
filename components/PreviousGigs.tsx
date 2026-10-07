@@ -3,9 +3,18 @@
 import { useId, useState } from "react";
 import type { PastEvent } from "@/content/gigs";
 import { external } from "@/lib/external";
+import { FaSoundcloud, FaYoutube } from "react-icons/fa";
+import RaIcon from "@/components/RaIcon";
 
 
 const collapsedCount = 3;
+
+// Recordings live on YouTube (video) or SoundCloud (audio); events without one link to RA.
+const links = {
+  video: { icon: FaYoutube, label: "Watch" },
+  audio: { icon: FaSoundcloud, label: "Listen" },
+  event: { icon: RaIcon, label: "Event" },
+};
 
 function formatMonth(month: string) {
   return new Intl.DateTimeFormat("en-GB", { month: "short", timeZone: "UTC" }).format(new Date(`${month}-01T00:00Z`));
@@ -35,16 +44,7 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               <span className="text-[15px] font-medium">{event.title}</span>
               <span className="text-[13px] text-muted">{event.venue}</span>
             </span>
-            {event.kind !== "event" ? (
-              <span className="flex items-center gap-2 text-[13px] font-medium">
-                <svg aria-hidden="true" width="9" height="10" viewBox="0 0 9 10" className="fill-accent">
-                  <path d="M0 0.8v8.4a.6.6 0 0 0 .9.5l7.4-4.2a.6.6 0 0 0 0-1L.9.3A.6.6 0 0 0 0 .8z" />
-                </svg>
-                {event.kind === "video" ? "Watch" : "Listen"}
-              </span>
-            ) : (
-              <span aria-hidden="true" className="text-base text-muted">↗</span>
-            )}
+            <LinkLabel kind={event.kind} />
           </a>
         ))}
       </div>
@@ -72,5 +72,15 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
         </button>
       )}
     </>
+  );
+}
+
+function LinkLabel({ kind }: { kind: PastEvent["kind"] }) {
+  const { icon: Icon, label } = links[kind];
+  return (
+    <span className="flex items-center gap-2 text-[13px] font-medium">
+      <Icon aria-hidden="true" className="size-4 text-accent" />
+      {label}
+    </span>
   );
 }

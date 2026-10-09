@@ -3,18 +3,11 @@ export type UpcomingEvent = { start: string; end: string; title: string; venue: 
 // month is "YYYY-MM".
 export type PastEvent = { month: string; title: string; venue: string; href: string; kind: "audio" | "video" | "event" };
 
-export const upcoming: UpcomingEvent[] = [
-  {
-    start: "2026-10-08T19:00+01:00",
-    end: "2026-10-09T02:00+01:00",
-    title: "Fragment: Open Decks",
-    venue: "The Glove That Fits, London",
-    href: "https://ra.co/events/2500782",
-  },
-];
+export const upcoming: UpcomingEvent[] = [];
 
 // Link the recording if one exists, otherwise the RA event page.
 export const previous: PastEvent[] = [
+  { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", href: "https://ra.co/events/2500782", kind: "event" },
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k", kind: "video" },
   { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s", kind: "video" },
   { month: "2026-07", title: "Techno Forest Party", venue: "East London", href: "https://www.youtube.com/watch?v=0NYqs2o88Jk", kind: "video" },

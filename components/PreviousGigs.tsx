@@ -1,8 +1,9 @@
 "use client";
 
 import { useId, useState } from "react";
-import type { PastEvent } from "@/content/gigs";
+import type { Gig } from "@/content/gigs";
 import { external } from "@/lib/external";
+import { formatDate, gigLink } from "@/lib/gigs";
 import { FaSoundcloud, FaYoutube } from "react-icons/fa";
 import ArrowIcon from "@/components/ArrowIcon";
 import RaIcon from "@/components/RaIcon";
@@ -18,12 +19,8 @@ const platforms = {
   event: { name: "Resident Advisor", icon: RaIcon, colour: "text-text" },
 };
 
-function formatMonth(month: string) {
-  return new Intl.DateTimeFormat("en-GB", { month: "short", timeZone: "UTC" }).format(new Date(`${month}-01T00:00Z`));
-}
-
 // Collapsed, only the most recent few events show. Hidden rows aren't rendered, so the last visible row loses its divider.
-export default function PreviousGigs({ events }: { events: PastEvent[] }) {
+export default function PreviousGigs({ events }: { events: Gig[] }) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
   const visible = expanded ? events : events.slice(0, collapsedCount);
@@ -31,24 +28,27 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
   return (
     <>
       <div id={id} className="flex flex-col">
-        {visible.map((event) => (
-          <a
-            key={event.title}
-            href={event.href}
-            {...external(event.href)}
-            className="-mx-2.5 grid grid-cols-[3.25rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-rule2 px-2.5 py-3.5 transition-colors last:border-b-0 hover:bg-row-hover"
-          >
-            <span className="flex flex-col items-center border-r border-rule2 pr-4">
-              <span className="text-[17px] leading-none font-semibold tracking-tight">{formatMonth(event.month)}</span>
-              <span className="mt-1 text-[12px] text-muted tabular-nums">{event.month.slice(0, 4)}</span>
-            </span>
-            <span className="flex flex-col gap-0.5">
-              <PlatformTitle kind={event.kind} title={event.title} />
-              <span className="text-[13px] text-muted">{event.venue}</span>
-            </span>
-            <ArrowIcon className="size-4 text-muted" />
-          </a>
-        ))}
+        {visible.map((event) => {
+          const link = gigLink(event);
+          return (
+            <a
+              key={`${event.start}-${event.title}`}
+              href={link.href}
+              {...external(link.href)}
+              className="-mx-2.5 grid grid-cols-[3.25rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-rule2 px-2.5 py-3.5 transition-colors last:border-b-0 hover:bg-row-hover"
+            >
+              <span className="flex flex-col items-center border-r border-rule2 pr-4">
+                <span className="text-[17px] leading-none font-semibold tracking-tight">{formatDate(event.start, { month: "short" })}</span>
+                <span className="mt-1 text-[12px] text-muted tabular-nums">{formatDate(event.start, { year: "numeric" })}</span>
+              </span>
+              <span className="flex flex-col gap-0.5">
+                <PlatformTitle kind={link.kind} title={event.title} />
+                <span className="text-[13px] text-muted">{event.venue}</span>
+              </span>
+              <ArrowIcon className="size-4 text-muted" />
+            </a>
+          );
+        })}
       </div>
       {events.length > collapsedCount && (
         <button
@@ -77,7 +77,7 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
   );
 }
 
-function PlatformTitle({ kind, title }: { kind: PastEvent["kind"]; title: string }) {
+function PlatformTitle({ kind, title }: { kind: keyof typeof platforms; title: string }) {
   const { name, icon: Icon, colour } = platforms[kind];
   return (
     <span className="text-[15px] font-medium">

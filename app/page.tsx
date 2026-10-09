@@ -7,14 +7,18 @@ import ProjectCard from "@/components/ProjectCard";
 import SectionHeader from "@/components/SectionHeader";
 import UpcomingGig from "@/components/UpcomingGig";
 import bioSource from "@/content/bio.md";
-import { previous, upcoming } from "@/content/gigs";
+import { type Gig, gigs } from "@/content/gigs";
 import { projects } from "@/content/projects";
 import { socials } from "@/content/socials";
 import { external } from "@/lib/external";
+import { splitGigs } from "@/lib/gigs";
 import { email, siteUrl } from "@/lib/site";
 
 // Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
 const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
+
+// The page is prerendered, so re-render it hourly to move gigs from upcoming to previous once they've ended.
+export const revalidate = 3600;
 
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
@@ -22,7 +26,7 @@ const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
 const personId = `${siteUrl}/#person`;
 
 // Structured data so search engines can connect the site, social profiles and gigs to one person.
-const jsonLd = {
+const jsonLd = (upcoming: Gig[]) => ({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -36,7 +40,7 @@ const jsonLd = {
       address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
       sameAs: socials.map(({ href }) => href),
     },
-    ...upcoming.map((event) => ({
+    ...upcoming.filter((event) => event.href).map((event) => ({
       "@type": "MusicEvent",
       name: event.title,
       startDate: event.start,
@@ -48,16 +52,17 @@ const jsonLd = {
       performer: { "@id": personId },
     })),
   ],
-};
+});
 
 export default function Home() {
+  const { upcoming, previous } = splitGigs(gigs);
   return (
     <div className="flex min-h-screen justify-center px-6 pt-18 pb-14">
       <main className="flex w-full max-w-136 flex-col gap-13">
         <script
           type="application/ld+json"
           // Escape "<" so the JSON can't close the script tag early.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(upcoming)).replace(/</g, "\\u003c") }}
         />
         <header className="flex flex-col gap-7">
           <div

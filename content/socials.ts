@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons";
 import {
   // FaBandcamp,
-  FaBluesky,
+  // FaBluesky,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
@@ -14,7 +14,7 @@ export type SocialLink = { label: string; href: string; icon: IconType };
 
 export const socials: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/valenfys", icon: FaInstagram },
-  { label: "Bluesky", href: "https://bsky.app/profile/valenfys.com", icon: FaBluesky },
+  // { label: "Bluesky", href: "https://bsky.app/profile/valenfys.com", icon: FaBluesky },
   { label: "YouTube", href: "https://www.youtube.com/@valenfys", icon: FaYoutube },
   { label: "SoundCloud", href: "https://soundcloud.com/valenfys", icon: FaSoundcloud },
   { label: "Resident Advisor", href: "https://ra.co/dj/valenfys", icon: RaIcon },

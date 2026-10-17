@@ -105,7 +105,7 @@ export default function Home() {
 
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
-            <div className="grid grid-cols-7 gap-2">
+            <div className="grid grid-cols-6 gap-2">
               {socials.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -116,7 +116,7 @@ export default function Home() {
                   // aspect-square grows the height with the column width, like app icons on a home screen.
                   className="flex aspect-square items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
                 >
-                  <Icon aria-hidden="true" className="size-5 xs:size-6" />
+                  <Icon aria-hidden="true" className="size-5 xs:size-8" />
                 </a>
               ))}
             </div>

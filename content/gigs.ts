@@ -3,7 +3,15 @@ export type UpcomingEvent = { start: string; end: string; title: string; venue: 
 // month is "YYYY-MM".
 export type PastEvent = { month: string; title: string; venue: string; href: string; kind: "audio" | "video" | "event" };
 
-export const upcoming: UpcomingEvent[] = [];
+export const upcoming: UpcomingEvent[] = [
+  {
+    start: "2026-11-22T00:30+00:00",
+    end: "2026-11-22T02:00+00:00",
+    title: "Pointblank x E1 London",
+    venue: "Onyx Room, E1, London",
+    href: "https://ra.co/events/2533099",
+  },
+];
 
 // Link the recording if one exists, otherwise the RA event page.
 export const previous: PastEvent[] = [

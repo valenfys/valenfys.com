@@ -5,8 +5,8 @@ export type PastEvent = { month: string; title: string; venue: string; href: str
 
 export const upcoming: UpcomingEvent[] = [
   {
-    start: "2026-11-22T00:30+00:00",
-    end: "2026-11-22T02:00+00:00",
+    start: "2026-11-21T22:00+00:00",
+    end: "2026-11-22T05:00+00:00",
     title: "Pointblank x E1 London",
     venue: "Onyx Room, E1, London",
     href: "https://ra.co/events/2533099",

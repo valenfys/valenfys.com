@@ -149,6 +149,7 @@ export default function Home() {
         </section>
 
         <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
+          {/* oxlint-disable-next-line react/purity -- server component, rendered once at build time */}
           <span>&copy; {new Date().getFullYear()} Val Enfys Studio</span>
           <span aria-hidden="true" className="flex gap-1">
             {steps.map((on, i) => (

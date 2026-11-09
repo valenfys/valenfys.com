@@ -15,7 +15,7 @@ export const upcoming: UpcomingEvent[] = [
 
 // Link the recording if one exists, otherwise the RA event page.
 export const previous: PastEvent[] = [
-  { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", href: "https://ra.co/events/2500782", kind: "event" },
+  { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", href: "https://soundcloud.com/valenfys/fragment-open-decks", kind: "audio" },
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k", kind: "video" },
   { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab, London", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s", kind: "video" },
   { month: "2026-07", title: "Techno Forest Party", venue: "East London", href: "https://www.youtube.com/watch?v=0NYqs2o88Jk", kind: "video" },

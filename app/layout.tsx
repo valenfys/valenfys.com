@@ -4,9 +4,9 @@ import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/next"
 
-const title = "Val Enfys – DJ, Artist & Software Engineer";
+const title = "Val Enfys – DJ & Audiovisual Artist";
 const description =
-  "Val Enfys is a London-based DJ, artist and software engineer, currently studying Music Production and Software Engineering at pointblank Music School.";
+  "Val Enfys is a UK-based DJ and audiovisual artist, inspired by London’s warehouse and free party scene.";
 
 // Shown in link previews (WhatsApp, Discord, iMessage, etc.). Kept under 300px wide so WhatsApp shows it as a
 // small thumbnail beside the text instead of a full-width banner. The portrait is square, so use the small card on X.

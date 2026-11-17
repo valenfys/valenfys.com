@@ -32,7 +32,7 @@ const jsonLd = {
       url: siteUrl,
       image: `${siteUrl}/val-portrait.jpg`,
       email: `mailto:${email}`,
-      jobTitle: ["DJ", "Artist", "Software Engineer"],
+      jobTitle: ["DJ", "Audiovisual Artist"],
       address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
       sameAs: socials.map(({ href }) => href),
     },
@@ -81,7 +81,7 @@ export default function Home() {
 
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-              <p className="text-[15px] font-semibold">DJ, Artist &amp; Software Engineer</p>
+              <p className="text-[15px] font-semibold">DJ &amp; Audiovisual Artist</p>
               <p className="text-sm text-text2">London, UK</p>
             </div>
             <Bio html={bio} />

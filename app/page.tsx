@@ -103,6 +103,26 @@ export default function Home() {
             </span>
           </a>
 
+          <nav aria-labelledby="h-press" className="flex flex-col gap-3">
+            <SectionHeader id="h-press">Press</SectionHeader>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { label: "Press kit", detail: "PDF", href: "/press/ValEnfys-EPK.pdf" },
+                { label: "Press photos", detail: "ZIP", href: "/press/ValEnfys-PressPics.zip" },
+              ].map(({ label, detail, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  download
+                  className="flex items-center justify-between gap-3 rounded-xl border border-tile-border bg-tile px-4 py-3.5 transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
+                >
+                  <span className="text-[15px] font-medium">{label}</span>
+                  <span className="text-[13px] font-medium text-muted">{detail} ↓</span>
+                </a>
+              ))}
+            </div>
+          </nav>
+
           <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
             <SectionHeader id="h-socials">Socials</SectionHeader>
             <div className="grid grid-cols-6 gap-2">

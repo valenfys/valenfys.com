@@ -1,16 +1,15 @@
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
 // href is optional: leave it out when there's no public event page.
 export type UpcomingEvent = { start: string; end: string; title: string; venue: string; href?: string };
-// month is "YYYY-MM". ra is the RA event page, for gigs whose main link is a recording. soundcloud is the audio
-// upload of a set whose main link is a YouTube video.
+// month is "YYYY-MM". primary is the recording if one exists, otherwise the RA event page. secondary holds any other
+// links (the RA page, or another upload of the same set), shown as smaller chips before the primary one.
+export type GigLink = { platform: "youtube" | "soundcloud" | "ra"; href: string };
 export type PastEvent = {
   month: string;
   title: string;
   venue: string;
-  href: string;
-  kind: "audio" | "video" | "event";
-  ra?: string;
-  soundcloud?: string;
+  primary: GigLink;
+  secondary?: GigLink[];
 };
 
 export const upcoming: UpcomingEvent[] = [
@@ -22,18 +21,16 @@ export const upcoming: UpcomingEvent[] = [
   },
 ];
 
-// Link the recording if one exists, otherwise the RA event page. Add ra when there's both, and soundcloud when a
-// video set is also on SoundCloud.
 export const previous: PastEvent[] = [
-  { month: "2026-11", title: "Rebel Rebel x E1", venue: "E1, London", href: "https://www.youtube.com/watch?v=0mlQV31Q_mc", kind: "video", soundcloud: "https://soundcloud.com/valenfys/val-enfys-techno-dj-set-e1", ra: "https://ra.co/events/2533099" },
-  { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", href: "https://soundcloud.com/valenfys/fragment-open-decks", kind: "audio", ra: "https://ra.co/events/2500782" },
-  { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k", kind: "video", soundcloud: "https://soundcloud.com/valenfys/val-enfys-b2b-d-lai-at-bad-studios" },
-  { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab, London", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s", kind: "video", soundcloud: "https://soundcloud.com/valenfys/enfy-ssl-open-deck", ra: "https://ra.co/events/2504530" },
-  { month: "2026-07", title: "Techno Forest Party", venue: "East London", href: "https://www.youtube.com/watch?v=0NYqs2o88Jk", kind: "video", soundcloud: "https://soundcloud.com/valenfys/groovy-techno-in-the-woods-london-july-2026" },
-  { month: "2025-11", title: "Sibling Radio", venue: "London (Online)", href: "https://soundcloud.com/sibling-radio/07112025-alien-tech-w-val-enfys-10", kind: "audio" },
-  { month: "2025-09", title: "Omidox Hypnotic Podcast", venue: "Hamburg (Online)", href: "https://soundcloud.com/omidox-1/val-enfys-omidox-hypnotic", kind: "audio" },
-  { month: "2025-09", title: "Lost Unicorns", venue: "Basing House, London", href: "https://ra.co/events/2228141", kind: "event" },
-  { month: "2025-08", title: "Canal Film Club", venue: "Hackney Wick, London", href: "https://soundcloud.com/valenfys/studio-mix-canal-film-club", kind: "audio" },
-  { month: "2025-07", title: "London Open Decks", venue: "Carbobar, Hackney Wick", href: "https://soundcloud.com/valenfys/live-london-open-decks", kind: "audio" },
-  { month: "2025-07", title: "Over.The.Techno #23", venue: "Rostov-on-Don (Online)", href: "https://soundcloud.com/overthetechno/overthetechno-23-val-enfys", kind: "audio" },
+  { month: "2026-11", title: "Rebel Rebel x E1", venue: "E1, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=0mlQV31Q_mc" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2533099" }, { platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-techno-dj-set-e1" }] },
+  { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", primary: { platform: "soundcloud", href: "https://soundcloud.com/valenfys/fragment-open-decks" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2500782" }] },
+  { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k" }, secondary: [{ platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-b2b-d-lai-at-bad-studios" }] },
+  { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2504530" }, { platform: "soundcloud", href: "https://soundcloud.com/valenfys/enfy-ssl-open-deck" }] },
+  { month: "2026-07", title: "Techno Forest Party", venue: "East London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=0NYqs2o88Jk" }, secondary: [{ platform: "soundcloud", href: "https://soundcloud.com/valenfys/groovy-techno-in-the-woods-london-july-2026" }] },
+  { month: "2025-11", title: "Sibling Radio", venue: "London (Online)", primary: { platform: "soundcloud", href: "https://soundcloud.com/sibling-radio/07112025-alien-tech-w-val-enfys-10" } },
+  { month: "2025-09", title: "Omidox Hypnotic Podcast", venue: "Hamburg (Online)", primary: { platform: "soundcloud", href: "https://soundcloud.com/omidox-1/val-enfys-omidox-hypnotic" } },
+  { month: "2025-09", title: "Lost Unicorns", venue: "Basing House, London", primary: { platform: "ra", href: "https://ra.co/events/2228141" } },
+  { month: "2025-08", title: "Canal Film Club", venue: "Hackney Wick, London", primary: { platform: "soundcloud", href: "https://soundcloud.com/valenfys/studio-mix-canal-film-club" } },
+  { month: "2025-07", title: "London Open Decks", venue: "Carbobar, Hackney Wick", primary: { platform: "soundcloud", href: "https://soundcloud.com/valenfys/live-london-open-decks" } },
+  { month: "2025-07", title: "Over.The.Techno #23", venue: "Rostov-on-Don (Online)", primary: { platform: "soundcloud", href: "https://soundcloud.com/overthetechno/overthetechno-23-val-enfys" } },
 ];

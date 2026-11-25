@@ -31,8 +31,8 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
     <>
       <ul id={id} className="border-t border-ink">
         {visible.map((event) => (
-          // The title link stretches over the whole row (its ::after), so the row stays one big target. The RA chip
-          // sits above it (relative z-10), since links can't nest.
+          // The title link stretches over the whole row (its ::after), so the row stays one big target. The secondary
+          // chips (RA, SoundCloud) sit above it (relative z-10), since links can't nest.
           <li
             key={`${event.month}-${event.title}`}
             className="group relative grid grid-cols-[72px_minmax(0,1fr)] items-center gap-x-3.5 gap-y-2.5 border-b border-rule px-2 py-4 transition-colors hover:bg-row-hover md:grid-cols-[110px_minmax(0,1fr)_auto] md:gap-6"
@@ -51,7 +51,17 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
             </span>
             {/* Below md the chips sit under the venue; from md they're a right-aligned third column. */}
             <span className="col-start-2 flex items-center gap-2 justify-self-start md:col-start-3 md:row-start-1 md:justify-self-end">
-              {event.ra && <RaChip href={event.ra} title={event.title} />}
+              {event.ra && (
+                <SecondaryChip href={event.ra} platform="ra" label="RA" srLabel={`${event.title} on Resident Advisor`} />
+              )}
+              {event.soundcloud && (
+                <SecondaryChip
+                  href={event.soundcloud}
+                  platform="soundcloud"
+                  label="SoundCloud"
+                  srLabel={`${event.title} on SoundCloud`}
+                />
+              )}
               <span aria-hidden="true" className={`${chip} gig-hover:border-accent gig-hover:bg-accent gig-hover:text-paper`}>
                 <PlatformIcon platform={platforms[event.kind].icon} className="size-3" />
                 {platforms[event.kind].name}
@@ -78,14 +88,17 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 // Outlined tag, like the mix cards and press tiles.
 const chip = "flex items-center gap-1.5 border border-ink px-2 py-1 text-[13px] leading-none font-semibold text-accent transition-colors";
 
-// A secondary link to the RA event page. The transparent link is 44px tall around the smaller chip; the negative
-// margin keeps that extra height from adding to the row.
-function RaChip({ href, title }: { href: string; title: string }) {
+// A secondary link: the RA event page, or a SoundCloud copy of a video set. The transparent link is 44px tall around
+// the smaller chip; the negative margin keeps that extra height from adding to the row.
+function SecondaryChip({ href, platform, label, srLabel }: { href: string; platform: Platform; label: string; srLabel: string }) {
   return (
-    <a href={href} {...external(href)} data-ra className="group/ra relative z-10 -my-2.5 flex min-h-11 items-center">
-      <span className={`${chip} group-hover/ra:border-accent group-hover/ra:bg-accent group-hover/ra:text-paper`}>
-        <PlatformIcon platform="ra" className="size-3" />
-        RA<span className="sr-only">: {title} on Resident Advisor</span>
+    <a href={href} {...external(href)} data-secondary className="group/secondary relative z-10 -my-2.5 flex min-h-11 items-center">
+      <span
+        className={`${chip} group-hover/secondary:border-accent group-hover/secondary:bg-accent group-hover/secondary:text-paper`}
+      >
+        <PlatformIcon platform={platform} className="size-3" />
+        {label}
+        <span className="sr-only">: {srLabel}</span>
       </span>
     </a>
   );

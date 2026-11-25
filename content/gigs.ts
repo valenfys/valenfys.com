@@ -1,20 +1,21 @@
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
-export type UpcomingEvent = { start: string; end: string; title: string; venue: string; href: string };
+// href is optional: leave it out when there's no public event page.
+export type UpcomingEvent = { start: string; end: string; title: string; venue: string; href?: string };
 // month is "YYYY-MM".
 export type PastEvent = { month: string; title: string; venue: string; href: string; kind: "audio" | "video" | "event" };
 
 export const upcoming: UpcomingEvent[] = [
   {
-    start: "2026-11-21T22:00+00:00",
-    end: "2026-11-22T05:00+00:00",
-    title: "Pointblank x E1 London",
-    venue: "Onyx Room, E1, London",
-    href: "https://ra.co/events/2533099",
+    start: "2026-11-29T11:00+00:00",
+    end: "2026-11-29T12:00+00:00",
+    title: "NOT BAD FOR A GIRL takeover",
+    venue: "Voices Radio, Coal Drops Yard, King’s Cross",
   },
 ];
 
 // Link the recording if one exists, otherwise the RA event page.
 export const previous: PastEvent[] = [
+  { month: "2026-11", title: "Rebel Rebel x E1", venue: "E1, London", href: "https://ra.co/events/2533099", kind: "event" },
   { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", href: "https://soundcloud.com/valenfys/fragment-open-decks", kind: "audio" },
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k", kind: "video" },
   { month: "2026-08", title: "SSL Series #002", venue: "Square Studio Lab, London", href: "https://www.youtube.com/watch?v=ZQdh_35LQ_s", kind: "video" },

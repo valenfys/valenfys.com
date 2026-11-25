@@ -1,23 +1,23 @@
-import { marked } from "marked";
 import Image from "next/image";
-import ArrowIcon from "@/components/ArrowIcon";
-import Bio from "@/components/Bio";
+import Markdown from "@/components/Markdown";
+import NextUp from "@/components/NextUp";
 import PreviousGigs from "@/components/PreviousGigs";
-import ProjectCard from "@/components/ProjectCard";
-import SectionHeader from "@/components/SectionHeader";
-import UpcomingGig from "@/components/UpcomingGig";
 import bioSource from "@/content/bio.md";
+import bioShortSource from "@/content/bio-short.md";
 import { previous, upcoming } from "@/content/gigs";
-import { projects } from "@/content/projects";
+import { highlights } from "@/content/highlights";
+import { mixes } from "@/content/mixes";
 import { socials } from "@/content/socials";
 import { external } from "@/lib/external";
 import { email, siteUrl } from "@/lib/site";
 
-// Edit content/bio.md to change the bio. It's rendered at build time, so no Markdown parser ships to the browser.
-const bio = marked.parse(new TextDecoder().decode(bioSource), { async: false });
-
 // Drum machine step lights in the footer: 1 = lit.
 const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
+
+const press = [
+  { title: "Press kit", detail: "Bios, highlights and links · PDF", href: "/press/ValEnfys-EPK.pdf" },
+  { title: "Press photos", detail: "4 high-res images · ZIP", href: "/press/ValEnfys-PressPics.zip" },
+];
 
 const personId = `${siteUrl}/#person`;
 
@@ -41,7 +41,8 @@ const jsonLd = {
       name: event.title,
       startDate: event.start,
       endDate: event.end,
-      url: event.href,
+      // Some events (like radio shows) have no public page.
+      ...(event.href && { url: event.href }),
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: { "@type": "Place", name: event.venue, address: event.venue },
@@ -50,133 +51,222 @@ const jsonLd = {
   ],
 };
 
+// Shared layout and type classes.
+const container = "mx-auto w-full max-w-[1200px] px-5 md:px-14";
+const section = `${container} pb-18`;
+const solidButton = "bg-ink text-paper transition-colors hover:bg-accent hover:text-paper";
+const outlined = "border border-ink transition-colors hover:text-accent";
+const twoCol = "grid gap-7 md:gap-14";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen justify-center px-6 pt-18 pb-14">
-      <main className="flex w-full max-w-136 flex-col gap-13">
-        <script
-          type="application/ld+json"
-          // Escape "<" so the JSON can't close the script tag early.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-        />
-        <header className="flex flex-col gap-7">
-          <div
-            aria-hidden="true"
-            className="h-1 w-14 rounded-full pride-bar"
-          />
+    <>
+      <script
+        type="application/ld+json"
+        // Escape "<" so the JSON can't close the script tag early.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
 
-          <div className="flex items-center justify-between gap-6">
-            <h1 className="font-serif text-[clamp(3.75rem,17vw,5.25rem)] leading-[.88] font-normal tracking-[-0.065em]">
-              Val Enfys<span className="text-accent">.</span>
-            </h1>
+      <header className={`${container} flex items-center justify-between gap-6 py-6`}>
+        <a
+          href="#top"
+          className="flex min-h-11 items-center font-display text-[15px] font-bold tracking-[0.14em] hover:text-accent"
+        >
+          VAL ENFYS
+        </a>
+        <nav aria-label="Sections" className="flex items-center gap-7 text-sm font-medium">
+          <span className="hidden gap-7 md:flex">
+            {["Mixes", "Gigs", "About", "Press"].map((label) => (
+              <a key={label} href={`#${label.toLowerCase()}`} className="flex min-h-11 items-center hover:text-accent">
+                {label}
+              </a>
+            ))}
+          </span>
+          <a href={`mailto:${email}`} className={`flex min-h-11 items-center px-4.5 py-3 font-semibold ${solidButton}`}>
+            Bookings
+          </a>
+        </nav>
+      </header>
+
+      <main>
+        <section id="top" aria-labelledby="h-name" className={`${container} pt-6 pb-16`}>
+          <div aria-hidden="true" className="mb-5 h-[3px] bg-ink" />
+          <h1
+            id="h-name"
+            className="mb-10 font-display text-[min(14.5vw,184px)] leading-[0.88] font-bold tracking-[-0.045em]"
+          >
+            VAL ENFYS
+          </h1>
+          <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:items-end`}>
+            <div className="flex flex-col gap-7 pb-1">
+              <p className="font-display text-[22px] font-medium">
+                DJ and audiovisual artist <span className="text-accent">·</span> Techno{" "}
+                <span className="text-accent">·</span> London, UK <span className="text-muted">(she/her)</span>
+              </p>
+              <Markdown source={bioShortSource} className="max-w-[620px] text-lg leading-[1.6] text-pretty" />
+              <div className="flex flex-wrap gap-3">
+                <a href={`mailto:${email}`} className={`px-6 py-4 text-[15px] font-semibold ${solidButton}`}>
+                  {email} <span aria-hidden="true">→</span>
+                </a>
+                <a href="#mixes" className={`px-[23px] py-[15px] text-[15px] font-semibold ${outlined}`}>
+                  Listen to mixes
+                </a>
+              </div>
+            </div>
             <Image
-              src="/val-portrait.jpg"
-              alt="Portrait of Val Enfys"
-              width={168}
-              height={168}
-              priority
-              className="size-21 shrink-0 rounded-full object-cover object-[50%_35%] shadow-[0_0_0_1px_var(--color-rule),0_0_0_4px_var(--color-bg),0_0_0_5px_var(--color-rule)] max-xs:size-16"
+              src="/val-hero.jpg"
+              alt="Val Enfys crouching on gravel in a red hoodie"
+              width={2000}
+              height={2998}
+              sizes="(min-width: 768px) 380px, 100vw"
+              preload
+              className="h-[460px] w-full object-cover object-[center_30%] md:h-[540px]"
             />
           </div>
+        </section>
 
-          <div className="flex flex-col gap-3.5">
-            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5">
-              <p className="text-[15px] font-semibold">DJ &amp; Audiovisual Artist</p>
-              <p className="text-sm text-text2">London, UK</p>
-            </div>
-            <Bio html={bio} />
-          </div>
-
-          <a
-            href={`mailto:${email}`}
-            className="flex items-center justify-between gap-4 rounded-xl border border-key-border bg-key py-4 pr-4 pl-6 transition-colors hover:bg-key-hover"
-          >
-            <span className="flex min-w-0 flex-col gap-1">
-              <span className="text-[13px] font-medium text-muted">Bookings &amp; enquiries</span>
-              <span className="text-2xl font-medium tracking-tight wrap-anywhere">{email}</span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-[inset_0_-2px_0_rgb(0_0_0/0.12)]"
-            >
-              <ArrowIcon className="size-5" />
-            </span>
-          </a>
-
-          <nav aria-labelledby="h-press" className="flex flex-col gap-3">
-            <SectionHeader id="h-press">Press</SectionHeader>
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { label: "Press kit", detail: "PDF", href: "/press/ValEnfys-EPK.pdf" },
-                { label: "Press photos", detail: "ZIP", href: "/press/ValEnfys-PressPics.zip" },
-              ].map(({ label, detail, href }) => (
-                <a
-                  key={href}
-                  href={href}
-                  download
-                  className="flex items-center justify-between gap-3 rounded-xl border border-tile-border bg-tile px-4 py-3.5 transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
-                >
-                  <span className="text-[15px] font-medium">{label}</span>
-                  <span className="text-[13px] font-medium text-muted">{detail} ↓</span>
-                </a>
-              ))}
-            </div>
-          </nav>
-
-          <nav aria-labelledby="h-socials" className="flex flex-col gap-3">
-            <SectionHeader id="h-socials">Socials</SectionHeader>
-            <div className="grid grid-cols-6 gap-2">
-              {socials.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  title={label}
-                  {...external(href)}
-                  // aspect-square grows the height with the column width, like app icons on a home screen.
-                  className="flex aspect-square items-center justify-center rounded-xl border border-tile-border bg-tile transition-colors hover:border-tile-border-hover hover:bg-tile-hover"
-                >
-                  <Icon aria-hidden="true" className="size-5 xs:size-8" />
-                </a>
-              ))}
-            </div>
-          </nav>
-        </header>
+        <section aria-label="Highlights" className={section}>
+          <ul className="grid gap-x-8 border-t border-ink md:grid-cols-4">
+            {highlights.map(({ title, detail }) => (
+              <li key={title} className="border-b border-rule py-4 text-sm leading-[1.45]">
+                <strong className="block font-semibold">{title}</strong>
+                {detail}
+              </li>
+            ))}
+          </ul>
+        </section>
 
         {upcoming.length > 0 && (
-          <section aria-labelledby="h-upcoming" className="flex flex-col gap-3.5">
-            <SectionHeader id="h-upcoming">Upcoming gigs</SectionHeader>
-            {upcoming.map((event) => (
-              <UpcomingGig key={event.href} event={event} />
-            ))}
+          <section aria-labelledby="h-up" className={section}>
+            <h2 id="h-up" className="section-label">
+              Next up
+            </h2>
+            <div className="flex flex-col gap-4">
+              {upcoming.map((event) => (
+                <NextUp key={`${event.start}-${event.title}`} event={event} />
+              ))}
+            </div>
           </section>
         )}
 
-        <section aria-labelledby="h-previous" className="flex flex-col">
-          <SectionHeader id="h-previous" className="mb-2.5">
-            Previous gigs &amp; mixes
-          </SectionHeader>
+        <section id="mixes" aria-labelledby="h-mixes" className={section}>
+          <h2 id="h-mixes" className="section-label">
+            Featured mixes
+          </h2>
+          <ul className="grid gap-4 md:grid-cols-3">
+            {mixes.map(({ title, meta, href }) => (
+              <li key={href} className="flex">
+                <a href={href} {...external(href)} className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}>
+                  <span className="font-display text-[22px] leading-[1.15] font-bold">{title}</span>
+                  <span className="text-sm text-muted">{meta}</span>
+                  <span className="mt-auto text-[13px] font-semibold text-accent">
+                    SoundCloud <span aria-hidden="true">→</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="gigs" aria-labelledby="h-gigs" className={section}>
+          <h2 id="h-gigs" className="section-label">
+            Gigs &amp; mixes
+          </h2>
           <PreviousGigs events={previous} />
         </section>
 
-        <section aria-labelledby="h-projects" className="flex flex-col gap-3.5">
-          <SectionHeader id="h-projects">Projects</SectionHeader>
-          <div className="flex flex-col gap-8">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
+        <section id="about" aria-labelledby="h-about" className={section}>
+          <h2 id="h-about" className="section-label">
+            About
+          </h2>
+          <div className={`${twoCol} items-start border-t border-ink pt-7 md:grid-cols-[minmax(0,1fr)_340px]`}>
+            <Markdown
+              source={bioSource}
+              className="flex max-w-[680px] flex-col gap-4 leading-[1.65] text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-accent"
+            />
+            <Image
+              src="/val-about.jpg"
+              alt="Val Enfys in a red hoodie looking upwards beside an iron gate"
+              width={2000}
+              height={2998}
+              sizes="(min-width: 768px) 340px, 100vw"
+              className="aspect-[2/3] h-auto w-full object-cover"
+            />
           </div>
         </section>
 
-        <footer className="flex items-center justify-between gap-4 border-t border-rule pt-5 text-xs text-muted">
-          <span>&copy; {new Date().getFullYear()} Val Enfys Studio</span>
-          <span aria-hidden="true" className="flex gap-1">
-            {steps.map((on, i) => (
-              <span key={i} className={`size-1.5 rounded-xs ${on ? "bg-accent" : "bg-step-off"}`} />
+        <section id="press" aria-labelledby="h-press" className={section}>
+          <h2 id="h-press" className="section-label">
+            Press
+          </h2>
+          <ul className="grid gap-4 md:grid-cols-2">
+            {press.map(({ title, detail, href }) => (
+              <li key={href} className="flex">
+                <a
+                  href={href}
+                  download
+                  className={`flex w-full items-center justify-between gap-4 p-[22px] ${outlined}`}
+                >
+                  <span className="flex flex-col gap-1">
+                    <span className="font-display text-xl font-bold">{title}</span>
+                    <span className="text-sm text-muted">{detail}</span>
+                  </span>
+                  <span className="shrink-0 text-[13px] font-semibold text-accent">
+                    Download <span aria-hidden="true">↓</span>
+                  </span>
+                </a>
+              </li>
             ))}
-          </span>
-        </footer>
+          </ul>
+          <p className="mt-3 text-[13px] text-muted">Photos by Lyssa Harakis-Parish, please credit when used.</p>
+        </section>
+
+        <section aria-labelledby="h-links" className={`${container} pb-20`}>
+          <h2 id="h-links" className="section-label">
+            Links
+          </h2>
+          <ul className="grid gap-x-8 border-t border-ink md:grid-cols-3">
+            {socials.map(({ label, href }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  {...external(href)}
+                  className="flex justify-between border-b border-rule py-4 text-[15px] font-medium hover:text-accent"
+                >
+                  {label}
+                  <span aria-hidden="true" className="text-muted">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
-    </div>
+
+      <footer className="bg-ink text-paper">
+        <div className={`${container} flex flex-wrap items-center justify-between gap-5 py-9`}>
+          <div className="flex flex-col gap-1.5">
+            <span className="font-display text-xs font-bold tracking-[0.14em] text-card-muted uppercase">
+              Bookings &amp; enquiries
+            </span>
+            <a
+              href={`mailto:${email}`}
+              className="flex min-h-11 items-center font-display text-[28px] font-bold wrap-anywhere underline-offset-4 hover:underline"
+            >
+              {email}
+            </a>
+          </div>
+          <div className="flex flex-col items-end gap-2.5">
+            <span aria-hidden="true" className="flex gap-1">
+              {steps.map((on, i) => (
+                <span key={i} className={`size-2 ${on ? "bg-accent" : "bg-card-rule"}`} />
+              ))}
+            </span>
+            <span className="text-[13px] text-card-muted">&copy; {new Date().getFullYear()} Val Enfys Studio</span>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

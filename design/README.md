@@ -42,21 +42,21 @@ Content sits in a centred container: `max-w-[1200px] mx-auto px-14`, and `px-5` 
 2. **Hero:**
    - A 3px ink rule.
    - The `<h1>` "VAL ENFYS": bold, `leading-[0.88]`, `tracking-[-0.045em]`, `text-[min(14.5vw,184px)]`.
-   - Then a 2-column grid (`1fr 380px`, `gap-14`, items aligned to the bottom). On the left: the tagline (display font, 22px medium, with red middle dots), the **short bio** (18px / 1.6, `max-w-[620px]`), and two buttons: a black `val@valenfys.com →` mailto and an outlined "Listen to mixes" linking to `#mixes`. On the right: `val-hero.jpg` at 540px tall, `object-cover`, focus near the top third.
+   - Then a 2-column grid (`1fr 380px`, `gap-14`, items aligned to the bottom). On the left: the tagline (display font, 22px medium, with red middle dots), the **short bio** (18px / 1.6, `max-w-[620px]`), and two buttons: a black `val@valenfys.com` mailto and an outlined "Listen to mixes" linking to `#mixes`. On the right: `val-hero.jpg` at 540px tall, `object-cover`, focus near the top third.
    - Below `md` it stacks, with the photo at 460px.
 3. **Highlights:** a 4-column grid under a 1px ink top rule. Each item is a bold title over a plain line, with a `rule` bottom border. One column below `md`.
 4. **Next up** (only when `upcoming` has events): an ink card with a date block on the left (day 44px bold, then month 13px with letter-spacing, and a `card-rule` divider), then the title (24px bold) and the venue and time (15px, `card-muted`). It wraps on mobile.
-5. **Featured mixes:** a 3-column grid of outlined cards (1px ink border, 22px padding, at least 160px tall). Each has a title (22px bold), a meta line, and "SoundCloud →" in accent at the bottom. One column below `md`.
-6. **Gigs & mixes:** rows under an ink top rule. Each row is a grid of `110px 1fr 140px`: the date, the title over the venue, and the platform label in accent, right-aligned. Below `md` it's `72px 1fr` and the platform label is hidden. Each row is one `<a>` with the `row-hover` background on hover.
+5. **Featured mixes:** a 3-column grid of outlined cards (1px ink border, 22px padding, at least 160px tall). Each has a title (22px bold), a meta line, and a SoundCloud icon with "SoundCloud" in accent at the bottom. One column below `md`.
+6. **Gigs & mixes:** rows under an ink top rule. Each row is a grid of `110px 1fr auto`: the date, the title over the venue, and outlined platform chips (icon and name, 1px ink border, accent text), right-aligned. Rows with both a recording and an RA page show an "RA" chip that links to RA before the recording's chip. The title link stretches over the row, so the whole row opens the recording, and the RA chip sits above it. Below `md` it's `72px 1fr auto`: the recording chip is hidden and only the RA chip shows. Rows have the `row-hover` background on hover.
 7. **About:** the full bio from `content/bio.md` (16px / 1.65, `max-w-[680px]`) beside `val-about.jpg` (340px column, 2:3). It stacks below `md`.
 8. **Press:** two outlined download tiles, the EPK PDF and the photos zip. Each has a title, a description line and "Download ↓". Under them: "Photos by Lyssa Harakis-Parish, please credit when used."
-9. **Links:** a 3-column grid of text links under an ink rule (Instagram, SoundCloud, YouTube, Resident Advisor, GitHub, LinkedIn), each with ↗. One column below `md`.
+9. **Links:** a 3-column grid of text links under an ink rule (Instagram, SoundCloud, YouTube, Resident Advisor, GitHub, LinkedIn), each with a monochrome brand icon before the label. One column below `md`.
 10. **Footer:** an ink band. "Bookings & enquiries" label, then the email (display font, 28px bold, paper colour). On the right: the 16 drum-machine step lights (8px squares, lit = accent, off = `card-rule`) and "© {year} Val Enfys Studio".
 
 ## Content changes
 
 - **Remove the Projects section** and everything that only it uses: `components/ProjectCard.tsx`, `components/ProjectVideo.tsx`, `components/projectTile.ts`, `content/projects.ts` and `public/projects/`.
-- **Socials** become text links, so the icon components and `react-icons` can go, as long as nothing else uses them. Keep `content/socials.ts` as the list (label and href). The JSON-LD `sameAs` still uses it.
+- **Socials** become text links with monochrome `react-icons` brand icons (and `RaIcon`), via `components/PlatformIcon.tsx`. Keep `content/socials.ts` as the list (label, href and platform). The JSON-LD `sameAs` still uses it.
 - **`content/bio.md`:** replace it with the four "About" paragraphs from the export. The E1 line is now past tense ("played E1 in November 2026 alongside Alarico and Inox Traxx"), and OMIDOX and Over.The.Techno are both credited. Keep the ADE and pointblank links that the current file has.
 - **Add `content/bio-short.md`** with the hero paragraph and render it the same way as `bio.md`.
 - **Highlights and featured mixes:** add them as small typed arrays (with the copy and links from the export) in `content/`.
@@ -70,6 +70,8 @@ Content sits in a centred container: `max-w-[1200px] mx-auto px-14`, and `px-5` 
 The JSON-LD structured data, `layout.tsx` metadata and OG image, Vercel Analytics, `robots.ts` and `sitemap.ts`, and the `public/press/` files.
 
 ## Behaviour
+
+- **Arrows:** keep them only where they say what happens: "Download ↓" on the press tiles and the "Show all ↓" toggle. Platform links use icons instead.
 
 - **Gigs list:** show the 7 most recent, then a "Show all {n}" / "Show fewer" toggle (a real `<button>` with `aria-expanded` and `aria-controls`). Reuse the logic in `components/PreviousGigs.tsx` and restyle it.
 - **Upcoming:** hide the "Next up" section when `upcoming` is empty.

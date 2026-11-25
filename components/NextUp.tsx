@@ -25,7 +25,6 @@ export default function NextUp({ event }: { event: UpcomingEvent }) {
       <span className="flex flex-[1_1_260px] flex-col gap-1.5">
         <span className="font-display text-2xl font-bold underline-offset-4 group-hover:underline">
           {event.title}
-          {event.href && <span aria-hidden="true"> ↗</span>}
         </span>
         <span className="text-[15px] text-card-muted">
           {event.venue} · {format(event.start, { weekday: "short" })} {time(event.start)}–{time(event.end)}

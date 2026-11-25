@@ -1,0 +1,1 @@
+Val Enfys is a UK-based DJ and audiovisual artist inspired by London’s warehouse and free party scene. Her techno sets blend driving grooves and high-energy transitions with emotional vocal intermissions. Selected for the inaugural ADE Lab On Track at Amsterdam Dance Event 2026, she has since played E1 London alongside Alarico and Inox Traxx.

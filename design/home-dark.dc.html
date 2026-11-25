@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Val Enfys – dark</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#131211}
+a{color:var(--ink);text-decoration:none}a:hover{color:var(--accent)}
+.wrap{container-type:inline-size}
+.in{max-width:1200px;margin:0 auto;padding-inline:56px;box-sizing:border-box}
+.name{font-size:min(14.5cqi,184px)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:56px;align-items:end}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:56px;align-items:start}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) 140px;gap:24px;align-items:center}
+.row:hover{background:var(--row)}
+.btn:hover{background:var(--accent) !important;color:var(--paper) !important}
+@container (max-width:760px){
+.in{padding-inline:20px}.hero,.about{grid-template-columns:1fr;gap:28px}
+.g4,.g3,.g2{grid-template-columns:1fr}.navlinks,.plat{display:none !important}
+.row{grid-template-columns:72px minmax(0,1fr);gap:14px}.heroimg{height:460px !important}
+}
+</style>
+</helmet>
+<div class="wrap" style="--paper: {{t.paper}}; --ink: {{t.ink}}; --muted: {{t.muted}}; --rule: {{t.rule}}; --row: {{t.row}}; --cmuted: {{t.cmuted}}; --crule: {{t.crule}}; --accent: {{accent}}; width: 100%; background: var(--paper); color: var(--ink); font-family: Inter, system-ui, sans-serif">
+
+<header class="in" style="display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 24px; padding-bottom: 24px">
+<a href="#top" style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.14em">VAL ENFYS</a>
+<nav aria-label="Sections" style="display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500">
+<span class="navlinks" style="display: flex; gap: 28px"><a href="#mixes">Mixes</a><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#press">Press</a></span>
+<a class="btn" href="mailto:val@valenfys.com" style="padding: 12px 18px; background: var(--ink); color: var(--paper); font-weight: 600">Bookings</a>
+</nav>
+</header>
+
+<section id="top" class="in" style="padding-top: 24px; padding-bottom: 64px">
+<div style="height: 3px; background: var(--ink); margin-bottom: 20px"></div>
+<h1 class="name" style="margin: 0 0 40px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 0.88; letter-spacing: -0.045em">VAL ENFYS</h1>
+<div class="hero">
+<div style="display: flex; flex-direction: column; gap: 28px; padding-bottom: 4px">
+<p style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500">DJ and audiovisual artist <span style="color: {{accent}}">·</span> Techno <span style="color: {{accent}}">·</span> London, UK <span style="color: var(--muted)">(she/her)</span></p>
+<p style="margin: 0; max-width: 620px; font-size: 18px; line-height: 1.6; text-wrap: pretty">Val Enfys is a UK-based DJ and audiovisual artist inspired by London’s warehouse and free party scene. Her techno sets blend driving grooves and high-energy transitions with emotional vocal intermissions. Selected for the inaugural ADE Lab On Track at Amsterdam Dance Event 2026, she has since played E1 London alongside Alarico and Inox Traxx.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn" href="mailto:val@valenfys.com" style="padding: 16px 24px; background: var(--ink); color: var(--paper); font-size: 15px; font-weight: 600">val@valenfys.com →</a>
+<a href="#mixes" style="padding: 15px 23px; border: 1px solid var(--ink); font-size: 15px; font-weight: 600">Listen to mixes</a>
+</div>
+</div>
+<img class="heroimg" src="./val-hero.jpg" alt="Val Enfys crouching on gravel in a red hoodie" style="width: 100%; height: 540px; object-fit: cover; object-position: center 30%; display: block">
+</div>
+</section>
+
+<section class="in" aria-label="Highlights" style="padding-bottom: 72px">
+<div class="g4" style="border-top: 1px solid var(--ink)">
+<p style="margin: 0; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.45"><strong style="font-weight: 600">ADE Lab On Track 2026</strong><br>Amsterdam Dance Event</p>
+<p style="margin: 0; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.45"><strong style="font-weight: 600">E1 London</strong><br>with Alarico &amp; Inox Traxx, Nov 2026</p>
+<p style="margin: 0; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.45"><strong style="font-weight: 600">Sibling Radio</strong><br>Monthly residency, Sep–Nov 2025</p>
+<p style="margin: 0; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.45"><strong style="font-weight: 600">Guest mixes</strong><br>OMIDOX, Over.The.Techno</p>
+</div>
+</section>
+
+<section class="in" aria-labelledby="h-up" style="padding-bottom: 72px">
+<h2 id="h-up" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Next up</h2>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; padding: 28px 32px; background: var(--ink); color: var(--paper)">
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 64px; padding-right: 28px; border-right: 1px solid var(--crule)">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 44px; font-weight: 700; line-height: 1">29</span>
+<span style="margin-top: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--cmuted)">NOV</span>
+</div>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700">NOT BAD FOR A GIRL takeover</span>
+<span style="font-size: 15px; color: var(--cmuted)">Voices Radio, Coal Drops Yard, King’s Cross · Sun 11:00–12:00</span>
+</div>
+</div>
+</section>
+
+<section id="mixes" class="in" aria-labelledby="h-mixes" style="padding-bottom: 72px">
+<h2 id="h-mixes" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Featured mixes</h2>
+<div class="g3">
+<sc-for list="{{mixes}}" as="m" hint-placeholder-count="3">
+<a href="{{m.href}}" style="display: flex; flex-direction: column; gap: 8px; min-height: 160px; padding: 22px; border: 1px solid var(--ink); box-sizing: border-box">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.15">{{m.title}}</span>
+<span style="font-size: 14px; color: var(--muted)">{{m.meta}}</span>
+<span style="margin-top: auto; font-size: 13px; font-weight: 600; color: {{accent}}">SoundCloud →</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section id="gigs" class="in" aria-labelledby="h-gigs" style="padding-bottom: 72px">
+<h2 id="h-gigs" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Gigs &amp; mixes</h2>
+<div style="border-top: 1px solid var(--ink)">
+<sc-for list="{{gigs}}" as="g" hint-placeholder-count="7">
+<a class="row" href="{{g.href}}" style="padding: 16px 8px; border-bottom: 1px solid var(--rule)">
+<span style="font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums">{{g.date}}</span>
+<span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 16px; font-weight: 600">{{g.title}}</span><span style="font-size: 14px; color: var(--muted)">{{g.venue}}</span></span>
+<span class="plat" style="justify-self: end; font-size: 13px; font-weight: 600; color: {{accent}}">{{g.plat}} →</span>
+</a>
+</sc-for>
+</div>
+<button type="button" style="margin-top: 8px; min-height: 44px; padding: 0 8px; border: 0; background: none; font: 600 14px Inter, sans-serif; color: var(--muted); cursor: pointer">Show all 11 ↓</button>
+</section>
+
+<section id="about" class="in" aria-labelledby="h-about" style="padding-bottom: 72px">
+<h2 id="h-about" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">About</h2>
+<div class="about" style="border-top: 1px solid var(--ink); padding-top: 28px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 680px; font-size: 16px; line-height: 1.65; text-wrap: pretty">
+<p style="margin: 0">Val Enfys is a DJ and audiovisual artist based in the UK, inspired by London’s warehouse and free party scene. Her techno sets blend driving grooves and high-energy transitions with emotional vocal intermissions. Drawing on her background as a software engineer, she is exploring live, 360° visual worlds that surround the dancefloor.</p>
+<p style="margin: 0">In 2026, Val was selected for the inaugural ADE Lab On Track, a three-day programme for early career DJs and producers, at the 30th edition of Amsterdam Dance Event. In London, she has organised and played her own forest party, played Fragment’s open decks, and played E1 in November 2026 alongside Alarico and Inox Traxx. She has also held a residency on London-based Sibling Radio, and has recorded mixes for international platforms including OMIDOX (Hamburg) and Over.The.Techno (Rostov-on-Don).</p>
+<p style="margin: 0">Val was drawn to techno through London’s club circuit and warehouse scene, where she met likeminded DJs and producers who brought her deeper into this world. She grew up playing bassoon, piano and guitar, giving her a strong sense of music theory to go with the practical experience of being on the dancefloor.</p>
+<p style="margin: 0">Val is currently studying Music Production and Software Engineering at pointblank Music School, working towards her own productions in Ableton Live. On the visual side, she is developing AV performances with tools like Videosync, TouchDesigner and Blender, as well as her own custom software.</p>
+</div>
+<img src="./val-about.jpg" alt="Val Enfys in a red hoodie looking upwards beside an iron gate" style="width: 100%; aspect-ratio: 2 / 3; object-fit: cover; display: block">
+</div>
+</section>
+
+<section id="press" class="in" aria-labelledby="h-press" style="padding-bottom: 72px">
+<h2 id="h-press" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Press</h2>
+<div class="g2">
+<a href="/press/ValEnfys-EPK.pdf" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px; border: 1px solid var(--ink)"><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700">Press kit</span><span style="font-size: 14px; color: var(--muted)">Bios, highlights and links · PDF</span></span><span style="font-size: 13px; font-weight: 600; color: {{accent}}">Download ↓</span></a>
+<a href="/press/ValEnfys-PressPics.zip" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px; border: 1px solid var(--ink)"><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700">Press photos</span><span style="font-size: 14px; color: var(--muted)">4 high-res images · ZIP</span></span><span style="font-size: 13px; font-weight: 600; color: {{accent}}">Download ↓</span></a>
+</div>
+<p style="margin: 12px 0 0; font-size: 13px; color: var(--muted)">Photos by Lyssa Harakis-Parish, please credit when used.</p>
+</section>
+
+<section class="in" aria-labelledby="h-links" style="padding-bottom: 80px">
+<h2 id="h-links" style="margin: 0 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Links</h2>
+<div class="g3" style="gap: 0 32px; border-top: 1px solid var(--ink)">
+<sc-for list="{{links}}" as="l" hint-placeholder-count="6">
+<a href="{{l.href}}" style="display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 15px; font-weight: 500"><span>{{l.label}}</span><span style="color: var(--muted)">↗</span></a>
+</sc-for>
+</div>
+</section>
+
+<footer style="background: var(--ink); color: var(--paper)">
+<div class="in" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding-top: 36px; padding-bottom: 36px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cmuted)">Bookings &amp; enquiries</span>
+<a href="mailto:val@valenfys.com" style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--paper)">val@valenfys.com</a>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
+<span aria-hidden="true" style="display: flex; gap: 4px"><sc-for list="{{steps}}" as="s" hint-placeholder-count="16"><span style="width: 8px; height: 8px; background: {{s.c}}"></span></sc-for></span>
+<span style="font-size: 13px; color: var(--cmuted)">© 2026 Val Enfys Studio</span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":true},"accent":{"editor":"color","default":"#F0584E","options":["#B3201A","#F0584E","#3A3AE0"]},"$preview":{"width":1440,"height":3600}}'>
+class Component extends DCLogic {
+renderVals() {
+const dark = this.props.dark ?? true;
+const t = dark
+? { paper: '#131211', ink: '#F1EDE6', muted: '#ADA79E', rule: '#34302C', row: '#1E1C1A', cmuted: '#5A554E', crule: '#CFC9C0' }
+: { paper: '#F4F1EC', ink: '#111111', muted: '#444444', rule: '#C9C4BC', row: '#ECE8E1', cmuted: '#BDB8B0', crule: 'var(--crule)' };
+const accent = this.props.accent ?? (dark ? '#F0584E' : '#B3201A');
+const sc = 'https://soundcloud.com/';
+return {
+accent,
+t,
+mixes: [
+{ title: 'Fragment: Open Decks', meta: 'The Glove That Fits, London · Oct 2026', href: sc + 'valenfys/fragment-open-decks' },
+{ title: 'SSL Series #002', meta: 'Square Studio Lab, London · Aug 2026', href: sc + 'valenfys/enfy-ssl-open-deck' },
+{ title: 'OMIDOX Hypnotic Podcast', meta: 'Guest mix · Hamburg', href: sc + 'omidox-1/val-enfys-omidox-hypnotic' }
+],
+gigs: [
+{ date: 'Nov 2026', title: 'Rebel Rebel x E1', venue: 'E1, London · with Alarico & Inox Traxx', plat: 'RA', href: 'https://ra.co/events/2533099' },
+{ date: 'Oct 2026', title: 'Fragment: Open Decks', venue: 'The Glove That Fits, London', plat: 'SoundCloud', href: sc + 'valenfys/fragment-open-decks' },
+{ date: 'Aug 2026', title: 'B2B with D LAI', venue: 'BAD Studios, London', plat: 'YouTube', href: 'https://www.youtube.com/watch?v=2ysRMIp8R5k' },
+{ date: 'Aug 2026', title: 'SSL Series #002', venue: 'Square Studio Lab, London', plat: 'YouTube', href: 'https://www.youtube.com/watch?v=ZQdh_35LQ_s' },
+{ date: 'Jul 2026', title: 'Techno Forest Party', venue: 'East London · own event', plat: 'YouTube', href: 'https://www.youtube.com/watch?v=0NYqs2o88Jk' },
+{ date: 'Nov 2025', title: 'Sibling Radio', venue: 'London (online) · residency', plat: 'SoundCloud', href: sc + 'sibling-radio/07112025-alien-tech-w-val-enfys-10' },
+{ date: 'Sep 2025', title: 'Lost Unicorns', venue: 'Basing House, London', plat: 'RA', href: 'https://ra.co/events/2228141' }
+],
+links: [
+{ label: 'Instagram', href: 'https://www.instagram.com/valenfys' },
+{ label: 'SoundCloud', href: sc + 'valenfys' },
+{ label: 'YouTube', href: 'https://www.youtube.com/@valenfys' },
+{ label: 'Resident Advisor', href: 'https://ra.co/dj/valenfys' },
+{ label: 'GitHub', href: 'https://github.com/valenfys' },
+{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/valenfys' }
+],
+steps: [1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0].map(on => ({ c: on ? accent : 'var(--crule)' }))
+};
+}
+}
+</script>
+</body>
+</html>

@@ -19,7 +19,7 @@ The page is statically rendered at build time. There's no database, CMS or API; 
 | Path | What it is |
 |---|---|
 | `app/page.tsx` | The home page layout. It also builds the JSON-LD structured data (`Person` and `MusicEvent`). |
-| `content/socials.ts`, `content/gigs.ts`, `content/highlights.ts`, `content/mixes.ts` | Links, upcoming and previous gigs, the highlights strip and the featured mixes, as typed arrays. Edit these to update the page. An upcoming event's `href` is optional. |
+| `content/socials.ts`, `content/gigs.ts`, `content/highlights.ts`, `content/mixes.ts` | Links, upcoming and previous gigs, the highlights strip and the featured mixes, as typed arrays. Edit these to update the page. An upcoming event's `href` is optional. A past gig links its recording, or the RA page if there isn't one; add `ra` when there's both. |
 | `content/bio.md`, `content/bio-short.md` | The full bio (About) and the short bio (hero). They're imported as bytes and converted to HTML with `marked` at build time by `components/Markdown.tsx`, so no Markdown parser ships to the browser. |
 | `components/` | `PreviousGigs` is a client component (the "Show all" gigs toggle). `NextUp` (the upcoming gig card) and `Markdown` are server components. |
 | `lib/site.ts` | The site URL and contact email, used by the page, metadata, `robots.ts` and `sitemap.ts`. |

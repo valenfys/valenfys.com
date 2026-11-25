@@ -26,21 +26,43 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
     <>
       <ul id={id} className="border-t border-ink">
         {visible.map((event) => (
-          <li key={`${event.month}-${event.title}`}>
-            <a
-              href={event.href}
-              {...external(event.href)}
-              className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-3.5 border-b border-rule px-2 py-4 transition-colors hover:bg-row-hover hover:text-accent md:grid-cols-[110px_minmax(0,1fr)_140px] md:gap-6"
-            >
-              <span className="text-sm text-muted tabular-nums">{formatMonth(event.month)}</span>
-              <span className="flex flex-col gap-[3px]">
-                <span className="font-semibold">{event.title}</span>
-                <span className="text-sm text-muted">{event.venue}</span>
+          // The title link stretches over the whole row (its ::after), so the row stays one big target. The RA link
+          // sits above it (relative z-10), since links can't nest.
+          <li
+            key={`${event.month}-${event.title}`}
+            className="group relative grid grid-cols-[72px_minmax(0,1fr)] items-center gap-3.5 border-b border-rule px-2 py-4 transition-colors hover:bg-row-hover md:grid-cols-[110px_minmax(0,1fr)_minmax(140px,auto)] md:gap-6"
+          >
+            <span className="text-sm text-muted tabular-nums">{formatMonth(event.month)}</span>
+            <span className="flex flex-col gap-[3px]">
+              <a
+                href={event.href}
+                {...external(event.href)}
+                className="font-semibold transition-colors group-hover:text-accent after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-accent"
+              >
+                {event.title}
+                <span className="sr-only">, {platforms[event.kind]}</span>
+              </a>
+              <span className="text-sm text-muted">
+                {event.venue}
+                {event.ra && (
+                  <span className="md:hidden">
+                    {" · "}
+                    <RaLink href={event.ra} title={event.title} />
+                  </span>
+                )}
               </span>
-              <span className="hidden justify-self-end text-[13px] font-semibold text-accent md:block">
-                {platforms[event.kind]} <span aria-hidden="true">→</span>
-              </span>
-            </a>
+            </span>
+            <span className="hidden justify-self-end text-[13px] font-semibold text-accent md:block">
+              <span aria-hidden="true">{platforms[event.kind]} →</span>
+              {event.ra && (
+                <>
+                  <span aria-hidden="true" className="text-muted">
+                    {" · "}
+                  </span>
+                  <RaLink href={event.ra} title={event.title} />
+                </>
+              )}
+            </span>
           </li>
         ))}
       </ul>
@@ -56,5 +78,19 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
         </button>
       )}
     </>
+  );
+}
+
+// A secondary link to the RA event page. Its padding is on an inline element, so it widens the tap area to 44px
+// without changing the row's layout.
+function RaLink({ href, title }: { href: string; title: string }) {
+  return (
+    <a
+      href={href}
+      {...external(href)}
+      className="relative z-10 -mx-1.5 px-1.5 py-3.5 font-semibold text-accent underline-offset-2 hover:underline"
+    >
+      RA<span className="sr-only">: {title} on Resident Advisor</span> <span aria-hidden="true">↗</span>
+    </a>
   );
 }

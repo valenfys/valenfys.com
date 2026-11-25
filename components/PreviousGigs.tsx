@@ -49,8 +49,9 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               </a>
               <span className="text-sm text-muted">{event.venue}</span>
             </span>
-            {/* Below md the chips sit under the venue; from md they're a right-aligned third column. */}
-            <span className="col-start-2 flex items-center gap-2 justify-self-start md:col-start-3 md:row-start-1 md:justify-self-end">
+            {/* Below md the chips sit under the venue, wrapping if they run out of room. From md they're a right-aligned
+                third column. */}
+            <span className="col-start-2 flex flex-wrap items-center gap-2 justify-self-start md:col-start-3 md:row-start-1 md:justify-self-end">
               {event.secondary?.map((link) => (
                 <SecondaryChip key={link.href} link={link} title={event.title} />
               ))}

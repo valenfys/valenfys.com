@@ -6,6 +6,7 @@ This replaces the previous design notes. The new homepage takes its look from Va
 
 - `home.dc.html`: the source of truth for layout, copy and styling, exported from the Claude Design canvas. It's responsive. The layout changes at a 760px container width.
 - `home-mobile.dc.html`: the same page rendered at 390px, for reference.
+- `home-dark.dc.html` and `home-mobile-dark.dc.html`: the dark theme at 1440px and 390px.
 - `val-hero.jpg` and `val-about.jpg`: press photos by Lyssa Harakis-Parish, 2000 × 2998 (2:3).
 
 These are reference files, not runnable pages. Read the markup and inline styles, but don't serve or import them. `{{accent}}` is the accent colour. The `<sc-for>` loops are data; their arrays sit in the `renderVals()` script at the bottom of `home.dc.html`. The "Show all 11" button is static in the export but should work (see Behaviour).
@@ -14,20 +15,22 @@ These are reference files, not runnable pages. Read the markup and inline styles
 
 - **Tailwind only.** Put the tokens below in `@theme` in `app/globals.css`. Don't write new vanilla CSS beyond tokens, base styles and small `@utility` blocks.
 - Load fonts with `next/font/google` (`Space_Grotesk` 400/500/700 and `Inter` 400/500/600), exposed as `--font-display` and `--font-sans`.
-- **Light theme only.** The design is the EPK's paper look, so remove the `prefers-color-scheme: dark` overrides and set `color-scheme: light`.
+- **Light and dark themes.** Light is the EPK's paper look. Dark follows `prefers-color-scheme: dark` by overriding the same tokens on `:root`, with `color-scheme: light dark`. The token names don't change between themes: `ink` stays the foreground, so the footer, buttons and "Next up" card become light blocks on the dark page.
 
 ## Tokens
 
-| Token | Value | Use |
-|---|---|---|
-| `--color-paper` | `#F4F1EC` | Page background |
-| `--color-ink` | `#111111` | Text, rules, buttons, footer and "Next up" card |
-| `--color-accent` | `#B3201A` | Section labels, platform links, hover states, step lights |
-| `--color-muted` | `#444444` | Secondary text (passes 4.5:1 on paper) |
-| `--color-rule` | `#C9C4BC` | Row dividers |
-| `--color-row-hover` | `#ECE8E1` | Gig row hover |
-| `--color-card-muted` | `#BDB8B0` | Secondary text on ink |
-| `--color-card-rule` | `#3A3A3A` | Dividers and unlit step lights on ink |
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--color-paper` | `#F4F1EC` | `#131211` | Page background |
+| `--color-ink` | `#111111` | `#F1EDE6` | Text, rules, buttons, footer and "Next up" card |
+| `--color-accent` | `#B3201A` | `#F0584E` | Section labels, platform links, hover states, step lights |
+| `--color-muted` | `#444444` | `#ADA79E` | Secondary text (passes 4.5:1 on paper) |
+| `--color-rule` | `#C9C4BC` | `#34302C` | Row dividers |
+| `--color-row-hover` | `#ECE8E1` | `#1E1C1A` | Gig row hover |
+| `--color-card-muted` | `#BDB8B0` | `#5A554E` | Secondary text on ink |
+| `--color-card-rule` | `#3A3A3A` | `#CFC9C0` | Dividers and unlit step lights on ink |
+
+Every text colour passes 4.5:1 on its background in both themes. The light export's `--crule` refers to itself, so use `#3A3A3A` from this table.
 
 The breakpoint is `md` (768px). The export's 760px container query maps to it.
 
@@ -79,8 +82,8 @@ Use real `<a>` and `<button>` elements, and `aria-hidden` on decoration (the ste
 ## Checklist
 
 - [x] Projects code, data and images removed
-- [x] Tokens and fonts set up in Tailwind (dark theme kept via `prefers-color-scheme` with the values from `home-dark.dc.html`, as requested, rather than removed)
-- [x] Matches `home.dc.html` at 1440px and `home-mobile.dc.html` at 390px
+- [x] Tokens and fonts set up in Tailwind, with dark values via `prefers-color-scheme`
+- [x] Matches `home.dc.html` at 1440px and `home-mobile.dc.html` at 390px, and the dark exports in dark mode
 - [x] Gigs toggle works, and "Next up" hides when there's nothing upcoming
 - [x] Bios updated and E1 moved to previous gigs
 - [x] `npm run lint` and `npm run build` pass

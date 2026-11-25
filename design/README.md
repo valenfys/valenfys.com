@@ -9,7 +9,7 @@ This replaces the previous design notes. The new homepage takes its look from Va
 - `home-dark.dc.html` and `home-mobile-dark.dc.html`: the dark theme at 1440px and 390px.
 - `val-hero.jpg` and `val-about.jpg`: press photos by Lyssa Harakis-Parish, 2000 × 2998 (2:3).
 
-These are reference files, not runnable pages. Read the markup and inline styles, but don't serve or import them. `{{accent}}` is the accent colour. The `<sc-for>` loops are data; their arrays sit in the `renderVals()` script at the bottom of `home.dc.html`. The "Show all 11" button is static in the export but should work (see Behaviour).
+These are reference files, not runnable pages. Read the markup and inline styles, but don't serve or import them. `{{accent}}` is the accent colour. The `<sc-for>` loops are data; their arrays sit in the `renderVals()` script at the bottom of `home.dc.html`. The export's "Show all 11" button has since become a "See all gigs →" link to `/gigs` (see Behaviour).
 
 ## Stack rules
 
@@ -71,9 +71,9 @@ The JSON-LD structured data, `layout.tsx` metadata and OG image, Vercel Analytic
 
 ## Behaviour
 
-- **Arrows:** keep them only where they say what happens: "Download ↓" on the press tiles and the "Show all ↓" toggle. Platform links use icons instead.
+- **Arrows:** keep them only where they say what happens: "Download ↓" on the press tiles and the "See all gigs →" link. Platform links use icons instead.
 
-- **Gigs list:** show the 7 most recent, then a "Show all {n}" / "Show fewer" toggle (a real `<button>` with `aria-expanded` and `aria-controls`). Reuse the logic in `components/PreviousGigs.tsx` and restyle it.
+- **Gigs list:** the homepage shows the 7 most recent, then a "See all {n} gigs →" link to `/gigs`, which lists every gig under a section label per year. Both use `components/GigList.tsx`, and share the header and footer components.
 - **Upcoming:** hide the "Next up" section when `upcoming` is empty.
 - External links use the existing `external()` helper. Anchor links scroll smoothly (`scroll-behavior: smooth` on `html`, unless the user prefers reduced motion).
 
@@ -86,6 +86,6 @@ Use real `<a>` and `<button>` elements, and `aria-hidden` on decoration (the ste
 - [x] Projects code, data and images removed
 - [x] Tokens and fonts set up in Tailwind, with dark values via `prefers-color-scheme`
 - [x] Matches `home.dc.html` at 1440px and `home-mobile.dc.html` at 390px, and the dark exports in dark mode
-- [x] Gigs toggle works, and "Next up" hides when there's nothing upcoming
+- [x] Gigs list links to `/gigs`, and "Next up" hides when there's nothing upcoming
 - [x] Bios updated and E1 moved to previous gigs
 - [x] `npm run lint` and `npm run build` pass

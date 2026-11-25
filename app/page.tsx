@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Markdown from "@/components/Markdown";
 import NextUp from "@/components/NextUp";
+import PlatformIcon from "@/components/PlatformIcon";
 import PreviousGigs from "@/components/PreviousGigs";
 import bioSource from "@/content/bio.md";
 import bioShortSource from "@/content/bio-short.md";
@@ -106,7 +107,7 @@ export default function Home() {
               <Markdown source={bioShortSource} className="max-w-[620px] text-lg leading-[1.6] text-pretty" />
               <div className="flex flex-wrap gap-3">
                 <a href={`mailto:${email}`} className={`px-6 py-4 text-[15px] font-semibold ${solidButton}`}>
-                  {email} <span aria-hidden="true">→</span>
+                  {email}
                 </a>
                 <a href="#mixes" className={`px-[23px] py-[15px] text-[15px] font-semibold ${outlined}`}>
                   Listen to mixes
@@ -159,8 +160,9 @@ export default function Home() {
                 <a href={href} {...external(href)} className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}>
                   <span className="font-display text-[22px] leading-[1.15] font-bold">{title}</span>
                   <span className="text-sm text-muted">{meta}</span>
-                  <span className="mt-auto text-[13px] font-semibold text-accent">
-                    SoundCloud <span aria-hidden="true">→</span>
+                  <span className="mt-auto flex items-center gap-2 text-[13px] font-semibold text-accent">
+                    <PlatformIcon platform="soundcloud" className="size-4" />
+                    SoundCloud
                   </span>
                 </a>
               </li>
@@ -226,17 +228,15 @@ export default function Home() {
             Links
           </h2>
           <ul className="grid gap-x-8 border-t border-ink md:grid-cols-3">
-            {socials.map(({ label, href }) => (
+            {socials.map(({ label, href, platform }) => (
               <li key={href}>
                 <a
                   href={href}
                   {...external(href)}
-                  className="flex justify-between border-b border-rule py-4 text-[15px] font-medium hover:text-accent"
+                  className="flex items-center gap-3 border-b border-rule py-4 text-[15px] font-medium hover:text-accent"
                 >
+                  <PlatformIcon platform={platform} className="size-4" />
                   {label}
-                  <span aria-hidden="true" className="text-muted">
-                    ↗
-                  </span>
                 </a>
               </li>
             ))}

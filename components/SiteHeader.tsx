@@ -4,7 +4,8 @@ import { email } from "@/lib/site";
 
 const sections = ["Mixes", "Gigs", "About", "Press"];
 
-// On the homepage the links jump to its sections. Elsewhere they lead back to them, except Gigs, which has its own page.
+// Gigs always opens /gigs. The other links jump to homepage sections: in place on the homepage, or back to it from
+// elsewhere.
 export default function SiteHeader({ page }: { page: "home" | "gigs" }) {
   const onHome = page === "home";
   return (
@@ -20,7 +21,7 @@ export default function SiteHeader({ page }: { page: "home" | "gigs" }) {
           {sections.map((label) => {
             const id = label.toLowerCase();
             const current = id === page;
-            const href = current ? "/gigs" : `${onHome ? "" : "/"}#${id}`;
+            const href = id === "gigs" ? "/gigs" : `${onHome ? "" : "/"}#${id}`;
             return (
               <Link
                 key={label}

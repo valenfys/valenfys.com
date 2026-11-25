@@ -1,8 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import Markdown from "@/components/Markdown";
 import NextUp from "@/components/NextUp";
 import PlatformIcon from "@/components/PlatformIcon";
-import PreviousGigs from "@/components/PreviousGigs";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+import GigList from "@/components/GigList";
 import bioSource from "@/content/bio.md";
 import bioShortSource from "@/content/bio-short.md";
 import { previous, upcoming } from "@/content/gigs";
@@ -10,10 +13,8 @@ import { highlights } from "@/content/highlights";
 import { mixes } from "@/content/mixes";
 import { socials } from "@/content/socials";
 import { external } from "@/lib/external";
+import { container, moreLink, outlined, section, solidButton } from "@/lib/layout";
 import { email, siteUrl } from "@/lib/site";
-
-// Drum machine step lights in the footer: 1 = lit.
-const steps = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0];
 
 const press = [
   { title: "Press kit", detail: "Bios, highlights and links · PDF", href: "/press/ValEnfys-EPK.pdf" },
@@ -52,11 +53,9 @@ const jsonLd = {
   ],
 };
 
-// Shared layout and type classes.
-const container = "mx-auto w-full max-w-[1200px] px-5 md:px-14";
-const section = `${container} pb-18`;
-const solidButton = "bg-ink text-paper transition-colors hover:bg-accent hover:text-paper";
-const outlined = "border border-ink transition-colors hover:text-accent";
+// The homepage shows the latest few gigs; the rest are on /gigs.
+const homeGigCount = 7;
+
 const twoCol = "grid gap-7 md:gap-14";
 
 export default function Home() {
@@ -68,26 +67,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
-      <header className={`${container} flex items-center justify-between gap-6 py-6`}>
-        <a
-          href="#top"
-          className="flex min-h-11 items-center font-display text-[15px] font-bold tracking-[0.14em] hover:text-accent"
-        >
-          VAL ENFYS
-        </a>
-        <nav aria-label="Sections" className="flex items-center gap-7 text-sm font-medium">
-          <span className="hidden gap-7 md:flex">
-            {["Mixes", "Gigs", "About", "Press"].map((label) => (
-              <a key={label} href={`#${label.toLowerCase()}`} className="flex min-h-11 items-center hover:text-accent">
-                {label}
-              </a>
-            ))}
-          </span>
-          <a href={`mailto:${email}`} className={`flex min-h-11 items-center px-4.5 py-3 font-semibold ${solidButton}`}>
-            Bookings
-          </a>
-        </nav>
-      </header>
+      <SiteHeader page="home" />
 
       <main>
         <section id="top" aria-labelledby="h-name" className={`${container} pt-6 pb-16`}>
@@ -157,7 +137,11 @@ export default function Home() {
           <ul className="grid gap-4 md:grid-cols-3">
             {mixes.map(({ title, meta, href }) => (
               <li key={href} className="flex">
-                <a href={href} {...external(href)} className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}>
+                <a
+                  href={href}
+                  {...external(href)}
+                  className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}
+                >
                   <span className="font-display text-[22px] leading-[1.15] font-bold">{title}</span>
                   <span className="text-sm text-muted">{meta}</span>
                   <span className="mt-auto flex items-center gap-2 text-[13px] font-semibold text-accent">
@@ -174,7 +158,10 @@ export default function Home() {
           <h2 id="h-gigs" className="section-label">
             Gigs &amp; mixes
           </h2>
-          <PreviousGigs events={previous} />
+          <GigList events={previous.slice(0, homeGigCount)} />
+          <Link href="/gigs" className={moreLink}>
+            See all {previous.length} gigs <span aria-hidden="true">&nbsp;→</span>
+          </Link>
         </section>
 
         <section id="about" aria-labelledby="h-about" className={section}>
@@ -244,29 +231,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-ink text-paper">
-        <div className={`${container} flex flex-wrap items-center justify-between gap-5 py-9`}>
-          <div className="flex flex-col gap-1.5">
-            <span className="font-display text-xs font-bold tracking-[0.14em] text-card-muted uppercase">
-              Bookings &amp; enquiries
-            </span>
-            <a
-              href={`mailto:${email}`}
-              className="flex min-h-11 items-center font-display text-[28px] font-bold wrap-anywhere underline-offset-4 hover:underline"
-            >
-              {email}
-            </a>
-          </div>
-          <div className="flex flex-col items-end gap-2.5">
-            <span aria-hidden="true" className="flex gap-1">
-              {steps.map((on, i) => (
-                <span key={i} className={`size-2 ${on ? "bg-accent" : "bg-card-rule"}`} />
-              ))}
-            </span>
-            <span className="text-[13px] text-card-muted">&copy; {new Date().getFullYear()} Val Enfys Studio</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

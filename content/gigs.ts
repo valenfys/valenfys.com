@@ -16,7 +16,7 @@ export const upcoming: UpcomingEvent[] = [
     start: "2026-11-29T11:00+00:00",
     end: "2026-11-29T12:00+00:00",
     title: "NOT BAD FOR A GIRL takeover",
-    venue: "Voices Radio, Coal Drops Yard, King’s Cross",
+    venue: "Voices Radio, London",
   },
 ];
 

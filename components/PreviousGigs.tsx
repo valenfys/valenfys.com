@@ -35,9 +35,9 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
           // sits above it (relative z-10), since links can't nest.
           <li
             key={`${event.month}-${event.title}`}
-            className="group relative grid grid-cols-[72px_minmax(0,1fr)_auto] items-center gap-3.5 border-b border-rule px-2 py-4 transition-colors hover:bg-row-hover md:grid-cols-[110px_minmax(0,1fr)_auto] md:gap-6"
+            className="group relative grid grid-cols-[72px_minmax(0,1fr)] items-center gap-x-3.5 gap-y-2.5 border-b border-rule px-2 py-4 transition-colors hover:bg-row-hover md:grid-cols-[110px_minmax(0,1fr)_auto] md:gap-6"
           >
-            <span className="text-sm text-muted tabular-nums">{formatMonth(event.month)}</span>
+            <span className="row-span-2 text-sm text-muted tabular-nums md:row-span-1">{formatMonth(event.month)}</span>
             <span className="flex flex-col gap-[3px]">
               <a
                 href={event.href}
@@ -49,10 +49,10 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               </a>
               <span className="text-sm text-muted">{event.venue}</span>
             </span>
-            <span className="flex items-center gap-2 justify-self-end">
+            {/* Below md the chips sit under the venue; from md they're a right-aligned third column. */}
+            <span className="col-start-2 flex items-center gap-2 justify-self-start md:col-start-3 md:row-start-1 md:justify-self-end">
               {event.ra && <RaChip href={event.ra} title={event.title} />}
-              {/* Below md the row itself is the recording link, so only the RA chip shows. */}
-              <span aria-hidden="true" className={`${chip} hidden gig-hover:border-accent gig-hover:bg-accent gig-hover:text-paper md:flex`}>
+              <span aria-hidden="true" className={`${chip} gig-hover:border-accent gig-hover:bg-accent gig-hover:text-paper`}>
                 <PlatformIcon platform={platforms[event.kind].icon} className="size-3" />
                 {platforms[event.kind].name}
               </span>
@@ -78,10 +78,11 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
 // Outlined tag, like the mix cards and press tiles.
 const chip = "flex items-center gap-1.5 border border-ink px-2 py-1 text-[13px] leading-none font-semibold text-accent transition-colors";
 
-// A secondary link to the RA event page. The transparent link is 44px tall around the smaller chip.
+// A secondary link to the RA event page. The transparent link is 44px tall around the smaller chip; the negative
+// margin keeps that extra height from adding to the row.
 function RaChip({ href, title }: { href: string; title: string }) {
   return (
-    <a href={href} {...external(href)} data-ra className="group/ra relative z-10 flex min-h-11 items-center">
+    <a href={href} {...external(href)} data-ra className="group/ra relative z-10 -my-2.5 flex min-h-11 items-center">
       <span className={`${chip} group-hover/ra:border-accent group-hover/ra:bg-accent group-hover/ra:text-paper`}>
         <PlatformIcon platform="ra" className="size-3" />
         RA<span className="sr-only">: {title} on Resident Advisor</span>

@@ -56,3 +56,12 @@
 @utility section-label {
   @apply mb-3.5 font-display text-[13px] font-bold tracking-[0.14em] text-accent uppercase;
 }
+
+/* Hovering a gig row, but not its RA chip: the row's main link (the recording) is the one that would open. */
+@custom-variant gig-hover {
+  @media (hover: hover) {
+    .group:hover:not(:has([data-ra]:hover)) & {
+      @slot;
+    }
+  }
+}

@@ -42,7 +42,7 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
               <a
                 href={event.href}
                 {...external(event.href)}
-                className="font-semibold transition-colors group-hover:text-accent after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-accent"
+                className="font-semibold transition-colors gig-hover:text-accent after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-accent"
               >
                 {event.title}
                 <span className="sr-only">, {platforms[event.kind].name}</span>
@@ -52,7 +52,7 @@ export default function PreviousGigs({ events }: { events: PastEvent[] }) {
             <span className="flex items-center gap-2 justify-self-end">
               {event.ra && <RaChip href={event.ra} title={event.title} />}
               {/* Below md the row itself is the recording link, so only the RA chip shows. */}
-              <span aria-hidden="true" className={`${chip} hidden md:flex`}>
+              <span aria-hidden="true" className={`${chip} hidden gig-hover:border-accent gig-hover:bg-accent gig-hover:text-paper md:flex`}>
                 <PlatformIcon platform={platforms[event.kind].icon} className="size-3" />
                 {platforms[event.kind].name}
               </span>
@@ -81,7 +81,7 @@ const chip = "flex items-center gap-1.5 border border-ink px-2 py-1 text-[13px] 
 // A secondary link to the RA event page. The transparent link is 44px tall around the smaller chip.
 function RaChip({ href, title }: { href: string; title: string }) {
   return (
-    <a href={href} {...external(href)} className="group/ra relative z-10 flex min-h-11 items-center">
+    <a href={href} {...external(href)} data-ra className="group/ra relative z-10 flex min-h-11 items-center">
       <span className={`${chip} group-hover/ra:border-accent group-hover/ra:bg-accent group-hover/ra:text-paper`}>
         <PlatformIcon platform="ra" className="size-3" />
         RA<span className="sr-only">: {title} on Resident Advisor</span>

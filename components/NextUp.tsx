@@ -15,7 +15,7 @@ export default function NextUp({ event }: { event: UpcomingEvent }) {
   const content = (
     <>
       <span className="flex min-w-16 flex-col items-center border-r border-card-rule pr-7">
-        <span className="font-display text-[44px] leading-none font-bold tabular-nums">
+        <span className="font-display text-[44px] leading-none font-black tabular-nums">
           {format(event.start, { day: "numeric" })}
         </span>
         <span className="mt-1.5 text-[13px] font-semibold tracking-[0.12em] text-card-muted uppercase">
@@ -23,7 +23,7 @@ export default function NextUp({ event }: { event: UpcomingEvent }) {
         </span>
       </span>
       <span className="flex flex-[1_1_260px] flex-col gap-1.5">
-        <span className="font-display text-2xl font-bold underline-offset-4 group-hover:underline">
+        <span className="font-display text-xl font-extrabold uppercase underline-offset-4 group-hover:underline">
           {event.title}
         </span>
         <span className="text-[15px] text-card-muted">

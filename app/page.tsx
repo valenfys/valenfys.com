@@ -72,17 +72,18 @@ export default function Home() {
       <main>
         <section id="top" aria-labelledby="h-name" className={`${container} pt-6 pb-16`}>
           <div aria-hidden="true" className="mb-5 h-[3px] bg-ink" />
-          <h1
-            id="h-name"
-            className="mb-10 font-display text-[min(14.5vw,184px)] leading-[0.88] font-bold tracking-[-0.045em]"
-          >
-            VAL ENFYS
-          </h1>
-          <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:items-end`}>
-            <div className="flex flex-col gap-7 pb-1">
-              <p className="font-display text-[22px] font-medium">
-                DJ and audiovisual artist <span className="text-accent">·</span> Techno{" "}
-                <span className="text-accent">·</span> London, UK <span className="text-muted">(she/her)</span>
+          {/* On md+, the name runs across the top of the photo. White with mix-blend-difference inverts whatever is
+              behind it: the photo where they overlap, and the page background (dark text on paper, light on dark). */}
+          <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:grid-rows-[auto_1fr]`}>
+            <h1
+              id="h-name"
+              className="relative z-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] text-white uppercase mix-blend-difference md:col-[1/-1] md:row-start-1"
+            >
+              VAL ENFYS
+            </h1>
+            <div className="flex flex-col gap-7 pb-1 md:col-start-1 md:row-start-2 md:self-end">
+              <p className="font-display text-[15px] font-extrabold tracking-[0.08em] uppercase">
+                Techno <span className="text-accent">·</span> London
               </p>
               <Markdown source={bioShortSource} className="max-w-[620px] text-lg leading-[1.6] text-pretty" />
               <div className="flex flex-wrap gap-3">
@@ -101,7 +102,7 @@ export default function Home() {
               height={2998}
               sizes="(min-width: 768px) 380px, 100vw"
               preload
-              className="h-[460px] w-full object-cover object-[center_30%] md:h-[540px]"
+              className="h-[460px] w-full object-cover object-[center_30%] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-14 md:h-[540px]"
             />
           </div>
         </section>
@@ -142,7 +143,7 @@ export default function Home() {
                   {...external(href)}
                   className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}
                 >
-                  <span className="font-display text-[22px] leading-[1.15] font-bold">{title}</span>
+                  <span className="font-display text-lg leading-[1.15] font-extrabold uppercase">{title}</span>
                   <span className="text-sm text-muted">{meta}</span>
                   <span className="mt-auto flex items-center gap-2 text-[13px] font-semibold text-accent">
                     <PlatformIcon platform="soundcloud" className="size-4" />
@@ -197,7 +198,7 @@ export default function Home() {
                   className={`flex w-full items-center justify-between gap-4 p-[22px] ${outlined}`}
                 >
                   <span className="flex flex-col gap-1">
-                    <span className="font-display text-xl font-bold">{title}</span>
+                    <span className="font-display text-lg font-extrabold uppercase">{title}</span>
                     <span className="text-sm text-muted">{detail}</span>
                   </span>
                   <span className="shrink-0 text-[13px] font-semibold text-accent">

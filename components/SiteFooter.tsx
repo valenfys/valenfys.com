@@ -9,12 +9,12 @@ export default function SiteFooter() {
     <footer className="bg-ink text-paper">
       <div className={`${container} flex flex-wrap items-center justify-between gap-5 py-9`}>
         <div className="flex flex-col gap-1.5">
-          <span className="font-display text-xs font-bold tracking-[0.14em] text-card-muted uppercase">
+          <span className="font-display text-xs font-extrabold tracking-[0.08em] text-card-muted uppercase">
             Bookings &amp; enquiries
           </span>
           <a
             href={`mailto:${email}`}
-            className="flex min-h-11 items-center font-display text-[28px] font-bold wrap-anywhere underline-offset-4 hover:underline"
+            className="flex min-h-11 items-center text-[28px] font-bold wrap-anywhere underline-offset-4 hover:underline"
           >
             {email}
           </a>

@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
-/* Fonts are loaded with next/font in app/layout.tsx, which sets --font-inter and --font-space-grotesk on <html>. */
+/* Body text is Helvetica Neue where the system has it (Apple devices), with Arial elsewhere. Titles are Archivo,
+   loaded with next/font in app/layout.tsx (which sets --font-archivo on <html>), stretched to its widest width. */
 @theme inline {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display--font-variation-settings: "wdth" 125;
 }
 
 /* Light (paper) theme, from the EPK. Dark values are in the media query below. */
@@ -54,7 +56,7 @@
 
 /* Small uppercase red label above each section's 1px ink rule. */
 @utility section-label {
-  @apply mb-3.5 font-display text-[13px] font-bold tracking-[0.14em] text-accent uppercase;
+  @apply mb-3.5 font-display text-[13px] font-extrabold tracking-[0.08em] text-accent uppercase;
 }
 
 /* Hovering a gig row, but not one of its secondary chips: the row's main link (the recording) is the one that would

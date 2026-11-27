@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { openGraphBase, twitterBase } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -10,8 +10,8 @@ const title = "Val Enfys – DJ & Audiovisual Artist";
 const description =
   "Val Enfys is a UK-based DJ and audiovisual artist, inspired by London’s warehouse and free party scene.";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-space-grotesk" });
+// Titles use Archivo at its widest (see --font-display in globals.css). Body text is Helvetica Neue from the system.
+const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={archivo.variable}>
       <body>
         {children}
         <Analytics />

@@ -1,6 +1,6 @@
 # valenfys.com: homepage redesign (Nov 2026)
 
-This replaces the previous design notes. The new homepage takes its look from Val's EPK (`public/press/ValEnfys-EPK.pdf`): off-white paper, black ink, one red accent, Space Grotesk headings over Inter body, and small uppercase red section labels above 1px black rules.
+This replaces the previous design notes. The new homepage takes its look from Val's EPK (`public/press/ValEnfys-EPK.pdf`): off-white paper, black ink, one red accent, wide uppercase Archivo titles over Helvetica Neue body, and small uppercase red section labels above 1px black rules.
 
 ## Source files
 
@@ -14,7 +14,7 @@ These are reference files, not runnable pages. Read the markup and inline styles
 ## Stack rules
 
 - **Tailwind only.** Put the tokens below in `@theme` in `app/globals.css`. Don't write new vanilla CSS beyond tokens, base styles and small `@utility` blocks.
-- Load fonts with `next/font/google` (`Space_Grotesk` 400/500/700 and `Inter` 400/500/600), exposed as `--font-display` and `--font-sans`.
+- Titles use `Archivo` from `next/font/google` (variable, with the `wdth` axis) at its widest setting (`wdth` 125), exposed as `--font-display`. Body text (`--font-sans`) is the system's Helvetica Neue, falling back to Helvetica and then Arial, with no webfont.
 - **Light and dark themes.** Light is the EPK's paper look. Dark follows `prefers-color-scheme: dark` by overriding the same tokens on `:root`, with `color-scheme: light dark`. The token names don't change between themes: `ink` stays the foreground, so the footer, buttons and "Next up" card become light blocks on the dark page.
 
 ## Tokens

@@ -170,13 +170,10 @@ export default function Home() {
             About
           </h2>
           <div className={`${twoCol} items-start border-t border-ink pt-7 md:grid-cols-[minmax(0,1fr)_340px]`}>
-            <div className="flex max-w-[680px] flex-col gap-4">
-              <Markdown
-                source={bioSource}
-                className="flex flex-col gap-4 leading-[1.65] text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-accent"
-              />
-              <p className="text-sm text-muted">Pronouns: she/her</p>
-            </div>
+            <Markdown
+              source={bioSource}
+              className="flex max-w-[680px] flex-col gap-4 leading-[1.65] text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-accent"
+            />
             <Image
               src="/val-about.jpg"
               alt="Val Enfys in a red hoodie looking upwards beside an iron gate"

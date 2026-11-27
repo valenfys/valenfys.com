@@ -74,13 +74,13 @@ export default function Home() {
           <div aria-hidden="true" className="mb-5 h-[3px] bg-ink" />
           <h1
             id="h-name"
-            className="mb-10 font-display text-[min(14.5vw,184px)] leading-[0.88] font-bold tracking-[-0.045em]"
+            className="mb-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] uppercase"
           >
             VAL ENFYS
           </h1>
           <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:items-end`}>
             <div className="flex flex-col gap-7 pb-1">
-              <p className="font-display text-[22px] font-medium">
+              <p className="text-[22px] font-medium">
                 DJ and audiovisual artist <span className="text-accent">·</span> Techno{" "}
                 <span className="text-accent">·</span> London, UK <span className="text-muted">(she/her)</span>
               </p>
@@ -142,7 +142,7 @@ export default function Home() {
                   {...external(href)}
                   className={`flex min-h-40 w-full flex-col gap-2 p-[22px] ${outlined}`}
                 >
-                  <span className="font-display text-[22px] leading-[1.15] font-bold">{title}</span>
+                  <span className="font-display text-lg leading-[1.15] font-extrabold uppercase">{title}</span>
                   <span className="text-sm text-muted">{meta}</span>
                   <span className="mt-auto flex items-center gap-2 text-[13px] font-semibold text-accent">
                     <PlatformIcon platform="soundcloud" className="size-4" />
@@ -197,7 +197,7 @@ export default function Home() {
                   className={`flex w-full items-center justify-between gap-4 p-[22px] ${outlined}`}
                 >
                   <span className="flex flex-col gap-1">
-                    <span className="font-display text-xl font-bold">{title}</span>
+                    <span className="font-display text-lg font-extrabold uppercase">{title}</span>
                     <span className="text-sm text-muted">{detail}</span>
                   </span>
                   <span className="shrink-0 text-[13px] font-semibold text-accent">

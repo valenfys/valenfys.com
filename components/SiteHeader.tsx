@@ -12,7 +12,7 @@ export default function SiteHeader({ page }: { page: "home" | "gigs" }) {
     <header className={`${container} flex items-center justify-between gap-6 py-6`}>
       <Link
         href={onHome ? "#top" : "/"}
-        className="flex min-h-11 items-center font-display text-[15px] font-bold tracking-[0.14em] hover:text-accent"
+        className="flex min-h-11 items-center font-display text-[15px] font-black tracking-[0.04em] hover:text-accent"
       >
         VAL ENFYS
       </Link>

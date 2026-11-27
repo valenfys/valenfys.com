@@ -68,7 +68,7 @@ export default function Gigs() {
           <div aria-hidden="true" className="mb-5 h-[3px] bg-ink" />
           <h1
             id="h-gigs"
-            className="mb-6 font-display text-[min(12vw,96px)] leading-[0.92] font-bold tracking-[-0.04em]"
+            className="mb-6 font-display text-[min(9vw,80px)] leading-[0.92] font-black tracking-[-0.02em] uppercase"
           >
             Gigs &amp; mixes
           </h1>

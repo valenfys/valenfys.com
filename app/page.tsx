@@ -82,9 +82,8 @@ export default function Home() {
               VAL ENFYS
             </h1>
             <div className="flex flex-col gap-7 pb-1 md:col-start-1 md:row-start-2 md:self-end">
-              <p className="text-[22px] font-medium">
-                DJ and audiovisual artist <span className="text-accent">·</span> Techno{" "}
-                <span className="text-accent">·</span> London, UK <span className="text-muted">(she/her)</span>
+              <p className="font-display text-[15px] font-extrabold tracking-[0.08em] uppercase">
+                Techno <span className="text-accent">·</span> London
               </p>
               <Markdown source={bioShortSource} className="max-w-[620px] text-lg leading-[1.6] text-pretty" />
               <div className="flex flex-wrap gap-3">
@@ -171,10 +170,13 @@ export default function Home() {
             About
           </h2>
           <div className={`${twoCol} items-start border-t border-ink pt-7 md:grid-cols-[minmax(0,1fr)_340px]`}>
-            <Markdown
-              source={bioSource}
-              className="flex max-w-[680px] flex-col gap-4 leading-[1.65] text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-accent"
-            />
+            <div className="flex max-w-[680px] flex-col gap-4">
+              <Markdown
+                source={bioSource}
+                className="flex flex-col gap-4 leading-[1.65] text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-accent"
+              />
+              <p className="text-sm text-muted">Pronouns: she/her</p>
+            </div>
             <Image
               src="/val-about.jpg"
               alt="Val Enfys in a red hoodie looking upwards beside an iron gate"

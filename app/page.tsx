@@ -77,7 +77,7 @@ export default function Home() {
           <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:grid-rows-[auto_1fr]`}>
             <h1
               id="h-name"
-              className="relative z-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] text-white uppercase mix-blend-difference md:col-span-2 md:row-start-1"
+              className="relative z-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] text-white uppercase mix-blend-difference md:col-[1/-1] md:row-start-1"
             >
               VAL ENFYS
             </h1>

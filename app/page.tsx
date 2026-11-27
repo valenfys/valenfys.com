@@ -72,14 +72,16 @@ export default function Home() {
       <main>
         <section id="top" aria-labelledby="h-name" className={`${container} pt-6 pb-16`}>
           <div aria-hidden="true" className="mb-5 h-[3px] bg-ink" />
-          <h1
-            id="h-name"
-            className="mb-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] uppercase"
-          >
-            VAL ENFYS
-          </h1>
-          <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:items-end`}>
-            <div className="flex flex-col gap-7 pb-1">
+          {/* On md+, the name runs across the top of the photo. White with mix-blend-difference inverts whatever is
+              behind it: the photo where they overlap, and the page background (dark text on paper, light on dark). */}
+          <div className={`${twoCol} md:grid-cols-[minmax(0,1fr)_380px] md:grid-rows-[auto_1fr]`}>
+            <h1
+              id="h-name"
+              className="relative z-10 font-display text-[min(11vw,140px)] leading-[0.88] font-black tracking-[-0.02em] text-white uppercase mix-blend-difference md:col-span-2 md:row-start-1"
+            >
+              VAL ENFYS
+            </h1>
+            <div className="flex flex-col gap-7 pb-1 md:col-start-1 md:row-start-2 md:self-end">
               <p className="text-[22px] font-medium">
                 DJ and audiovisual artist <span className="text-accent">·</span> Techno{" "}
                 <span className="text-accent">·</span> London, UK <span className="text-muted">(she/her)</span>
@@ -101,7 +103,7 @@ export default function Home() {
               height={2998}
               sizes="(min-width: 768px) 380px, 100vw"
               preload
-              className="h-[460px] w-full object-cover object-[center_30%] md:h-[540px]"
+              className="h-[460px] w-full object-cover object-[center_30%] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-14 md:h-[540px]"
             />
           </div>
         </section>

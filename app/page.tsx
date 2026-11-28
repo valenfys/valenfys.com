@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
 import Markdown from "@/components/Markdown";
 import NextUp from "@/components/NextUp";
 import PlatformIcon from "@/components/PlatformIcon";
@@ -161,7 +162,8 @@ export default function Home() {
           </h2>
           <GigList events={previous.slice(0, homeGigCount)} />
           <Link href="/gigs" className={moreLink}>
-            See all {previous.length} gigs <span aria-hidden="true">&nbsp;→</span>
+            See all {previous.length} gigs
+            <FaArrowRight aria-hidden="true" className="ml-2 size-3 shrink-0" />
           </Link>
         </section>
 
@@ -201,8 +203,8 @@ export default function Home() {
                     <span className="font-display text-lg font-extrabold uppercase">{title}</span>
                     <span className="text-sm text-muted">{detail}</span>
                   </span>
-                  <span className="shrink-0 text-[13px] font-semibold text-accent">
-                    Download <span aria-hidden="true">↓</span>
+                  <span className="flex shrink-0 items-center gap-1.5 text-[13px] font-semibold text-accent">
+                    Download <FaArrowDown aria-hidden="true" className="size-3 shrink-0" />
                   </span>
                 </a>
               </li>

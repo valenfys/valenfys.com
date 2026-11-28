@@ -22,7 +22,7 @@ export const upcoming: UpcomingEvent[] = [
 ];
 
 export const previous: PastEvent[] = [
-  { month: "2026-11", title: "Guest on Johnny Fiore's E1 show", venue: "Bloop London Radio, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=Px3nExikebc" } },
+  { month: "2026-11", title: "Johnny Fiore powered by E1", venue: "Bloop London Radio, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=Px3nExikebc" } },
   { month: "2026-11", title: "Rebel Rebel x E1", venue: "E1, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=0mlQV31Q_mc" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2533099" }, { platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-techno-dj-set-e1" }] },
   { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", primary: { platform: "soundcloud", href: "https://soundcloud.com/valenfys/fragment-open-decks" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2500782" }] },
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k" }, secondary: [{ platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-b2b-d-lai-at-bad-studios" }] },

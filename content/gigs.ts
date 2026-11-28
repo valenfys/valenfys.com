@@ -1,9 +1,10 @@
 // start and end are ISO timestamps with the UK offset (+01:00 in summer time, +00:00 in winter).
 // href is optional: leave it out when there's no public event page.
 export type UpcomingEvent = { start: string; end: string; title: string; venue: string; href?: string };
-// month is "YYYY-MM". primary is the recording if one exists, otherwise the RA event page. secondary holds any other
-// links (the RA page, or another upload of the same set), shown as smaller chips before the primary one.
-export type GigLink = { platform: "youtube" | "soundcloud" | "ra"; href: string };
+// month is "YYYY-MM". primary is the recording if one exists, otherwise the event or show page (RA, or the radio
+// station's own page). secondary holds any other links (the RA page, or another upload of the same set), shown as
+// smaller chips before the primary one.
+export type GigLink = { platform: "youtube" | "soundcloud" | "ra" | "bloop"; href: string };
 export type PastEvent = {
   month: string;
   title: string;
@@ -22,7 +23,7 @@ export const upcoming: UpcomingEvent[] = [
 ];
 
 export const previous: PastEvent[] = [
-  { month: "2026-11", title: "Johnny Fiore powered by E1", venue: "Bloop London Radio, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=Px3nExikebc" } },
+  { month: "2026-11", title: "Johnny Fiore powered by E1", venue: "Bloop London Radio, London", primary: { platform: "bloop", href: "https://blooplondon.com/show/johnny-fiore-powered-by-e1-w-e1-london-club-team-guest-val-enfys-26-11-26/" } },
   { month: "2026-11", title: "Rebel Rebel x E1", venue: "E1, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=0mlQV31Q_mc" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2533099" }, { platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-techno-dj-set-e1" }] },
   { month: "2026-10", title: "Fragment: Open Decks", venue: "The Glove That Fits, London", primary: { platform: "soundcloud", href: "https://soundcloud.com/valenfys/fragment-open-decks" }, secondary: [{ platform: "ra", href: "https://ra.co/events/2500782" }] },
   { month: "2026-08", title: "B2B with D LAI", venue: "BAD Studios, London", primary: { platform: "youtube", href: "https://www.youtube.com/watch?v=2ysRMIp8R5k" }, secondary: [{ platform: "soundcloud", href: "https://soundcloud.com/valenfys/val-enfys-b2b-d-lai-at-bad-studios" }] },

@@ -8,6 +8,7 @@ const platforms: Record<GigLink["platform"], { name: string; fullName: string }>
   youtube: { name: "YouTube", fullName: "YouTube" },
   soundcloud: { name: "SoundCloud", fullName: "SoundCloud" },
   ra: { name: "RA", fullName: "Resident Advisor" },
+  bloop: { name: "Bloop", fullName: "Bloop London Radio" },
 };
 
 // "2025-09" → "Sep 2025"
